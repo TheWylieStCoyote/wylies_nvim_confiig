@@ -1,0 +1,1 @@
+/home/wylie/.config/omarchy/current/theme/neovim.lua
