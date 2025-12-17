@@ -137,6 +137,18 @@ return {
       },
     },
   },
+  
+  -- for C++
+  {
+    'neovim/nvim-lspconfig',
+      dependencies = {
+      -- Automatically install LSP servers
+      'mason-org/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp', dependencies = {'hrsh7th/cmp-nvim-lsp'}},
+    }
+  },
 
   -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
   -- would overwrite `ensure_installed` with the new value.
@@ -184,7 +196,7 @@ return {
 
   -- add any tools you want to have installed below
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         "stylua",
@@ -194,4 +206,11 @@ return {
       },
     },
   },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   dependencies = { "rafamadriz/friendly-snippets" },
+  --   config = function()
+  --     require("luasnip.loaders.from_vscode").lazy_load()
+  --   end,
+  -- },
 }
