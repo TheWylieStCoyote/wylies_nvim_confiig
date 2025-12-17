@@ -26,12 +26,12 @@ return {
     end,
   },
 
-  -- haskell-language-server configuration
+  -- haskell-language-server configuration (only if ghcup is available)
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        hls = {
+        hls = vim.fn.executable("ghcup") == 1 and {
           filetypes = { "haskell", "lhaskell", "cabal" },
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
@@ -98,7 +98,13 @@ return {
               },
             },
           },
-        },
+        } or nil, -- Only configure if ghcup available
+      },
+      -- Prevent mason-lspconfig from auto-installing hls
+      setup = {
+        hls = function()
+          return vim.fn.executable("ghcup") ~= 1 -- Skip setup if ghcup not available
+        end,
       },
     },
   },

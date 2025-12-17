@@ -30,12 +30,12 @@ return {
     end,
   },
 
-  -- gopls LSP configuration
+  -- gopls LSP configuration (only if Go is available)
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        gopls = {
+        gopls = vim.fn.executable("go") == 1 and {
           settings = {
             gopls = {
               gofumpt = true,
@@ -72,7 +72,13 @@ return {
               semanticTokens = true,
             },
           },
-        },
+        } or nil, -- Only configure if Go available
+      },
+      -- Prevent mason-lspconfig from auto-installing gopls
+      setup = {
+        gopls = function()
+          return vim.fn.executable("go") ~= 1 -- Skip setup if Go not available
+        end,
       },
     },
   },

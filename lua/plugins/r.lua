@@ -25,12 +25,12 @@ return {
   --   end,
   -- },
 
-  -- R language server configuration
+  -- R language server configuration (only if R is available)
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        r_language_server = {
+        r_language_server = vim.fn.executable("R") == 1 and {
           cmd = { "R", "--slave", "-e", "languageserver::run()" },
           filetypes = { "r", "rmd" },
           root_dir = function(fname)
@@ -50,7 +50,13 @@ return {
               },
             },
           },
-        },
+        } or nil, -- Only configure if R available
+      },
+      -- Prevent mason-lspconfig from auto-installing r_language_server
+      setup = {
+        r_language_server = function()
+          return vim.fn.executable("R") ~= 1 -- Skip setup if R not available
+        end,
       },
     },
   },

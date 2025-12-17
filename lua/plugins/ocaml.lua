@@ -26,12 +26,12 @@ return {
   --   end,
   -- },
 
-  -- ocamllsp configuration
+  -- ocamllsp configuration (only if opam is available)
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        ocamllsp = {
+        ocamllsp = vim.fn.executable("opam") == 1 and {
           cmd = { "ocamllsp" },
           filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
           root_dir = function(fname)
@@ -61,7 +61,13 @@ return {
               },
             },
           },
-        },
+        } or nil, -- Only configure if opam available
+      },
+      -- Prevent mason-lspconfig from auto-installing ocamllsp
+      setup = {
+        ocamllsp = function()
+          return vim.fn.executable("opam") ~= 1 -- Skip setup if opam not available
+        end,
       },
     },
   },
