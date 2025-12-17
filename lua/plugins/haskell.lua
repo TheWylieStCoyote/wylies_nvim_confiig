@@ -1,6 +1,11 @@
 -- Haskell Development Configuration
 -- LSP (haskell-language-server), formatting (ormolu), linting (hlint)
 
+-- Skip entire Haskell config if ghcup is not installed
+if vim.fn.executable("ghcup") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Haskell
   {
@@ -27,11 +32,12 @@ return {
   },
 
   -- haskell-language-server configuration (only if ghcup is available)
-  {
+  -- Completely skip this config if ghcup is not installed to prevent mason-lspconfig auto-install
+  vim.fn.executable("ghcup") == 1 and {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        hls = vim.fn.executable("ghcup") == 1 and {
+        hls = {
           filetypes = { "haskell", "lhaskell", "cabal" },
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
@@ -98,16 +104,10 @@ return {
               },
             },
           },
-        } or nil, -- Only configure if ghcup available
-      },
-      -- Prevent mason-lspconfig from auto-installing hls
-      setup = {
-        hls = function()
-          return vim.fn.executable("ghcup") ~= 1 -- Skip setup if ghcup not available
-        end,
+        },
       },
     },
-  },
+  } or nil,
 
   -- Code formatting with ormolu
   {

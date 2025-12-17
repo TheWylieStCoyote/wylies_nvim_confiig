@@ -7,6 +7,29 @@ return {
     "mason-org/mason-lspconfig.nvim",
     opts = {
       automatic_installation = false,
+      -- Prevent auto-install of LSPs that require missing system dependencies
+      handlers = {
+        -- Skip servers that need Go
+        ["gopls"] = function()
+          if vim.fn.executable("go") ~= 1 then return end
+          require("lspconfig").gopls.setup({})
+        end,
+        -- Skip servers that need ghcup
+        ["hls"] = function()
+          if vim.fn.executable("ghcup") ~= 1 then return end
+          require("lspconfig").hls.setup({})
+        end,
+        -- Skip servers that need opam
+        ["ocamllsp"] = function()
+          if vim.fn.executable("opam") ~= 1 then return end
+          require("lspconfig").ocamllsp.setup({})
+        end,
+        -- Skip servers that need R
+        ["r_language_server"] = function()
+          if vim.fn.executable("R") ~= 1 then return end
+          require("lspconfig").r_language_server.setup({})
+        end,
+      },
     },
   },
 

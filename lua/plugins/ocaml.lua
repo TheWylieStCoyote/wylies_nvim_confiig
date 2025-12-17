@@ -1,6 +1,11 @@
 -- OCaml Development Configuration
 -- LSP (ocamllsp), formatting (ocamlformat), and dune/opam support
 
+-- Skip entire OCaml config if opam is not installed
+if vim.fn.executable("opam") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for OCaml
   {
@@ -27,11 +32,12 @@ return {
   -- },
 
   -- ocamllsp configuration (only if opam is available)
-  {
+  -- Completely skip this config if opam is not installed to prevent mason-lspconfig auto-install
+  vim.fn.executable("opam") == 1 and {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        ocamllsp = vim.fn.executable("opam") == 1 and {
+        ocamllsp = {
           cmd = { "ocamllsp" },
           filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
           root_dir = function(fname)
@@ -61,16 +67,10 @@ return {
               },
             },
           },
-        } or nil, -- Only configure if opam available
-      },
-      -- Prevent mason-lspconfig from auto-installing ocamllsp
-      setup = {
-        ocamllsp = function()
-          return vim.fn.executable("opam") ~= 1 -- Skip setup if opam not available
-        end,
+        },
       },
     },
-  },
+  } or nil,
 
   -- Code formatting with ocamlformat
   {

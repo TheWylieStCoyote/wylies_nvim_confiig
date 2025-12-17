@@ -1,6 +1,11 @@
 -- Go Development Configuration
 -- LSP (gopls), debugging (delve), formatting, and go.nvim
 
+-- Skip entire Go config if Go is not installed
+if vim.fn.executable("go") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Go
   {
@@ -31,11 +36,12 @@ return {
   },
 
   -- gopls LSP configuration (only if Go is available)
-  {
+  -- Completely skip this config if Go is not installed to prevent mason-lspconfig auto-install
+  vim.fn.executable("go") == 1 and {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        gopls = vim.fn.executable("go") == 1 and {
+        gopls = {
           settings = {
             gopls = {
               gofumpt = true,
@@ -72,16 +78,10 @@ return {
               semanticTokens = true,
             },
           },
-        } or nil, -- Only configure if Go available
-      },
-      -- Prevent mason-lspconfig from auto-installing gopls
-      setup = {
-        gopls = function()
-          return vim.fn.executable("go") ~= 1 -- Skip setup if Go not available
-        end,
+        },
       },
     },
-  },
+  } or nil,
 
   -- go.nvim: Enhanced Go development
   {

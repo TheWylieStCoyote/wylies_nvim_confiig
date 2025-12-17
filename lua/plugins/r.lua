@@ -1,6 +1,18 @@
 -- R Development Configuration
 -- LSP (r-languageserver), linting (lintr), and RStudio-like features
 
+-- Skip entire R config if R languageserver is not installed
+-- (R may be installed but languageserver requires manual setup in R)
+local function has_r_languageserver()
+  if vim.fn.executable("R") ~= 1 then return false end
+  local result = vim.fn.system("R --slave -e 'packageVersion(\"languageserver\")' 2>/dev/null")
+  return result:match("%d+%.%d+") ~= nil
+end
+
+if not has_r_languageserver() then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for R
   {
@@ -26,11 +38,12 @@ return {
   -- },
 
   -- R language server configuration (only if R is available)
-  {
+  -- Completely skip this config if R is not installed to prevent mason-lspconfig auto-install
+  vim.fn.executable("R") == 1 and {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        r_language_server = vim.fn.executable("R") == 1 and {
+        r_language_server = {
           cmd = { "R", "--slave", "-e", "languageserver::run()" },
           filetypes = { "r", "rmd" },
           root_dir = function(fname)
@@ -50,16 +63,10 @@ return {
               },
             },
           },
-        } or nil, -- Only configure if R available
-      },
-      -- Prevent mason-lspconfig from auto-installing r_language_server
-      setup = {
-        r_language_server = function()
-          return vim.fn.executable("R") ~= 1 -- Skip setup if R not available
-        end,
+        },
       },
     },
-  },
+  } or nil,
 
   -- Code formatting with styler
   {
