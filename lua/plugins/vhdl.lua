@@ -12,15 +12,9 @@ return {
     end,
   },
 
-  -- Mason: ensure VHDL tools are installed
-  {
-    "mason-org/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed or {}, {
-        "vhdl_ls",
-      })
-    end,
-  },
+  -- Note: vhdl_ls is not available in Mason
+  -- Install manually: cargo install vhdl_ls
+  -- Or via package manager: yay -S rust_hdl
 
   -- vhdl_ls (rust_hdl) configuration
   {

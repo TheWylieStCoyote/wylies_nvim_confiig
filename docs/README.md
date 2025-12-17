@@ -41,6 +41,8 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | Protobuf | bufls | buf | buf, protolint | - | `<leader>p` | [protobuf.md](protobuf.md) |
 | **Documentation** |
 | LaTeX | texlab | latexindent | chktex | - | `<leader>L` | [latex.md](latex.md) |
+| **AI Assistants** |
+| GitHub Copilot | copilot.lua | - | - | - | `<leader>a/cp` | [copilot.md](copilot.md) |
 
 ## Installation
 
