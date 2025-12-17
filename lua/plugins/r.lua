@@ -15,14 +15,15 @@ return {
   },
 
   -- Mason: ensure R tools are installed
-  {
-    "mason-org/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed or {}, {
-        "r-languageserver",
-      })
-    end,
-  },
+  -- Note: Requires R. Install in R: install.packages("languageserver")
+  -- {
+  --   "mason-org/mason.nvim",
+  --   opts = function(_, opts)
+  --     vim.list_extend(opts.ensure_installed or {}, {
+  --       "r-languageserver",
+  --     })
+  --   end,
+  -- },
 
   -- R language server configuration
   {
@@ -128,10 +129,12 @@ return {
     end,
   },
 
-  -- cmp-r for R-specific completions
+  -- cmp-r for R-specific completions (disabled - using blink.cmp instead)
   {
     "R-nvim/cmp-r",
+    enabled = false, -- Only works with nvim-cmp, not blink.cmp
     ft = { "r", "rmd", "rnoweb", "quarto" },
+    dependencies = { "hrsh7th/nvim-cmp" },
     config = function()
       require("cmp_r").setup({})
     end,

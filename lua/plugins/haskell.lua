@@ -12,15 +12,17 @@ return {
     end,
   },
 
-  -- Mason: ensure Haskell tools are installed
+  -- Mason: ensure Haskell tools are installed (only if ghcup is available)
   {
     "mason-org/mason.nvim",
     opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed or {}, {
-        "haskell-language-server",
-        "ormolu",
-        "hlint",
-      })
+      if vim.fn.executable("ghcup") == 1 then
+        vim.list_extend(opts.ensure_installed or {}, {
+          "haskell-language-server",
+          "ormolu",
+          "hlint",
+        })
+      end
     end,
   },
 

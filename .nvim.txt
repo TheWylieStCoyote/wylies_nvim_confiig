@@ -1,0 +1,71 @@
+  Productivity & Navigation
+
+  | Plugin                  | Description                                           |
+  |-------------------------|-------------------------------------------------------|
+  | ThePrimeagen/harpoon    | Quick file navigation - mark files and jump instantly |
+  | folke/flash.nvim        | Enhanced motion with search labels                    |
+  | stevearc/oil.nvim       | File explorer that edits like a buffer                |
+  | ahmedkhalf/project.nvim | Project detection and management                      |
+
+  Development Tools
+
+  | Plugin                        | Description                                  |
+  |-------------------------------|----------------------------------------------|
+  | nvim-neotest/neotest          | Test runner framework with language adapters |
+  | kristijanhusak/vim-dadbod-ui  | Database client (PostgreSQL, MySQL, SQLite)  |
+  | rest-nvim/rest.nvim           | HTTP client for API testing                  |
+  | danymat/neogen                | Generate docstrings/annotations              |
+  | ThePrimeagen/refactoring.nvim | Refactoring operations (extract, inline)     |
+
+  Git Enhancements
+
+  | Plugin                  | Description                            |
+  |-------------------------|----------------------------------------|
+  | sindrets/diffview.nvim  | Git diff and file history viewer       |
+  | NeogitOrg/neogit        | Magit-style git interface              |
+  | lewis6991/gitsigns.nvim | Git signs in gutter (LazyVim includes) |
+  | pwntester/octo.nvim     | GitHub issues/PRs in Neovim            |
+
+  AI Alternatives
+
+  | Plugin                       | Description                    |
+  |------------------------------|--------------------------------|
+  | Exafunction/codeium.vim      | Free Copilot alternative       |
+  | David-Kunz/gen.nvim          | Local LLM integration (Ollama) |
+  | olimorris/codecompanion.nvim | Multi-provider AI chat         |
+
+  Note-Taking & Docs
+
+  | Plugin                       | Description                |
+  |------------------------------|----------------------------|
+  | epwalsh/obsidian.nvim        | Obsidian vault integration |
+  | nvim-neorg/neorg             | Org-mode for Neovim        |
+  | iamcco/markdown-preview.nvim | Live markdown preview      |
+
+  UI Enhancements
+
+  | Plugin                 | Description                               |
+  |------------------------|-------------------------------------------|
+  | folke/noice.nvim       | Replaces UI for messages, cmdline, popups |
+  | folke/zen-mode.nvim    | Distraction-free coding                   |
+  | folke/twilight.nvim    | Dim inactive code portions                |
+  | stevearc/dressing.nvim | Improved vim.ui interfaces                |
+
+  Remote & Containers
+
+  | Plugin                      | Description                |
+  |-----------------------------|----------------------------|
+  | amitds1997/remote-nvim.nvim | Remote development via SSH |
+  | esensar/nvim-dev-container  | Dev container support      |
+
+  My Top Recommendations
+
+  Given your setup, I'd prioritize:
+
+  1. neotest - Unified test running for all your languages
+  2. vim-dadbod-ui - Since you have SQL support, this adds a full DB client
+  3. harpoon - Essential for fast file switching in projects
+  4. diffview.nvim - Much better git diff experience
+  5. neogen - Auto-generate docstrings for your code
+
+  Want me to create a configuration for any of these?

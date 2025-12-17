@@ -43,6 +43,21 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | LaTeX | texlab | latexindent | chktex | - | `<leader>L` | [latex.md](latex.md) |
 | **AI Assistants** |
 | GitHub Copilot | copilot.lua | - | - | - | `<leader>a/cp` | [copilot.md](copilot.md) |
+| **Testing** |
+| Neotest | neotest + adapters | - | - | DAP | `<leader>t` | [neotest.md](neotest.md) |
+| **Navigation** |
+| Harpoon | harpoon2 | - | - | - | `<leader>h`, `<leader>1-5` | [harpoon.md](harpoon.md) |
+| Which-Key | which-key.nvim | - | - | - | (auto) | [which-key.md](which-key.md) |
+| **Git** |
+| Diffview | diffview.nvim | - | - | - | `<leader>g` | [diffview.md](diffview.md) |
+| **Remote Development** |
+| Remote Neovim | remote-nvim.nvim | - | - | - | `<leader>r` | [remote-nvim.md](remote-nvim.md) |
+| Devcontainer | nvim-dev-container | - | - | - | `<leader>D` | [devcontainer.md](devcontainer.md) |
+
+## Additional Resources
+
+- [Setup Guide](setup-guide.md) - System integration, terminal, tmux, dotfiles, workflow tips
+- [Plugin Recommendations](plugin-recommendations.md) - Curated list of plugins to consider
 
 ## Installation
 

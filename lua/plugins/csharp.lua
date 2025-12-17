@@ -125,6 +125,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     optional = true,
+    ft = { "cs" },
     opts = function()
       local dap = require("dap")
 
@@ -179,17 +180,10 @@ return {
           type = "coreclr",
           name = "Attach",
           request = "attach",
-          processId = require("dap.utils").pick_process,
+          processId = function() return require("dap.utils").pick_process() end,
         },
       }
     end,
-    keys = {
-      { "<F5>", function() require("dap").continue() end, desc = "Debug: Start/Continue" },
-      { "<F9>", function() require("dap").toggle_breakpoint() end, desc = "Debug: Toggle Breakpoint" },
-      { "<F10>", function() require("dap").step_over() end, desc = "Debug: Step Over" },
-      { "<F11>", function() require("dap").step_into() end, desc = "Debug: Step Into" },
-      { "<S-F11>", function() require("dap").step_out() end, desc = "Debug: Step Out" },
-    },
   },
 
   -- C#-specific keybindings

@@ -15,15 +15,16 @@ return {
   },
 
   -- Mason: ensure OCaml tools are installed
-  {
-    "mason-org/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed or {}, {
-        "ocaml-lsp",
-        "ocamlformat",
-      })
-    end,
-  },
+  -- Note: Requires opam. Install manually: opam install ocaml-lsp-server ocamlformat
+  -- {
+  --   "mason-org/mason.nvim",
+  --   opts = function(_, opts)
+  --     vim.list_extend(opts.ensure_installed or {}, {
+  --       "ocaml-lsp",
+  --       "ocamlformat",
+  --     })
+  --   end,
+  -- },
 
   -- ocamllsp configuration
   {
@@ -98,6 +99,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     optional = true,
+    ft = { "ocaml", "ocaml.interface", "ocaml.menhir", "ocaml.ocamllex" },
     opts = function()
       local dap = require("dap")
 
@@ -127,13 +129,6 @@ return {
         },
       }
     end,
-    keys = {
-      { "<F5>", function() require("dap").continue() end, desc = "Debug: Start/Continue" },
-      { "<F9>", function() require("dap").toggle_breakpoint() end, desc = "Debug: Toggle Breakpoint" },
-      { "<F10>", function() require("dap").step_over() end, desc = "Debug: Step Over" },
-      { "<F11>", function() require("dap").step_into() end, desc = "Debug: Step Into" },
-      { "<S-F11>", function() require("dap").step_out() end, desc = "Debug: Step Out" },
-    },
   },
 
   -- OCaml-specific keybindings

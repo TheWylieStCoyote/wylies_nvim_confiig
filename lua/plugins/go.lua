@@ -15,16 +15,18 @@ return {
     end,
   },
 
-  -- Mason: ensure Go tools are installed
+  -- Mason: ensure Go tools are installed (only if Go is available)
   {
     "mason-org/mason.nvim",
     opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed or {}, {
-        "gopls",
-        "goimports",
-        "golangci-lint",
-        "delve",
-      })
+      if vim.fn.executable("go") == 1 then
+        vim.list_extend(opts.ensure_installed or {}, {
+          "gopls",
+          "goimports",
+          "golangci-lint",
+          "delve",
+        })
+      end
     end,
   },
 
@@ -177,10 +179,7 @@ return {
   -- Go debugging with delve
   {
     "leoluz/nvim-dap-go",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
-    },
+    ft = { "go", "gomod" },
     opts = {
       dap_configurations = {
         {
@@ -214,7 +213,7 @@ return {
           name = "Attach",
           mode = "local",
           request = "attach",
-          processId = require("dap.utils").pick_process,
+          processId = function() return require("dap.utils").pick_process() end,
         },
       },
       delve = {
@@ -226,13 +225,8 @@ return {
       },
     },
     keys = {
-      { "<F5>", function() require("dap").continue() end, desc = "Debug: Start/Continue" },
-      { "<F9>", function() require("dap").toggle_breakpoint() end, desc = "Debug: Toggle Breakpoint" },
-      { "<F10>", function() require("dap").step_over() end, desc = "Debug: Step Over" },
-      { "<F11>", function() require("dap").step_into() end, desc = "Debug: Step Into" },
-      { "<S-F11>", function() require("dap").step_out() end, desc = "Debug: Step Out" },
-      { "<leader>dgt", function() require("dap-go").debug_test() end, desc = "Debug Go Test" },
-      { "<leader>dgl", function() require("dap-go").debug_last_test() end, desc = "Debug Last Go Test" },
+      { "<leader>dgt", function() require("dap-go").debug_test() end, desc = "Debug Go Test", ft = "go" },
+      { "<leader>dgl", function() require("dap-go").debug_last_test() end, desc = "Debug Last Go Test", ft = "go" },
     },
   },
 }

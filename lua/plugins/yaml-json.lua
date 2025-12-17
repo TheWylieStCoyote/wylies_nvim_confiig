@@ -145,7 +145,7 @@ return {
   -- SchemaStore for JSON schemas
   {
     "b0o/schemastore.nvim",
-    lazy = false,  -- Load immediately so it's available for jsonls
+    lazy = true,  -- Loaded by jsonls when needed
   },
 
   -- Code formatting

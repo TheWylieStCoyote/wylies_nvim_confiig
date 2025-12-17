@@ -89,18 +89,15 @@ return {
   -- Virtual environment selector
   {
     "linux-cultist/venv-selector.nvim",
-    branch = "regexp",
     dependencies = {
       "neovim/nvim-lspconfig",
       "nvim-telescope/telescope.nvim",
       "mfussenegger/nvim-dap-python",
     },
-    lazy = false,
+    ft = "python",  -- Only load for Python files
     opts = {
-      settings = {
-        options = {
-          notify_user_on_venv_activation = true,
-        },
+      options = {
+        notify_user_on_venv_activation = true,
       },
     },
     keys = {
@@ -109,31 +106,20 @@ return {
     },
   },
 
-  -- Python debugging with debugpy
+  -- Python debugging with debugpy (extends centralized DAP)
   {
-    "mfussenegger/nvim-dap",
-    dependencies = {
-      "mfussenegger/nvim-dap-python",
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    keys = {
+      { "<leader>pd", function() require("dap-python").debug_selection() end, desc = "Debug Selection", mode = "v", ft = "python" },
+      { "<leader>pt", function() require("dap-python").test_method() end, desc = "Debug Test Method", ft = "python" },
+      { "<leader>pT", function() require("dap-python").test_class() end, desc = "Debug Test Class", ft = "python" },
     },
     config = function()
-      local dap_python = require("dap-python")
-      -- Use debugpy from Mason
       local debugpy_path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
-      dap_python.setup(debugpy_path)
-
-      -- Custom configurations
-      dap_python.test_runner = "pytest"
+      require("dap-python").setup(debugpy_path)
+      require("dap-python").test_runner = "pytest"
     end,
-    keys = {
-      { "<leader>pd", function() require("dap-python").debug_selection() end, desc = "Debug Selection", mode = "v" },
-      { "<leader>pt", function() require("dap-python").test_method() end, desc = "Debug Test Method" },
-      { "<leader>pT", function() require("dap-python").test_class() end, desc = "Debug Test Class" },
-      { "<F5>", function() require("dap").continue() end, desc = "Debug: Start/Continue" },
-      { "<F9>", function() require("dap").toggle_breakpoint() end, desc = "Debug: Toggle Breakpoint" },
-      { "<F10>", function() require("dap").step_over() end, desc = "Debug: Step Over" },
-      { "<F11>", function() require("dap").step_into() end, desc = "Debug: Step Into" },
-      { "<S-F11>", function() require("dap").step_out() end, desc = "Debug: Step Out" },
-    },
   },
 
   -- Python-specific keybindings

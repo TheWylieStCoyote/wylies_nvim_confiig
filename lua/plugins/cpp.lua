@@ -125,13 +125,11 @@ return {
     },
   },
 
-  -- Debug Adapter Protocol (DAP) for C/C++
+  -- C/C++ debug configuration (extends centralized DAP)
   {
     "mfussenegger/nvim-dap",
-    dependencies = {
-      "rcarriga/nvim-dap-ui",
-      "nvim-neotest/nvim-nio",
-    },
+    optional = true,
+    ft = { "c", "cpp" },
     config = function()
       local dap = require("dap")
 
@@ -157,59 +155,8 @@ return {
           cwd = "${workspaceFolder}",
           stopOnEntry = false,
         },
-        {
-          name = "Launch with arguments",
-          type = "codelldb",
-          request = "launch",
-          program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-          end,
-          args = function()
-            local args_string = vim.fn.input("Arguments: ")
-            return vim.split(args_string, " ")
-          end,
-          cwd = "${workspaceFolder}",
-          stopOnEntry = false,
-        },
-        {
-          name = "Attach to process",
-          type = "codelldb",
-          request = "attach",
-          pid = require("dap.utils").pick_process,
-          cwd = "${workspaceFolder}",
-        },
       }
-
-      -- Use same config for C
       dap.configurations.c = dap.configurations.cpp
-
-      -- Setup DAP UI
-      local dapui = require("dapui")
-      dapui.setup()
-
-      -- Auto open/close DAP UI
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-      end
     end,
-    keys = {
-      { "<F5>", function() require("dap").continue() end, desc = "Debug: Start/Continue" },
-      { "<F9>", function() require("dap").toggle_breakpoint() end, desc = "Debug: Toggle Breakpoint" },
-      { "<F10>", function() require("dap").step_over() end, desc = "Debug: Step Over" },
-      { "<F11>", function() require("dap").step_into() end, desc = "Debug: Step Into" },
-      { "<S-F11>", function() require("dap").step_out() end, desc = "Debug: Step Out" },
-      { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
-      { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, desc = "Conditional Breakpoint" },
-      { "<leader>dr", function() require("dap").repl.open() end, desc = "Open REPL" },
-      { "<leader>dl", function() require("dap").run_last() end, desc = "Run Last" },
-      { "<leader>du", function() require("dapui").toggle() end, desc = "Toggle DAP UI" },
-      { "<leader>de", function() require("dapui").eval() end, desc = "Evaluate Expression", mode = { "n", "v" } },
-    },
   },
 }

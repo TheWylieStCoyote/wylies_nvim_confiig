@@ -13,11 +13,12 @@ return {
   },
 
   -- Mason: ensure SQL tools are installed
+  -- Note: sqls may fail to install. Use :MasonInstall sqls manually if needed
   {
     "mason-org/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed or {}, {
-        "sqls",
+        -- "sqls", -- May fail, install manually
         "sqlfluff",
         "sql-formatter",
       })
@@ -53,9 +54,10 @@ return {
     },
   },
 
-  -- sqls.nvim for enhanced SQL features
+  -- sqls.nvim for enhanced SQL features (requires sqls LSP - needs Go installed)
   {
     "nanotee/sqls.nvim",
+    enabled = vim.fn.executable("sqls") == 1, -- Only enable if sqls is installed
     ft = { "sql", "mysql", "plsql" },
     config = function()
       require("lspconfig").sqls.setup({

@@ -201,9 +201,8 @@ return {
   -- TypeScript/JavaScript debugging with js-debug
   {
     "mfussenegger/nvim-dap",
-    dependencies = {
-      "rcarriga/nvim-dap-ui",
-    },
+    optional = true,
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
     config = function()
       local dap = require("dap")
 
@@ -237,7 +236,7 @@ return {
           type = "pwa-node",
           request = "attach",
           name = "Attach",
-          processId = require("dap.utils").pick_process,
+          processId = function() return require("dap.utils").pick_process() end,
           cwd = "${workspaceFolder}",
         })
         table.insert(dap.configurations[language], {
@@ -269,13 +268,6 @@ return {
         })
       end
     end,
-    keys = {
-      { "<F5>", function() require("dap").continue() end, desc = "Debug: Start/Continue" },
-      { "<F9>", function() require("dap").toggle_breakpoint() end, desc = "Debug: Toggle Breakpoint" },
-      { "<F10>", function() require("dap").step_over() end, desc = "Debug: Step Over" },
-      { "<F11>", function() require("dap").step_into() end, desc = "Debug: Step Into" },
-      { "<S-F11>", function() require("dap").step_out() end, desc = "Debug: Step Out" },
-    },
   },
 
   -- Additional TypeScript keybindings

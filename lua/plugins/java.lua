@@ -29,36 +29,37 @@ return {
   {
     "mfussenegger/nvim-jdtls",
     ft = { "java" },
-    dependencies = {
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
-    },
     opts = function()
       local mason_registry = require("mason-registry")
 
-      -- Paths
-      local jdtls_path = mason_registry.get_package("jdtls"):get_install_path()
-      local java_debug_path = mason_registry.get_package("java-debug-adapter"):get_install_path()
-      local java_test_path = mason_registry.get_package("java-test"):get_install_path()
+      -- Use $MASON env variable for paths (set by mason.nvim)
+      local mason_path = vim.fn.expand("$MASON")
+
+      -- Check if jdtls is available
+      if vim.fn.exepath("jdtls") == "" then
+        vim.notify("jdtls not installed. Run :MasonInstall jdtls", vim.log.levels.WARN)
+        return {}
+      end
 
       -- Find lombok jar if present
-      local lombok_path = jdtls_path .. "/lombok.jar"
+      local lombok_path = mason_path .. "/share/jdtls/lombok.jar"
 
       -- Bundles for debugging and testing
       local bundles = {}
 
-      -- Add java-debug-adapter
-      local java_debug_bundle = vim.split(
-        vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", true),
-        "\n"
-      )
-      if java_debug_bundle[1] ~= "" then
+      -- Add java-debug-adapter (if installed)
+      if mason_registry.is_installed("java-debug-adapter") then
+        local java_debug_bundle = vim.fn.glob(
+          mason_path .. "/share/java-debug-adapter/com.microsoft.java.debug.plugin-*.jar",
+          false,
+          true
+        )
         vim.list_extend(bundles, java_debug_bundle)
       end
 
-      -- Add java-test
-      local java_test_bundle = vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar", true), "\n")
-      if java_test_bundle[1] ~= "" then
+      -- Add java-test (if installed)
+      if mason_registry.is_installed("java-test") then
+        local java_test_bundle = vim.fn.glob(mason_path .. "/share/java-test/*.jar", false, true)
         vim.list_extend(bundles, java_test_bundle)
       end
 
@@ -79,9 +80,9 @@ return {
           "java.base/java.lang=ALL-UNNAMED",
           "-javaagent:" .. lombok_path,
           "-jar",
-          vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+          vim.fn.glob(mason_path .. "/share/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
           "-configuration",
-          jdtls_path .. "/config_linux",
+          mason_path .. "/share/jdtls/config_linux",
           "-data",
           vim.fn.stdpath("cache") .. "/jdtls/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
         },

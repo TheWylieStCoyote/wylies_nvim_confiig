@@ -13,12 +13,13 @@ return {
   },
 
   -- Mason: ensure Protobuf tools are installed
+  -- Note: Install manually with :MasonInstall buf protolint
   {
     "mason-org/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed or {}, {
         "buf",
-        "buf-language-server",
+        -- "buf-language-server", -- May not be available, use bufls
         "protolint",
       })
     end,

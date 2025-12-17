@@ -13,12 +13,13 @@ return {
   },
 
   -- Mason: ensure Verilog tools are installed
+  -- Note: svls may fail. Install manually: cargo install svls
   {
     "mason-org/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed or {}, {
         "verible",
-        "svls",
+        -- "svls", -- May fail, install with cargo instead
       })
     end,
   },

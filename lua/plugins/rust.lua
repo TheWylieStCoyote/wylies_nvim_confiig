@@ -28,7 +28,6 @@ return {
   {
     "mrcjkb/rustaceanvim",
     version = "^5",
-    lazy = false,
     ft = { "rust" },
     opts = {
       server = {
@@ -107,11 +106,7 @@ return {
     "saecki/crates.nvim",
     event = { "BufRead Cargo.toml" },
     opts = {
-      completion = {
-        cmp = {
-          enabled = true,
-        },
-      },
+      -- Use LSP-based completion (cmp source is deprecated)
       lsp = {
         enabled = true,
         actions = true,
@@ -142,17 +137,5 @@ return {
     },
   },
 
-  -- Extend nvim-dap for Rust debugging (keybindings)
-  -- Note: rustaceanvim handles the DAP configuration, we just add keybindings
-  {
-    "mfussenegger/nvim-dap",
-    optional = true,
-    keys = {
-      { "<F5>", function() require("dap").continue() end, desc = "Debug: Start/Continue" },
-      { "<F9>", function() require("dap").toggle_breakpoint() end, desc = "Debug: Toggle Breakpoint" },
-      { "<F10>", function() require("dap").step_over() end, desc = "Debug: Step Over" },
-      { "<F11>", function() require("dap").step_into() end, desc = "Debug: Step Into" },
-      { "<S-F11>", function() require("dap").step_out() end, desc = "Debug: Step Out" },
-    },
-  },
+  -- Note: rustaceanvim handles the DAP configuration internally
 }
