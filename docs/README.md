@@ -50,12 +50,23 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | Which-Key | which-key.nvim | - | - | - | (auto) | [which-key.md](which-key.md) |
 | **Git** |
 | Diffview | diffview.nvim | - | - | - | `<leader>g` | [diffview.md](diffview.md) |
+| Neogit | neogit | - | - | - | `<leader>g` | [neogit.md](neogit.md) |
 | **Remote Development** |
 | Remote Neovim | remote-nvim.nvim | - | - | - | `<leader>r` | [remote-nvim.md](remote-nvim.md) |
 | Devcontainer | nvim-dev-container | - | - | - | `<leader>D` | [devcontainer.md](devcontainer.md) |
+| **File Management** |
+| Yazi | yazi.nvim | - | - | - | `<leader>y` | [yazi.md](yazi.md) |
+| **Code Quality** |
+| Todo Comments | todo-comments.nvim | - | - | - | `<leader>x/s` | [todo-comments.md](todo-comments.md) |
+| Refactoring | refactoring.nvim | - | - | - | `<leader>r` | [refactoring.md](refactoring.md) |
+| Node Actions | ts-node-action | - | - | - | `gn` | [ts-node-action.md](ts-node-action.md) |
+| **Testing & Debugging** |
+| Test Coverage | nvim-coverage | - | - | - | `<leader>tc` | [coverage.md](coverage.md) |
+| Debug Print | debugprint.nvim | - | - | - | `g?` | [debugprint.md](debugprint.md) |
 
 ## Additional Resources
 
+- [Keybindings Reference](keybindings.md) - Complete keyboard shortcuts reference
 - [Setup Guide](setup-guide.md) - System integration, terminal, tmux, dotfiles, workflow tips
 - [Plugin Recommendations](plugin-recommendations.md) - Curated list of plugins to consider
 

@@ -8,8 +8,15 @@
 - [Harpoon - Quick File Navigation](#harpoon---quick-file-navigation)
 - [Copilot - AI Code Assistance](#copilot---ai-code-assistance)
 - [Diffview - Git Diff Viewer](#diffview---git-diff-viewer)
+- [Neogit - Git Interface](#neogit---git-interface)
 - [Neotest - Test Runner](#neotest---test-runner)
+- [Test Coverage](#test-coverage)
 - [Debug Adapter Protocol (DAP)](#debug-adapter-protocol-dap)
+- [Debug Print](#debug-print)
+- [Todo Comments](#todo-comments)
+- [Yazi - File Manager](#yazi---file-manager)
+- [Refactoring](#refactoring)
+- [TreeSitter Node Actions](#treesitter-node-actions)
 - [Remote Development](#remote-development)
 - [Language-Specific Keybindings](#language-specific-keybindings)
   - [Rust](#rust-development)
@@ -34,23 +41,26 @@
 |--------|-------|-------------|
 | `<leader>a` | AI/Copilot | GitHub Copilot commands |
 | `<leader>b` | Buffer | Buffer management |
-| `<leader>c` | Code | Code actions, C++, Crates |
-| `<leader>d` | Debug | Debugging (DAP) |
+| `<leader>c` | Code | Code actions, C++, Crates, Node actions |
+| `<leader>d` | Debug | Debugging (DAP), Debug print |
 | `<leader>D` | Devcontainer | Container development |
 | `<leader>f` | Find/Files | File finding and search |
-| `<leader>g` | Git/Go | Git operations, Go development |
+| `<leader>g` | Git/Go | Git, Neogit, Go development |
 | `<leader>h` | Harpoon | Quick file navigation |
 | `<leader>l` | LSP/Lua | Language Server Protocol |
 | `<leader>n` | C# | C# development |
 | `<leader>o` | OCaml | OCaml development |
 | `<leader>p` | Python | Python development |
-| `<leader>r` | Remote/Rust/R | Remote dev, Rust, R |
-| `<leader>s` | Search | Search operations |
-| `<leader>t` | Test | Testing (Neotest) |
+| `<leader>r` | Remote/Rust/R/Refactor | Remote dev, Rust, R, Refactoring |
+| `<leader>s` | Search | Search operations, TODOs |
+| `<leader>t` | Test | Testing (Neotest), Coverage |
 | `<leader>u` | UI/Toggle | UI toggles |
 | `<leader>w` | Window | Window management |
-| `<leader>x` | Diagnostics | Trouble/diagnostics |
+| `<leader>x` | Diagnostics | Trouble/diagnostics, TODOs |
+| `<leader>y` | Yazi | File manager |
 | `<leader>z` | Zig | Zig development |
+| `g?` | Debug Print | Insert debug print statements |
+| `gn` | Node Action | TreeSitter node actions |
 
 ---
 
@@ -222,6 +232,28 @@
 
 ---
 
+## Neogit - Git Interface
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>gn` | n | Open Neogit |
+| `<leader>gN` | n | Neogit (split) |
+| `<leader>gl` | n | Neogit Log |
+| `<leader>gp` | n | Neogit Push |
+| `<leader>gP` | n | Neogit Pull |
+| `<leader>gc` | n | Neogit Commit |
+| `<leader>gb` | n | Neogit Branch |
+
+### Neogit Status Buffer
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `q` / `<Esc>` | n | Close |
+| `<Tab>` | n | Toggle section |
+| `1` - `4` | n | Set fold depth |
+
+---
+
 ## Neotest - Test Runner
 
 ### Running Tests
@@ -262,6 +294,18 @@
 
 ---
 
+## Test Coverage
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>tcl` | n | Load coverage data |
+| `<leader>tcc` | n | Toggle coverage display |
+| `<leader>tcs` | n | Coverage summary |
+| `<leader>tcC` | n | Clear coverage |
+| `<leader>tcL` | n | Load custom LCOV file |
+
+---
+
 ## Debug Adapter Protocol (DAP)
 
 ### Session Control
@@ -275,14 +319,15 @@
 | `<S-F5>` | n | Terminate session |
 | `<leader>dC` | n | Run to cursor |
 
-### Breakpoints
+### Breakpoints (Persistent)
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<F9>` | n | Toggle breakpoint |
-| `<leader>db` | n | Toggle breakpoint |
+| `<F9>` | n | Toggle breakpoint (persisted) |
+| `<leader>db` | n | Toggle breakpoint (persisted) |
 | `<leader>dB` | n | Conditional breakpoint |
-| `<leader>dl` | n | Log point |
+| `<leader>dL` | n | Log point |
+| `<leader>dc` | n | Clear all breakpoints |
 
 ### UI
 
@@ -295,6 +340,116 @@
 | `<leader>ds` | n | View scopes |
 | `<leader>df` | n | View frames |
 | `<leader>dw` | n | View watches |
+
+---
+
+## Debug Print
+
+Quick debug print statement insertion with debugprint.nvim.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `g?p` | n | Debug print below |
+| `g?P` | n | Debug print above |
+| `g?v` | n, v | Print variable below |
+| `g?V` | n, v | Print variable above |
+| `g?o` | n | Print text object below |
+| `g?O` | n | Print text object above |
+| `<C-G>p` | i | Insert plain debug print |
+| `<C-G>v` | i | Insert variable print |
+| `<leader>dP` | n | Toggle comment debug prints |
+| `<leader>dX` | n | Delete all debug prints |
+
+---
+
+## Todo Comments
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `]t` | n | Next TODO comment |
+| `[t` | n | Previous TODO comment |
+| `<leader>xt` | n | Todo list (Trouble) |
+| `<leader>xT` | n | Todo/Fix/Fixme (Trouble) |
+| `<leader>st` | n | Search TODOs (Telescope) |
+| `<leader>sT` | n | Search TODO/FIX/FIXME |
+
+**Recognized keywords:** `TODO:`, `FIX:`, `FIXME:`, `BUG:`, `HACK:`, `WARN:`, `PERF:`, `NOTE:`, `TEST:`
+
+---
+
+## Yazi - File Manager
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>y` | n | Yazi (current file) |
+| `<leader>Y` | n | Yazi (cwd) |
+| `<leader>fy` | n | Yazi File Manager |
+
+### Inside Yazi
+
+| Key | Description |
+|-----|-------------|
+| `<C-v>` | Open in vertical split |
+| `<C-x>` | Open in horizontal split |
+| `<C-t>` | Open in new tab |
+| `<C-s>` | Grep in directory |
+| `<C-y>` | Copy relative path |
+| `<C-q>` | Send to quickfix |
+| `<Tab>` | Cycle open buffers |
+
+---
+
+## Refactoring
+
+### Extract (Visual Mode)
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>re` | v | Extract Function |
+| `<leader>rf` | v | Extract Function To File |
+| `<leader>rv` | v | Extract Variable |
+
+### Inline
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>ri` | n, v | Inline Variable |
+| `<leader>rI` | n | Inline Function |
+
+### Block Extract (Normal Mode)
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>rb` | n | Extract Block |
+| `<leader>rB` | n | Extract Block To File |
+
+### Refactoring Menu
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>rr` | n, v | Refactoring Menu (Telescope) |
+
+### Debug Statements
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>rp` | n | Debug Print Below |
+| `<leader>rP` | n | Debug Print Above |
+| `<leader>rv` | n, v | Debug Print Variable |
+| `<leader>rc` | n | Debug Cleanup |
+
+---
+
+## TreeSitter Node Actions
+
+Context-aware code transformations using ts-node-action.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>cn` | n | Node Action |
+| `gn` | n | Node Action |
+
+**Actions include:** Toggle boolean, cycle quotes, split/join blocks, expand/collapse ternary, and more (context-dependent).
 
 ---
 
@@ -466,6 +621,10 @@
 | `<leader>cd` | n | CMake debug |
 | `<leader>cs` | n | CMake select build type |
 | `<leader>cq` | n | CMake close |
+| `<leader>cC` | n | CMake clean |
+| `<leader>ct` | n | CMake select target |
+| `<leader>cT` | n | CMake select launch target |
+| `<leader>cS` | n | CMake settings |
 
 ### TypeScript/JavaScript Development
 

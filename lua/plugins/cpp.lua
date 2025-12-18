@@ -114,6 +114,10 @@ return {
       cmake_build_directory = "build/${variant:buildType}",
       cmake_generate_options = { "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" },
       cmake_soft_link_compile_commands = true,
+      cmake_regenerate_on_save = true,
+      cmake_build_options = { "-j8" },
+      cmake_console_size = 15,
+      cmake_show_console = "only_on_error",
     },
     keys = {
       { "<leader>cg", "<cmd>CMakeGenerate<cr>", desc = "CMake Generate" },
@@ -122,6 +126,10 @@ return {
       { "<leader>cd", "<cmd>CMakeDebug<cr>", desc = "CMake Debug" },
       { "<leader>cs", "<cmd>CMakeSelectBuildType<cr>", desc = "CMake Select Build Type" },
       { "<leader>cq", "<cmd>CMakeClose<cr>", desc = "CMake Close" },
+      { "<leader>cC", "<cmd>CMakeClean<cr>", desc = "CMake Clean" },
+      { "<leader>ct", "<cmd>CMakeSelectBuildTarget<cr>", desc = "CMake Select Target" },
+      { "<leader>cT", "<cmd>CMakeSelectLaunchTarget<cr>", desc = "CMake Select Launch Target" },
+      { "<leader>cS", "<cmd>CMakeSettings<cr>", desc = "CMake Settings" },
     },
   },
 
