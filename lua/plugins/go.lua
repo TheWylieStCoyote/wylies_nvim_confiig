@@ -150,7 +150,7 @@ return {
       { "<leader>gm", "<cmd>GoMod tidy<cr>", desc = "Go Mod Tidy" },
       { "<leader>gM", "<cmd>GoModInit<cr>", desc = "Go Mod Init" },
       -- Debug
-      { "<leader>gd", "<cmd>GoDebug<cr>", desc = "Go Debug" },
+      { "<leader>GD", "<cmd>GoDebug<cr>", desc = "Go Debug" },
       { "<leader>gD", "<cmd>GoDebug -t<cr>", desc = "Go Debug Test" },
       { "<leader>gb", "<cmd>GoBreakToggle<cr>", desc = "Go Toggle Breakpoint" },
       -- Other

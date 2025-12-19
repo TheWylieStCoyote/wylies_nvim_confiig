@@ -17,3 +17,10 @@ vim.g.loaded_node_provider = 0
 -- Disable Python provider if not needed (uncomment to disable)
 -- vim.g.loaded_python3_provider = 0
 
+-- Folding with Treesitter
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99      -- Start with all folds open
+vim.opt.foldlevelstart = 99 -- Start with all folds open
+vim.opt.foldenable = true
+

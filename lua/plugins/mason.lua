@@ -33,13 +33,12 @@ return {
     },
   },
 
-  -- Override Mason's config to skip ensure_installed entirely
+  -- Mason base configuration
+  -- Language files can add to ensure_installed via opts extension
   {
     "mason-org/mason.nvim",
-    config = function(_, opts)
-      -- Remove ensure_installed before setup to prevent auto-install
-      opts.ensure_installed = nil
-      require("mason").setup(opts)
-    end,
+    opts = {
+      -- Allow language files to specify tools via ensure_installed
+    },
   },
 }

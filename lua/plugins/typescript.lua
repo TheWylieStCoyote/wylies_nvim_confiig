@@ -86,7 +86,7 @@ return {
           },
           keys = {
             {
-              "<leader>to",
+              "<leader>Ti",
               function()
                 vim.lsp.buf.code_action({
                   apply = true,

@@ -23,6 +23,7 @@
   - [Go](#go-development)
   - [Python](#python-development)
   - [C/C++](#cc-development)
+  - [CUDA](#cuda-development)
   - [TypeScript/JavaScript](#typescriptjavascript-development)
   - [Java](#java-development)
   - [Lua](#lua-development)
@@ -41,7 +42,7 @@
 |--------|-------|-------------|
 | `<leader>a` | AI/Copilot | GitHub Copilot commands |
 | `<leader>b` | Buffer | Buffer management |
-| `<leader>c` | Code | Code actions, C++, Crates, Node actions |
+| `<leader>c` | Code | Code actions, C++, CUDA, Crates, Node actions |
 | `<leader>d` | Debug | Debugging (DAP), Debug print |
 | `<leader>D` | Devcontainer | Container development |
 | `<leader>f` | Find/Files | File finding and search |
@@ -59,6 +60,7 @@
 | `<leader>x` | Diagnostics | Trouble/diagnostics, TODOs |
 | `<leader>y` | Yazi | File manager |
 | `<leader>z` | Zig | Zig development |
+| `<leader>C` | CUDA Profile | CUDA profiling commands |
 | `g?` | Debug Print | Insert debug print statements |
 | `gn` | Node Action | TreeSitter node actions |
 
@@ -554,7 +556,7 @@ Context-aware code transformations using ts-node-action.
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>gd` | n | Debug |
+| `<leader>GD` | n | Debug |
 | `<leader>gD` | n | Debug test |
 | `<leader>gb` | n | Toggle breakpoint |
 | `<leader>dgt` | n | Debug Go test |
@@ -626,12 +628,73 @@ Context-aware code transformations using ts-node-action.
 | `<leader>cT` | n | CMake select launch target |
 | `<leader>cS` | n | CMake settings |
 
+### CUDA Development
+
+#### Compilation
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>cc` | n | Compile (nvcc) |
+| `<leader>cC` | n | Compile (optimized) |
+| `<leader>cg` | n | Compile (debug) |
+| `<leader>ca` | n | Compile (specify arch) |
+| `<leader>cr` | n | Run |
+| `<leader>cR` | n | Compile & Run |
+
+#### PTX/CUBIN
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>Cp` | n | Generate PTX |
+| `<leader>cP` | n | Generate CUBIN |
+| `<leader>cs` | n | Disassemble SASS |
+
+#### Profiling
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>Cpr` | n | Profile (nvprof) |
+| `<leader>Cpn` | n | Profile (nsys) |
+| `<leader>Cpc` | n | Profile (ncu) |
+| `<leader>Cpv` | n | Memory check |
+
+#### GPU Info
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>ci` | n | GPU info (nvidia-smi) |
+| `<leader>cI` | n | GPU info (detailed) |
+| `<leader>cd` | n | GPU device info |
+| `<leader>cq` | n | Device query |
+
+#### Templates
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>cn` | n | New kernel file |
+| `<leader>cN` | n | New shared memory kernel |
+| `<leader>ct` | n | New Thrust example |
+
+#### Other
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>co` | n | Switch .cu/.cuh |
+| `<leader>cdb` | n | Debug (cuda-gdb) |
+
 ### TypeScript/JavaScript Development
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>to` | n | Organize imports |
-| `<leader>cR` | n | Rename file |
+| `<leader>Ti` | n | Organize imports |
+| `<leader>tu` | n | Remove unused imports |
+| `<leader>ti` | n | Add missing imports |
+| `<leader>tf` | n | Fix all |
+| `<leader>tD` | n | Go to source definition |
+| `<leader>tR` | n | File references |
+| `<leader>tr` | n | Rename file |
+| `<leader>tn` | n | npm run |
+| `<leader>tt` | n | npm test |
 
 ### Java Development
 

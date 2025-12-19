@@ -125,7 +125,7 @@ return {
           end, "Compile & Run")
 
           -- PTX generation
-          map("<leader>cp", function()
+          map("<leader>Cp", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r") .. ".ptx"
             vim.cmd("split | terminal nvcc -ptx -o " .. out .. " " .. file)
@@ -144,22 +144,22 @@ return {
           end, "Disassemble SASS")
 
           -- Profiling
-          map("<leader>cpr", function()
+          map("<leader>Cpr", function()
             local out = vim.fn.expand("%:r")
             vim.cmd("split | terminal nvprof ./" .. out)
           end, "Profile (nvprof)")
 
-          map("<leader>cpn", function()
+          map("<leader>Cpn", function()
             local out = vim.fn.expand("%:r")
             vim.cmd("split | terminal nsys profile ./" .. out)
           end, "Profile (nsys)")
 
-          map("<leader>cpc", function()
+          map("<leader>Cpc", function()
             local out = vim.fn.expand("%:r")
             vim.cmd("split | terminal ncu ./" .. out)
           end, "Profile (ncu)")
 
-          map("<leader>cpv", function()
+          map("<leader>Cpv", function()
             local out = vim.fn.expand("%:r")
             vim.cmd("split | terminal cuda-memcheck ./" .. out)
           end, "Memory Check")
