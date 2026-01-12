@@ -108,8 +108,8 @@ return {
         -- Top-level groups
         { "<leader>a", group = "AI/Copilot" },
         { "<leader>b", group = "Buffer" },
-        { "<leader>c", group = "Code/C++" },
-        { "<leader>d", group = "Debug/Docker" },
+        { "<leader>c", group = "Code" },
+        { "<leader>d", group = "Debug" },
         { "<leader>f", group = "Find/Files" },
         { "<leader>g", group = "Git" },
         { "<leader>h", group = "Harpoon" },
@@ -117,7 +117,7 @@ return {
         { "<leader>n", group = "Notifications/C#" },
         { "<leader>o", group = "OCaml" },
         { "<leader>p", group = "Python/Protobuf" },
-        { "<leader>r", group = "Remote/Rust/R" },
+        { "<leader>r", group = "Refactor/Remote" },
         { "<leader>s", group = "Search" },
         { "<leader>t", group = "Test/TypeScript" },
         { "<leader>u", group = "UI/Toggle" },
@@ -128,6 +128,7 @@ return {
         -- Git subgroups
         { "<leader>gd", group = "Diffview" },
         { "<leader>gh", group = "Hunk/History" },
+        { "<leader>gn", group = "Neogit" },
 
         -- Debug subgroups
         { "<leader>da", group = "Adapters" },
@@ -163,7 +164,8 @@ return {
 
         -- Language-specific prefixes (uppercase)
         { "<leader>B", group = "Bash" },
-        { "<leader>C", group = "Compare" },
+        { "<leader>C", group = "C/C++/Compare" },
+        { "<leader>G", group = "Go" },
         { "<leader>D", group = "Devcontainer" },
         { "<leader>H", group = "Haskell" },
         { "<leader>J", group = "Java/Julia" },

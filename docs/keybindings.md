@@ -17,6 +17,9 @@
 - [Yazi - File Manager](#yazi---file-manager)
 - [Refactoring](#refactoring)
 - [TreeSitter Node Actions](#treesitter-node-actions)
+- [Aerial - Code Outline](#aerial---code-outline)
+- [Comment.nvim - Commenting](#commentnvim---commenting)
+- [Multi-Cursors (vim-visual-multi)](#multi-cursors-vim-visual-multi)
 - [Remote Development](#remote-development)
 - [Language-Specific Keybindings](#language-specific-keybindings)
   - [Rust](#rust-development)
@@ -33,6 +36,7 @@
   - [Docker](#docker-development)
   - [Terraform](#terraform-development)
 - [Standard Navigation](#standard-navigation)
+- [Folding (TreeSitter)](#folding-treesitter)
 
 ---
 
@@ -243,8 +247,8 @@
 | `<leader>gl` | n | Neogit Log |
 | `<leader>gp` | n | Neogit Push |
 | `<leader>gP` | n | Neogit Pull |
-| `<leader>gc` | n | Neogit Commit |
-| `<leader>gb` | n | Neogit Branch |
+| `<leader>gnc` | n | Neogit Commit |
+| `<leader>gnb` | n | Neogit Branch |
 
 ### Neogit Status Buffer
 
@@ -455,6 +459,100 @@ Context-aware code transformations using ts-node-action.
 
 ---
 
+## Aerial - Code Outline
+
+Navigate code structure with a symbol sidebar.
+
+### Global Keybindings
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>cs` | n | Toggle Aerial (Symbols sidebar) |
+| `<leader>cS` | n | Toggle Aerial Nav (floating) |
+| `[s` | n | Previous symbol |
+| `]s` | n | Next symbol |
+| `[[` | n | Previous parent symbol |
+| `]]` | n | Next parent symbol |
+
+### Aerial Window
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<CR>` | n | Jump to symbol |
+| `<C-v>` | n | Jump in vertical split |
+| `<C-s>` | n | Jump in horizontal split |
+| `p` | n | Preview symbol (scroll) |
+| `{` / `}` | n | Previous / Next symbol |
+| `q` | n | Close Aerial |
+| `?` | n | Show help |
+
+### Tree Navigation (in Aerial)
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `o` / `za` | n | Toggle fold |
+| `l` / `zo` | n | Open node |
+| `h` / `zc` | n | Close node |
+| `zR` | n | Open all folds |
+| `zM` | n | Close all folds |
+
+---
+
+## Comment.nvim - Commenting
+
+Smart commenting with language-aware support.
+
+### Toggle Comments
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `gcc` | n | Toggle line comment |
+| `gbc` | n | Toggle block comment |
+| `gc` | v | Comment selection (line-wise) |
+| `gb` | v | Block comment selection |
+
+### Operator-Pending (with motion)
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `gc{motion}` | n | Comment with motion (e.g., `gcap`) |
+| `gb{motion}` | n | Block comment with motion |
+
+### Extra Mappings
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `gcO` | n | Add comment above |
+| `gco` | n | Add comment below |
+| `gcA` | n | Add comment at end of line |
+
+---
+
+## Multi-Cursors (vim-visual-multi)
+
+Multiple cursors for simultaneous editing (VS Code style).
+
+### Adding Cursors
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<C-n>` | n, v | Select word / Find next occurrence |
+| `<C-S-n>` | n | Select all occurrences |
+| `<C-Down>` | n | Add cursor below |
+| `<C-Up>` | n | Add cursor above |
+
+### Managing Cursors
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `q` | n | Skip current match |
+| `Q` | n | Remove current cursor |
+| `u` | n | Undo |
+| `<C-r>` | n | Redo |
+| `<Esc>` | n | Exit multi-cursor mode |
+
+---
+
 ## Remote Development
 
 ### Remote Neovim
@@ -531,8 +629,8 @@ Context-aware code transformations using ts-node-action.
 | `<leader>gt` | n | Test package |
 | `<leader>gT` | n | Test file |
 | `<leader>gtt` | n | Test function |
-| `<leader>gc` | n | Show coverage |
-| `<leader>gC` | n | Toggle coverage |
+| `<leader>Gc` | n | Show coverage |
+| `<leader>GC` | n | Toggle coverage |
 
 #### Code Generation
 
@@ -825,6 +923,35 @@ Context-aware code transformations using ts-node-action.
 | `<leader>sg` | n | Grep |
 | `<leader>sf` | n | Find files |
 | `<leader>sb` | n | Search buffers |
+
+---
+
+## Folding (TreeSitter)
+
+Code folding using TreeSitter for syntax-aware folds.
+
+### Fold Commands
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `za` | n | Toggle fold under cursor |
+| `zo` | n | Open fold |
+| `zc` | n | Close fold |
+| `zO` | n | Open all folds under cursor |
+| `zC` | n | Close all folds under cursor |
+| `zR` | n | Open all folds in buffer |
+| `zM` | n | Close all folds in buffer |
+| `zr` | n | Reduce fold level by one |
+| `zm` | n | Increase fold level by one |
+| `zj` | n | Move to next fold |
+| `zk` | n | Move to previous fold |
+
+### Fold Info
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `zv` | n | View cursor line (open folds) |
+| `zi` | n | Toggle foldenable |
 
 ---
 

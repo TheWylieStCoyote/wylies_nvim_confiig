@@ -53,11 +53,6 @@ return {
 		priority = 1000,
 	},
 	{
-		"loctvl842/monokai-pro.nvim",
-		lazy = true,
-		priority = 1000,
-	},
-	{
 		"shaunsingh/nord.nvim",
 		lazy = true,
 		priority = 1000,

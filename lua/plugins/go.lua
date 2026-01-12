@@ -138,9 +138,9 @@ return {
       { "<leader>gt", "<cmd>GoTest<cr>", desc = "Go Test" },
       { "<leader>gT", "<cmd>GoTestFile<cr>", desc = "Go Test File" },
       { "<leader>gtt", "<cmd>GoTestFunc<cr>", desc = "Go Test Function" },
-      -- Coverage
-      { "<leader>gc", "<cmd>GoCoverage<cr>", desc = "Go Coverage" },
-      { "<leader>gC", "<cmd>GoCoverage -t<cr>", desc = "Go Coverage Toggle" },
+      -- Coverage (using <leader>G to avoid conflict with git)
+      { "<leader>Gc", "<cmd>GoCoverage<cr>", desc = "Go Coverage" },
+      { "<leader>GC", "<cmd>GoCoverage -t<cr>", desc = "Go Coverage Toggle" },
       -- Code generation
       { "<leader>gi", "<cmd>GoImpl<cr>", desc = "Go Implement Interface" },
       { "<leader>gf", "<cmd>GoFillStruct<cr>", desc = "Go Fill Struct" },

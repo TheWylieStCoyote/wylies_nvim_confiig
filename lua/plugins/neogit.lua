@@ -121,8 +121,8 @@ return {
       { "<leader>gl", "<cmd>Neogit log<cr>", desc = "Neogit Log" },
       { "<leader>gp", "<cmd>Neogit push<cr>", desc = "Neogit Push" },
       { "<leader>gP", "<cmd>Neogit pull<cr>", desc = "Neogit Pull" },
-      { "<leader>gc", "<cmd>Neogit commit<cr>", desc = "Neogit Commit" },
-      { "<leader>gb", "<cmd>Neogit branch<cr>", desc = "Neogit Branch" },
+      { "<leader>gnc", "<cmd>Neogit commit<cr>", desc = "Neogit Commit" },
+      { "<leader>gnb", "<cmd>Neogit branch<cr>", desc = "Neogit Branch" },
     },
   },
 }

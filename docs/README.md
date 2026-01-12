@@ -60,6 +60,10 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | Todo Comments | todo-comments.nvim | - | - | - | `<leader>x/s` | [todo-comments.md](todo-comments.md) |
 | Refactoring | refactoring.nvim | - | - | - | `<leader>r` | [refactoring.md](refactoring.md) |
 | Node Actions | ts-node-action | - | - | - | `gn` | [ts-node-action.md](ts-node-action.md) |
+| **Code Editing** |
+| Code Outline | aerial.nvim | - | - | - | `<leader>cs` | [aerial.md](aerial.md) |
+| Commenting | Comment.nvim | - | - | - | `gcc/gc/gbc` | [comment.md](comment.md) |
+| Multi-Cursors | vim-visual-multi | - | - | - | `<C-n>` | [multicursors.md](multicursors.md) |
 | **Testing & Debugging** |
 | Test Coverage | nvim-coverage | - | - | - | `<leader>tc` | [coverage.md](coverage.md) |
 | Debug Print | debugprint.nvim | - | - | - | `g?` | [debugprint.md](debugprint.md) |

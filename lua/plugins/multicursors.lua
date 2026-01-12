@@ -4,7 +4,12 @@
 return {
   "mg979/vim-visual-multi",
   branch = "master",
-  event = "VeryLazy",
+  keys = {
+    { "<C-n>", mode = { "n", "v" }, desc = "Multi-cursor: Select word" },
+    { "<C-Down>", desc = "Multi-cursor: Add cursor down" },
+    { "<C-Up>", desc = "Multi-cursor: Add cursor above" },
+    { "<C-S-n>", desc = "Multi-cursor: Select all" },
+  },
   init = function()
     -- Configuration must be set before plugin loads
     vim.g.VM_default_mappings = 1

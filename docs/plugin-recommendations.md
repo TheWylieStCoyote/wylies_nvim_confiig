@@ -104,13 +104,13 @@ A curated list of Neovim plugins to consider for enhancing your development work
 |--------|-------------|-----|
 | **kylechui/nvim-surround** | Surround text with pairs | [GitHub](https://github.com/kylechui/nvim-surround) |
 | **echasnovski/mini.surround** | Minimal surround plugin | [GitHub](https://github.com/echasnovski/mini.surround) |
-| **numToStr/Comment.nvim** | Smart commenting | [GitHub](https://github.com/numToStr/Comment.nvim) |
+| **numToStr/Comment.nvim** | Smart commenting (installed) | [GitHub](https://github.com/numToStr/Comment.nvim) |
 | **windwp/nvim-autopairs** | Auto close brackets/quotes | [GitHub](https://github.com/windwp/nvim-autopairs) |
 | **windwp/nvim-ts-autotag** | Auto close/rename HTML tags | [GitHub](https://github.com/windwp/nvim-ts-autotag) |
 | **monaqa/dial.nvim** | Increment/decrement values | [GitHub](https://github.com/monaqa/dial.nvim) |
 | **gbprod/substitute.nvim** | Better substitute operations | [GitHub](https://github.com/gbprod/substitute.nvim) |
 | **gbprod/yanky.nvim** | Improved yank and put | [GitHub](https://github.com/gbprod/yanky.nvim) |
-| **mg979/vim-visual-multi** | Multiple cursors | [GitHub](https://github.com/mg979/vim-visual-multi) |
+| **mg979/vim-visual-multi** | Multiple cursors (installed) | [GitHub](https://github.com/mg979/vim-visual-multi) |
 | **Wansmer/sibling-swap.nvim** | Swap sibling nodes | [GitHub](https://github.com/Wansmer/sibling-swap.nvim) |
 | **echasnovski/mini.ai** | Extended text objects | [GitHub](https://github.com/echasnovski/mini.ai) |
 | **chrisgrieser/nvim-various-textobjs** | Many text objects | [GitHub](https://github.com/chrisgrieser/nvim-various-textobjs) |
