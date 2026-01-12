@@ -197,32 +197,22 @@ container_runtime = "podman",
 compose_command = "podman-compose",
 ```
 
-### Mount SSH Keys
+### SSH Keys and Git Config (Enabled by Default)
+
+The following mounts are **enabled by default** in your config:
+
+- `~/.ssh` → `/home/vscode/.ssh` (readonly) - for non-root containers
+- `~/.ssh` → `/root/.ssh` (readonly) - for root containers
+- `~/.gitconfig` → `/home/vscode/.gitconfig` (readonly)
+
+This allows git operations inside containers to use your host SSH keys and git identity.
+
+To disable or modify, edit `lua/plugins/devcontainer.lua`:
 
 ```lua
 attach_mounts = {
   custom_mounts = {
-    {
-      type = "bind",
-      source = vim.fn.expand("$HOME/.ssh"),
-      target = "/home/vscode/.ssh",
-      options = { "readonly" },
-    },
-  },
-},
-```
-
-### Mount Git Config
-
-```lua
-attach_mounts = {
-  custom_mounts = {
-    {
-      type = "bind",
-      source = vim.fn.expand("$HOME/.gitconfig"),
-      target = "/home/vscode/.gitconfig",
-      options = { "readonly" },
-    },
+    -- Remove or comment out entries to disable
   },
 },
 ```

@@ -66,13 +66,27 @@ return {
           },
           -- Custom mounts
           custom_mounts = {
-            -- Example: mount SSH keys
-            -- {
-            --   type = "bind",
-            --   source = vim.fn.expand("$HOME/.ssh"),
-            --   target = "/root/.ssh",
-            --   options = { "readonly" },
-            -- },
+            -- Mount SSH keys for git authentication
+            {
+              type = "bind",
+              source = vim.fn.expand("$HOME/.ssh"),
+              target = "/home/vscode/.ssh",
+              options = { "readonly" },
+            },
+            -- Also mount to root in case container runs as root
+            {
+              type = "bind",
+              source = vim.fn.expand("$HOME/.ssh"),
+              target = "/root/.ssh",
+              options = { "readonly" },
+            },
+            -- Mount git config
+            {
+              type = "bind",
+              source = vim.fn.expand("$HOME/.gitconfig"),
+              target = "/home/vscode/.gitconfig",
+              options = { "readonly" },
+            },
           },
         },
 
