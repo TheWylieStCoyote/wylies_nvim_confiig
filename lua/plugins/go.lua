@@ -132,33 +132,33 @@ return {
     build = ':lua require("go.install").update_all_sync()',
     keys = {
       -- Run
-      { "<leader>gr", "<cmd>GoRun<cr>", desc = "Go Run" },
-      { "<leader>gR", "<cmd>GoRun %<cr>", desc = "Go Run File" },
+      { "<leader>Gr", "<cmd>GoRun<cr>", desc = "Go Run" },
+      { "<leader>GR", "<cmd>GoRun %<cr>", desc = "Go Run File" },
       -- Test
-      { "<leader>gt", "<cmd>GoTest<cr>", desc = "Go Test" },
-      { "<leader>gT", "<cmd>GoTestFile<cr>", desc = "Go Test File" },
-      { "<leader>gtt", "<cmd>GoTestFunc<cr>", desc = "Go Test Function" },
-      -- Coverage (using <leader>G to avoid conflict with git)
+      { "<leader>Gt", "<cmd>GoTest<cr>", desc = "Go Test" },
+      { "<leader>GT", "<cmd>GoTestFile<cr>", desc = "Go Test File" },
+      { "<leader>Gtt", "<cmd>GoTestFunc<cr>", desc = "Go Test Function" },
+      -- Coverage
       { "<leader>Gc", "<cmd>GoCoverage<cr>", desc = "Go Coverage" },
       { "<leader>GC", "<cmd>GoCoverage -t<cr>", desc = "Go Coverage Toggle" },
       -- Code generation
-      { "<leader>gi", "<cmd>GoImpl<cr>", desc = "Go Implement Interface" },
-      { "<leader>gf", "<cmd>GoFillStruct<cr>", desc = "Go Fill Struct" },
-      { "<leader>ga", "<cmd>GoAddTag<cr>", desc = "Go Add Tags" },
-      { "<leader>gA", "<cmd>GoRmTag<cr>", desc = "Go Remove Tags" },
+      { "<leader>Gi", "<cmd>GoImpl<cr>", desc = "Go Implement Interface" },
+      { "<leader>Gf", "<cmd>GoFillStruct<cr>", desc = "Go Fill Struct" },
+      { "<leader>Ga", "<cmd>GoAddTag<cr>", desc = "Go Add Tags" },
+      { "<leader>GA", "<cmd>GoRmTag<cr>", desc = "Go Remove Tags" },
       -- Mod
-      { "<leader>gm", "<cmd>GoMod tidy<cr>", desc = "Go Mod Tidy" },
-      { "<leader>gM", "<cmd>GoModInit<cr>", desc = "Go Mod Init" },
+      { "<leader>Gm", "<cmd>GoMod tidy<cr>", desc = "Go Mod Tidy" },
+      { "<leader>GM", "<cmd>GoModInit<cr>", desc = "Go Mod Init" },
       -- Debug
       { "<leader>GD", "<cmd>GoDebug<cr>", desc = "Go Debug" },
-      { "<leader>gD", "<cmd>GoDebug -t<cr>", desc = "Go Debug Test" },
-      { "<leader>gb", "<cmd>GoBreakToggle<cr>", desc = "Go Toggle Breakpoint" },
+      { "<leader>Gd", "<cmd>GoDebug -t<cr>", desc = "Go Debug Test" },
+      { "<leader>Gb", "<cmd>GoBreakToggle<cr>", desc = "Go Toggle Breakpoint" },
       -- Other
-      { "<leader>ge", "<cmd>GoIfErr<cr>", desc = "Go If Err" },
-      { "<leader>gw", "<cmd>GoFillSwitch<cr>", desc = "Go Fill Switch" },
-      { "<leader>gl", "<cmd>GoLint<cr>", desc = "Go Lint" },
-      { "<leader>gv", "<cmd>GoVet<cr>", desc = "Go Vet" },
-      { "<leader>gp", "<cmd>GoFixPlurals<cr>", desc = "Go Fix Plurals" },
+      { "<leader>Ge", "<cmd>GoIfErr<cr>", desc = "Go If Err" },
+      { "<leader>Gw", "<cmd>GoFillSwitch<cr>", desc = "Go Fill Switch" },
+      { "<leader>Gl", "<cmd>GoLint<cr>", desc = "Go Lint" },
+      { "<leader>Gv", "<cmd>GoVet<cr>", desc = "Go Vet" },
+      { "<leader>Gp", "<cmd>GoFixPlurals<cr>", desc = "Go Fix Plurals" },
     },
   },
 
