@@ -8,7 +8,7 @@ Local LLM integration for code generation, explanation, and review.
 |---------|------|
 | Plugin | ollama.nvim |
 | Backend | Ollama (local) |
-| Default Model | codellama |
+| Default Model | codellama:13b |
 
 ## Requirements
 
@@ -56,6 +56,7 @@ ollama serve
 | `<leader>ot` | n, v | Add tests |
 | `<leader>od` | n, v | Add documentation |
 | `<leader>os` | n, v | Simplify code |
+| `<leader>om` | n | Generate commit message |
 
 ## Usage
 
@@ -152,6 +153,22 @@ ollama serve
    - Modern patterns
 ```
 
+### Generate Commit Message
+
+```
+1. Stage your changes
+   git add <files>
+
+2. Press <leader>om
+
+3. AI generates commit message:
+   - Conventional commits format (feat:, fix:, etc.)
+   - Subject line under 50 chars
+   - Bullet points for details
+
+4. Copy message and commit via neogit or terminal
+```
+
 ## Example Workflows
 
 ### Writing New Functions
@@ -200,6 +217,25 @@ fn process(data: &str) -> String {
 // - Consider returning &str to avoid allocation
 // - Add error handling for empty strings
 // - Document the function's purpose
+```
+
+### Git Commit Messages
+
+```bash
+# 1. Stage changes
+git add lua/plugins/ollama.lua
+
+# 2. In Neovim, press <leader>om
+
+# 3. AI generates:
+feat: Add commit message generation with Ollama
+
+- New keybinding <leader>om for staged changes
+- Uses conventional commits format
+- Displays in floating window for review
+
+# 4. Copy and use with neogit (<leader>gg) or:
+git commit -m "paste message here"
 ```
 
 ## Model Selection
