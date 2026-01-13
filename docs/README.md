@@ -60,6 +60,7 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | **File Management** |
 | Yazi | yazi.nvim | - | - | - | `<leader>y` | [yazi.md](yazi.md) |
 | **Code Quality** |
+| Trouble | trouble.nvim | - | - | - | `<leader>xx` | [trouble.md](trouble.md) |
 | Spectre | nvim-spectre | - | - | - | `<leader>sr` | [spectre.md](spectre.md) |
 | Todo Comments | todo-comments.nvim | - | - | - | `<leader>x/s` | [todo-comments.md](todo-comments.md) |
 | Refactoring | refactoring.nvim | - | - | - | `<leader>e` | [refactoring.md](refactoring.md) |
@@ -75,6 +76,9 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | Statusline | lualine.nvim | - | - | - | - | [statusline.md](statusline.md) |
 | Undotree | undotree | - | - | - | `<leader>U` | - |
 | Lazy Profile | lazy.nvim | - | - | - | `<leader>up` | - |
+| Zen Mode | zen-mode.nvim | - | - | - | `<leader>uz` | [zen-mode.md](zen-mode.md) |
+| Better Quickfix | nvim-bqf | - | - | - | (auto) | [bqf.md](bqf.md) |
+| Spell Checking | (built-in) | - | - | - | `z=`, `]s`, `[s` | [spell.md](spell.md) |
 | **Testing & Debugging** |
 | Test Coverage | nvim-coverage | - | - | - | `<leader>tc` | [coverage.md](coverage.md) |
 | Debug Print | debugprint.nvim | - | - | - | `g?` | [debugprint.md](debugprint.md) |

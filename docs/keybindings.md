@@ -5,6 +5,10 @@
 ## Table of Contents
 
 - [Leader Key Groups](#leader-key-groups)
+- [Trouble - Diagnostics](#trouble---diagnostics)
+- [Zen Mode](#zen-mode)
+- [Better Quickfix (BQF)](#better-quickfix-bqf)
+- [Spell Checking](#spell-checking)
 - [Harpoon - Quick File Navigation](#harpoon---quick-file-navigation)
 - [Flash - Enhanced Motions](#flash---enhanced-motions)
 - [Spectre - Search & Replace](#spectre---search--replace)
@@ -82,6 +86,71 @@
 | `<leader>T` | Terraform | Terraform/HCL development |
 | `g?` | Debug Print | Insert debug print statements |
 | `gn` | Node Action | TreeSitter node actions |
+
+---
+
+## Trouble - Diagnostics
+
+Pretty list for diagnostics, references, and quickfix.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>xx` | n | Toggle all diagnostics |
+| `<leader>xX` | n | Buffer diagnostics only |
+| `<leader>xs` | n | Document symbols |
+| `<leader>xq` | n | Quickfix list (Trouble) |
+| `<leader>xl` | n | Location list (Trouble) |
+
+---
+
+## Zen Mode
+
+Distraction-free writing mode.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>uz` | n | Toggle Zen mode |
+
+Features:
+- Centered 90-column window
+- Line numbers and signcolumn hidden
+- Twilight dims surrounding code
+- Works with tmux
+
+---
+
+## Better Quickfix (BQF)
+
+Enhanced quickfix window with preview and filtering.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `o` | n | Open item and close qf |
+| `<CR>` | n | Open item |
+| `<C-v>` | n | Open in vertical split |
+| `<C-s>` | n | Open in horizontal split |
+| `<C-t>` | n | Open in new tab |
+| `p` | n | Preview file |
+| `P` | n | Toggle preview |
+| `zf` | n | fzf filter mode |
+| `<Tab>` | n | Toggle item selection |
+
+---
+
+## Spell Checking
+
+Spell checking enabled for comments and strings in code files.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `z=` | n | Show spelling suggestions |
+| `]s` | n | Next misspelling |
+| `[s` | n | Previous misspelling |
+| `zg` | n | Add word to dictionary |
+| `zw` | n | Mark word as wrong |
+| `zug` | n | Undo add to dictionary |
+
+Spell checking is active in: Lua, Python, JavaScript, TypeScript, Rust, Go, C/C++, Markdown, and git commits.
 
 ---
 
