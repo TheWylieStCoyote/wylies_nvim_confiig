@@ -120,7 +120,8 @@ return {
         { "<leader>n", group = "Notifications/C#" },
         { "<leader>o", group = "OCaml" },
         { "<leader>p", group = "Python/Protobuf" },
-        { "<leader>r", group = "Rust" },
+        { "<leader>q", group = "Session/Quit" },
+        { "<leader>r", group = "Rust/HTTP" },
         { "<leader>s", group = "Search" },
         { "<leader>t", group = "Test" },
         { "<leader>u", group = "UI/Toggle" },
@@ -164,6 +165,23 @@ return {
         -- Test subgroups
         { "<leader>tn", group = "Neotest" },
         { "<leader>td", group = "Debug Test" },
+
+        -- Session management
+        { "<leader>qS", desc = "Save Session" },
+        { "<leader>qR", desc = "Restore Session" },
+        { "<leader>qD", desc = "Delete Session" },
+        { "<leader>qs", desc = "Search Sessions" },
+
+        -- HTTP Client (subgroup of Rust/HTTP)
+        { "<leader>rr", desc = "Run HTTP Request" },
+        { "<leader>rl", desc = "Re-run Last Request" },
+        { "<leader>re", desc = "Show Environment" },
+        { "<leader>rE", desc = "Select Environment" },
+
+        -- Database UI (extends SQL group)
+        { "<leader>SD", desc = "Toggle DB UI" },
+        { "<leader>SA", desc = "Add DB Connection" },
+        { "<leader>SF", desc = "Find DB Buffer" },
 
         -- Language-specific prefixes (uppercase)
         { "<leader>B", group = "Bash" },
