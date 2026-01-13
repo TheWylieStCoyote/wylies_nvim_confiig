@@ -59,7 +59,7 @@ return {
         mode = { "n", "v" },
         desc = "Simplify Code",
       },
-      -- Git commit message
+      -- Git commit message with integrated commit
       {
         "<leader>om",
         function()
@@ -68,16 +68,86 @@ return {
             vim.notify("No staged changes", vim.log.levels.WARN)
             return
           end
-          -- Create a scratch buffer with the diff
+
+          -- Create output buffer
           local buf = vim.api.nvim_create_buf(false, true)
-          vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(diff, "\n"))
-          vim.api.nvim_set_current_buf(buf)
           vim.bo[buf].buftype = "nofile"
           vim.bo[buf].bufhidden = "wipe"
-          vim.bo[buf].filetype = "diff"
-          -- Select all and call Ollama
-          vim.cmd("normal! ggVG")
-          require("ollama").prompt("Generate_Commit")
+          vim.bo[buf].filetype = "markdown"
+          vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "Generating commit message..." })
+
+          -- Create floating window
+          local width = math.min(80, math.floor(vim.o.columns * 0.8))
+          local height = math.min(20, math.floor(vim.o.lines * 0.6))
+          local win = vim.api.nvim_open_win(buf, true, {
+            relative = "editor",
+            width = width,
+            height = height,
+            row = math.floor((vim.o.lines - height) / 2),
+            col = math.floor((vim.o.columns - width) / 2),
+            style = "minimal",
+            border = "rounded",
+            title = " Commit Message (Enter=commit, q=cancel) ",
+            title_pos = "center",
+          })
+
+          -- Keybinding: Enter to commit
+          vim.keymap.set("n", "<CR>", function()
+            local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+            local msg = table.concat(lines, "\n"):gsub("^%s+", ""):gsub("%s+$", "")
+            if msg == "" or msg == "Generating commit message..." then
+              vim.notify("No commit message to use", vim.log.levels.WARN)
+              return
+            end
+            vim.api.nvim_win_close(win, true)
+            local result = vim.fn.system({ "git", "commit", "-m", msg })
+            if vim.v.shell_error == 0 then
+              vim.notify("Committed successfully!", vim.log.levels.INFO)
+            else
+              vim.notify("Commit failed: " .. result, vim.log.levels.ERROR)
+            end
+          end, { buffer = buf, desc = "Commit with this message" })
+
+          -- Keybinding: q to close
+          vim.keymap.set("n", "q", function()
+            vim.api.nvim_win_close(win, true)
+          end, { buffer = buf, desc = "Cancel" })
+
+          -- Build prompt
+          local prompt = "Write a concise git commit message for these changes. "
+            .. "Follow conventional commits format (feat:, fix:, refactor:, docs:, etc.). "
+            .. "First line under 50 chars, then blank line, then bullet points if needed. "
+            .. "Only output the commit message.\n\n" .. diff
+
+          -- Call Ollama API directly
+          local ollama = require("ollama")
+          require("plenary.curl").post(ollama.config.url .. "/api/generate", {
+            body = vim.json.encode({
+              model = ollama.config.model,
+              prompt = prompt,
+              stream = true,
+            }),
+            stream = function(_, chunk)
+              vim.schedule(function()
+                if not vim.api.nvim_buf_is_valid(buf) then return end
+                local ok, body = pcall(vim.json.decode, chunk)
+                if ok and body and body.response then
+                  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+                  if lines[1] == "Generating commit message..." then
+                    lines = { "" }
+                  end
+                  local last_line = lines[#lines] or ""
+                  local new_text = last_line .. body.response
+                  local new_lines = vim.split(new_text, "\n", { plain = true })
+                  lines[#lines] = new_lines[1]
+                  for i = 2, #new_lines do
+                    table.insert(lines, new_lines[i])
+                  end
+                  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+                end
+              end)
+            end,
+          })
         end,
         desc = "Generate Commit Message",
       },
@@ -121,10 +191,7 @@ return {
           prompt = "Simplify and refactor the following code to be more readable and maintainable. Only output the improved code:\n\n```$ftype\n$sel\n```",
           action = "display",
         },
-        Generate_Commit = {
-          prompt = "Write a concise git commit message for these changes. Follow conventional commits format (feat:, fix:, refactor:, docs:, etc.). First line should be under 50 chars, followed by blank line and bullet points for details if needed. Only output the commit message, nothing else.\n\n$sel",
-          action = "display",
-        },
+        -- Generate_Commit uses direct API call, see <leader>om keybinding
       },
     },
   },
