@@ -137,5 +137,25 @@ return {
     },
   },
 
+  -- Bacon: Background Rust code checker
+  {
+    "Canop/nvim-bacon",
+    ft = { "rust" },
+    cmd = { "BaconLoad", "BaconShow", "BaconList", "BaconPrevious", "BaconNext" },
+    opts = {
+      quickfix = {
+        enabled = true,
+        event_trigger = true,
+      },
+    },
+    keys = {
+      { "<leader>rb", "<cmd>BaconLoad<cr><cmd>BaconNext<cr>", desc = "Bacon: Load & Jump", ft = "rust" },
+      { "<leader>rB", "<cmd>BaconShow<cr>", desc = "Bacon: Show Window", ft = "rust" },
+      { "<leader>rl", "<cmd>BaconList<cr>", desc = "Bacon: List Locations", ft = "rust" },
+      { "<leader>rn", "<cmd>BaconNext<cr>", desc = "Bacon: Next Location", ft = "rust" },
+      { "<leader>rN", "<cmd>BaconPrevious<cr>", desc = "Bacon: Previous Location", ft = "rust" },
+    },
+  },
+
   -- Note: rustaceanvim handles the DAP configuration internally
 }

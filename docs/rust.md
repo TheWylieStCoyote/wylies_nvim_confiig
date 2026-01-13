@@ -1,6 +1,6 @@
 # Rust Development
 
-> LSP: rust-analyzer | Formatter: rustfmt | Linter: clippy | Debugger: codelldb
+> LSP: rust-analyzer | Formatter: rustfmt | Linter: clippy | Debugger: codelldb | Checker: bacon
 
 ## Quick Reference
 
@@ -10,6 +10,7 @@
 | Formatter | rustfmt |
 | Linter | clippy (via rust-analyzer) |
 | Debugger | codelldb |
+| Background Checker | bacon (nvim-bacon) |
 | TreeSitter | rust, toml |
 
 ## Features
@@ -21,6 +22,7 @@
 - Crate management (crates.nvim)
 - Proc macro support
 - Auto-import completions
+- Background code checking with bacon
 
 ## Keybindings
 
@@ -54,6 +56,16 @@
 | `<leader>cd` | Open Documentation |
 | `<leader>cC` | Open crates.io |
 
+### Bacon (Background Checker)
+
+| Key | Action |
+|-----|--------|
+| `<leader>rb` | Load & Jump to First Error |
+| `<leader>rB` | Show Bacon Window |
+| `<leader>rl` | List All Locations |
+| `<leader>rn` | Next Location |
+| `<leader>rN` | Previous Location |
+
 ### Debugging (DAP)
 
 | Key | Action |
@@ -81,6 +93,11 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 **Components:**
 ```bash
 rustup component add rust-analyzer clippy rustfmt
+```
+
+**Bacon (background checker):**
+```bash
+cargo install bacon
 ```
 
 ## Configuration
@@ -123,3 +140,9 @@ When editing `Cargo.toml`, crates.nvim provides:
 1. Open `Cargo.toml`
 2. `<leader>cf` - View features for crate under cursor
 3. `<leader>cu` - Update all crates
+
+### Background Checking with Bacon
+1. Run `bacon` in a terminal (in your project directory)
+2. In Neovim, `<leader>rb` - Load errors and jump to first
+3. `<leader>rn` / `<leader>rN` - Navigate through errors
+4. `<leader>rB` - Show bacon summary window
