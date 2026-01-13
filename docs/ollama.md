@@ -56,6 +56,7 @@ ollama serve
 | `<leader>ot` | n, v | Add tests |
 | `<leader>od` | n, v | Add documentation |
 | `<leader>os` | n, v | Simplify code |
+| `<leader>ga` | n | Git add (stage) current file |
 | `<leader>om` | n | Generate commit message |
 
 ## Usage
@@ -157,17 +158,30 @@ ollama serve
 
 ```
 1. Stage your changes
+   <leader>ga  (stage current file)
+   - or -
    git add <files>
 
 2. Press <leader>om
 
-3. AI generates commit message:
+3. AI generates commit message in floating window:
    - Conventional commits format (feat:, fix:, etc.)
    - Subject line under 50 chars
    - Bullet points for details
 
-4. Copy message and commit via neogit or terminal
+4. Edit the message if needed (buffer is editable)
+
+5. Press Enter to commit, or q/Esc to cancel
 ```
+
+#### Commit Window Keybindings
+
+| Key | Action |
+|-----|--------|
+| `<CR>` | Commit with message |
+| `q` | Cancel |
+| `<Esc>` | Cancel |
+| Edit normally | Modify message before committing |
 
 ## Example Workflows
 
@@ -222,20 +236,24 @@ fn process(data: &str) -> String {
 ### Git Commit Messages
 
 ```bash
-# 1. Stage changes
-git add lua/plugins/ollama.lua
+# 1. Stage current file
+<leader>ga
 
-# 2. In Neovim, press <leader>om
+# 2. Generate commit message
+<leader>om
 
-# 3. AI generates:
-feat: Add commit message generation with Ollama
+# 3. Floating window appears with AI-generated message:
+┌─ Commit Message (Enter=commit, q/Esc=cancel) ─┐
+│ feat: Add commit message generation           │
+│                                               │
+│ - New keybinding <leader>om for staged changes│
+│ - Uses conventional commits format            │
+│ - Displays in floating window for review      │
+└───────────────────────────────────────────────┘
 
-- New keybinding <leader>om for staged changes
-- Uses conventional commits format
-- Displays in floating window for review
-
-# 4. Copy and use with neogit (<leader>gg) or:
-git commit -m "paste message here"
+# 4. Edit if needed, then:
+#    - Press Enter to commit
+#    - Press q or Esc to cancel
 ```
 
 ## Model Selection
