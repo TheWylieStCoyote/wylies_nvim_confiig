@@ -159,6 +159,17 @@ return {
       { "<leader>Gl", "<cmd>GoLint<cr>", desc = "Go Lint" },
       { "<leader>Gv", "<cmd>GoVet<cr>", desc = "Go Vet" },
       { "<leader>Gp", "<cmd>GoFixPlurals<cr>", desc = "Go Fix Plurals" },
+      -- Additional go commands
+      { "<leader>Gg", "<cmd>GoGenerate<cr>", desc = "Go Generate" },
+      { "<leader>GG", "<cmd>GoGenerate %<cr>", desc = "Go Generate File" },
+      { "<leader>Gx", "<cmd>split | terminal go clean<cr>", desc = "Go Clean" },
+      { "<leader>GX", "<cmd>split | terminal go clean -cache<cr>", desc = "Go Clean Cache" },
+      { "<leader>Gn", "<cmd>split | terminal go mod vendor<cr>", desc = "Go Mod Vendor" },
+      { "<leader>GU", "<cmd>split | terminal go get -u ./...<cr>", desc = "Go Update Deps" },
+      { "<leader>Go", "<cmd>GoPkgOutline<cr>", desc = "Go Package Outline" },
+      { "<leader>GI", "<cmd>GoInstallBinaries<cr>", desc = "Go Install Binaries" },
+      { "<leader>GV", "<cmd>split | terminal go mod verify<cr>", desc = "Go Mod Verify" },
+      { "<leader>Gq", "<cmd>split | terminal go mod graph<cr>", desc = "Go Mod Graph" },
     },
   },
 

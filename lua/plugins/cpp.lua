@@ -137,9 +137,13 @@ return {
   {
     "mfussenegger/nvim-dap",
     optional = true,
-    ft = { "c", "cpp" },
     config = function()
       local dap = require("dap")
+
+      -- Only configure once
+      if dap.adapters.codelldb then
+        return
+      end
 
       -- codelldb adapter configuration
       dap.adapters.codelldb = {
@@ -158,13 +162,68 @@ return {
           type = "codelldb",
           request = "launch",
           program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
           end,
           cwd = "${workspaceFolder}",
           stopOnEntry = false,
         },
+        {
+          name = "Launch with arguments",
+          type = "codelldb",
+          request = "launch",
+          program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
+          end,
+          args = function()
+            local args_string = vim.fn.input("Arguments: ")
+            return vim.split(args_string, " ")
+          end,
+          cwd = "${workspaceFolder}",
+          stopOnEntry = false,
+        },
+        {
+          name = "Attach to process",
+          type = "codelldb",
+          request = "attach",
+          pid = function()
+            return require("dap.utils").pick_process()
+          end,
+          cwd = "${workspaceFolder}",
+        },
       }
       dap.configurations.c = dap.configurations.cpp
+    end,
+  },
+
+  -- C/C++ specific keybindings
+  {
+    "neovim/nvim-lspconfig",
+    opts = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "c", "cpp" },
+        callback = function(event)
+          local map = function(keys, func, desc)
+            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "C/C++: " .. desc })
+          end
+
+          -- Compile current file
+          map("<leader>cc", function()
+            local file = vim.fn.expand("%")
+            local out = vim.fn.expand("%:r")
+            local compiler = vim.fn.expand("%:e") == "cpp" and "g++" or "gcc"
+            vim.cmd("split | terminal " .. compiler .. " -g -o " .. out .. " " .. file)
+          end, "Compile File")
+
+          map("<leader>cR", function()
+            local out = vim.fn.expand("%:r")
+            vim.cmd("split | terminal ./" .. out)
+          end, "Run Compiled")
+
+          -- Make commands
+          map("<leader>cM", "<cmd>split | terminal make<cr>", "Make")
+          map("<leader>cmc", "<cmd>split | terminal make clean<cr>", "Make Clean")
+        end,
+      })
     end,
   },
 }
