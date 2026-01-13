@@ -9,6 +9,9 @@
 - [Copilot - AI Code Assistance](#copilot---ai-code-assistance)
 - [Diffview - Git Diff Viewer](#diffview---git-diff-viewer)
 - [Neogit - Git Interface](#neogit---git-interface)
+- [Session Management](#session-management)
+- [Database UI](#database-ui)
+- [HTTP Client](#http-client)
 - [Neotest - Test Runner](#neotest---test-runner)
 - [Test Coverage](#test-coverage)
 - [Debug Adapter Protocol (DAP)](#debug-adapter-protocol-dap)
@@ -265,6 +268,89 @@
 | `q` / `<Esc>` | n | Close |
 | `<Tab>` | n | Toggle section |
 | `1` - `4` | n | Set fold depth |
+
+---
+
+## Session Management
+
+Save and restore your editing sessions per project.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>qS` | n | Save session |
+| `<leader>qR` | n | Restore session |
+| `<leader>qD` | n | Delete session |
+| `<leader>qs` | n | Search/browse sessions |
+| `<leader>q.` | n | Restore from file |
+
+### Behavior
+
+- Sessions auto-save on exit (if one exists)
+- Sessions are saved per project directory
+- Use `<leader>qs` to switch between project sessions
+
+---
+
+## Database UI
+
+Visual database browser using vim-dadbod.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>SD` | n | Toggle database UI |
+| `<leader>SA` | n | Add database connection |
+| `<leader>SF` | n | Find database buffer |
+| `<leader>Sq` | n | Execute query |
+
+### DBUI Sidebar
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<CR>` | n | Expand/execute |
+| `o` | n | Open item |
+| `R` | n | Refresh |
+| `S` | n | Save query |
+| `d` | n | Delete saved query |
+| `q` | n | Close UI |
+
+### Connection URLs
+
+```
+postgresql://user:pass@localhost:5432/db
+mysql://user:pass@localhost:3306/db
+sqlite:database.db
+```
+
+---
+
+## HTTP Client
+
+Execute HTTP requests from `.http` files using rest.nvim.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>rr` | n | Run request under cursor |
+| `<leader>rl` | n | Re-run last request |
+| `<leader>re` | n | Show environment |
+| `<leader>rE` | n | Select environment |
+| `<CR>` | n | Run request (in .http files) |
+| `<leader>rp` | n | Preview request |
+
+### Example Request
+
+```http
+### Get users
+GET https://api.example.com/users
+Authorization: Bearer {{API_KEY}}
+```
+
+### Environment Variables
+
+Create `.env` file in project root:
+```
+API_URL=https://api.example.com
+API_KEY=your-token
+```
 
 ---
 

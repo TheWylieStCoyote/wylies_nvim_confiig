@@ -65,6 +65,10 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | Commenting | Comment.nvim | - | - | - | `gcc/gc/gbc` | [comment.md](comment.md) |
 | Multi-Cursors | vim-visual-multi | - | - | - | `<C-n>` | [multicursors.md](multicursors.md) |
 | **Utilities** |
+| Session Management | auto-session | - | - | - | `<leader>q` | [sessions.md](sessions.md) |
+| Database UI | vim-dadbod + UI | - | - | - | `<leader>S` | [database.md](database.md) |
+| HTTP Client | rest.nvim | - | - | - | `<leader>r` | [http-client.md](http-client.md) |
+| Statusline | lualine.nvim | - | - | - | - | [statusline.md](statusline.md) |
 | Undotree | undotree | - | - | - | `<leader>U` | - |
 | Lazy Profile | lazy.nvim | - | - | - | `<leader>up` | - |
 | **Testing & Debugging** |
