@@ -1169,6 +1169,74 @@ Multiple cursors for simultaneous editing (VS Code style).
 
 ## Standard Navigation
 
+### Buffer Navigation
+
+Buffers are open files. The bufferline at the top shows all open buffers.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `[b` | n | Previous buffer |
+| `]b` | n | Next buffer |
+| `<S-h>` | n | Previous buffer |
+| `<S-l>` | n | Next buffer |
+| `<leader>bb` | n | Switch buffer (picker) |
+| `<leader>bd` | n | Delete buffer |
+| `<leader>bD` | n | Delete buffer (force) |
+| `<leader>bo` | n | Delete other buffers |
+| `<leader>bp` | n | Toggle buffer pin |
+| `<leader>1-9` | n | Jump to buffer 1-9 (Harpoon) |
+
+### Tab Navigation
+
+Tabs are collections of windows. Less commonly used than buffers.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `gt` | n | Next tab |
+| `gT` | n | Previous tab |
+| `{n}gt` | n | Go to tab n (e.g., `2gt`) |
+| `<leader><tab><tab>` | n | New tab |
+| `<leader><tab>d` | n | Close tab |
+| `<leader><tab>]` | n | Next tab |
+| `<leader><tab>[` | n | Previous tab |
+| `<leader><tab>f` | n | First tab |
+| `<leader><tab>l` | n | Last tab |
+
+**Commands:** `:tabnew`, `:tabclose`, `:tabs`
+
+### Window Navigation
+
+Windows are splits within a tab.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<C-h>` | n | Move to left window |
+| `<C-j>` | n | Move to lower window |
+| `<C-k>` | n | Move to upper window |
+| `<C-l>` | n | Move to right window |
+| `<C-w>s` | n | Split horizontal |
+| `<C-w>v` | n | Split vertical |
+| `<C-w>q` | n | Close window |
+| `<C-w>o` | n | Close other windows |
+| `<C-w>=` | n | Equalize window sizes |
+| `<C-Up>` | n | Increase window height |
+| `<C-Down>` | n | Decrease window height |
+| `<C-Left>` | n | Decrease window width |
+| `<C-Right>` | n | Increase window width |
+
+### Terminal
+
+Open and use terminal inside Neovim.
+
+| Key/Command | Mode | Description |
+|-------------|------|-------------|
+| `:terminal` | n | Open terminal in current window |
+| `:split \| term` | n | Terminal in horizontal split |
+| `:vsplit \| term` | n | Terminal in vertical split |
+| `i` or `a` | n | Enter terminal mode |
+| `<C-\><C-n>` | t | Exit terminal mode |
+| `q` | n | Close terminal (in normal mode) |
+
 ### Diagnostics
 
 | Key | Mode | Description |
