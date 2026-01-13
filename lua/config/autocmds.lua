@@ -6,3 +6,106 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
+-- Highlight yanked text briefly
+autocmd("TextYankPost", {
+  group = augroup("highlight_yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
+  end,
+  desc = "Highlight yanked text",
+})
+
+-- Return to last edit position when opening files
+autocmd("BufReadPost", {
+  group = augroup("restore_cursor", { clear = true }),
+  callback = function(event)
+    local mark = vim.api.nvim_buf_get_mark(event.buf, '"')
+    local line_count = vim.api.nvim_buf_line_count(event.buf)
+    if mark[1] > 0 and mark[1] <= line_count then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
+  desc = "Restore cursor to last position",
+})
+
+-- Auto-create parent directories when saving a file
+autocmd("BufWritePre", {
+  group = augroup("auto_create_dir", { clear = true }),
+  callback = function(event)
+    if event.match:match("^%w%w+:[\\/][\\/]") then
+      return -- Skip URLs
+    end
+    local file = vim.uv.fs_realpath(event.match) or event.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+  end,
+  desc = "Auto-create directories on save",
+})
+
+-- Remove trailing whitespace on save (except for specific filetypes)
+autocmd("BufWritePre", {
+  group = augroup("trim_whitespace", { clear = true }),
+  callback = function()
+    local ft = vim.bo.filetype
+    -- Skip filetypes where trailing whitespace matters
+    if ft == "markdown" or ft == "diff" then
+      return
+    end
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    vim.cmd([[%s/\s\+$//e]])
+    vim.api.nvim_win_set_cursor(0, cursor)
+  end,
+  desc = "Remove trailing whitespace on save",
+})
+
+-- Resize splits when window is resized
+autocmd("VimResized", {
+  group = augroup("resize_splits", { clear = true }),
+  command = "tabdo wincmd =",
+  desc = "Resize splits on window resize",
+})
+
+-- Close certain filetypes with just 'q'
+autocmd("FileType", {
+  group = augroup("close_with_q", { clear = true }),
+  pattern = {
+    "help",
+    "lspinfo",
+    "notify",
+    "qf",
+    "checkhealth",
+    "man",
+    "git",
+    "fugitive",
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+  end,
+  desc = "Close helper windows with q",
+})
+
+-- Disable line numbers in terminal
+autocmd("TermOpen", {
+  group = augroup("terminal_settings", { clear = true }),
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.signcolumn = "no"
+  end,
+  desc = "Disable line numbers in terminal",
+})
+
+-- Check if file changed outside of Neovim when focusing
+autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+  group = augroup("checktime", { clear = true }),
+  callback = function()
+    if vim.o.buftype ~= "nofile" then
+      vim.cmd("checktime")
+    end
+  end,
+  desc = "Check for file changes when focusing",
+})
