@@ -87,7 +87,7 @@ return {
             col = math.floor((vim.o.columns - width) / 2),
             style = "minimal",
             border = "rounded",
-            title = " Commit Message (Enter=commit, q=cancel) ",
+            title = " Commit Message (Enter=commit, q/Esc=cancel) ",
             title_pos = "center",
           })
 
@@ -108,10 +108,12 @@ return {
             end
           end, { buffer = buf, desc = "Commit with this message" })
 
-          -- Keybinding: q to close
-          vim.keymap.set("n", "q", function()
+          -- Keybinding: q or Esc to close
+          local close_win = function()
             vim.api.nvim_win_close(win, true)
-          end, { buffer = buf, desc = "Cancel" })
+          end
+          vim.keymap.set("n", "q", close_win, { buffer = buf, desc = "Cancel" })
+          vim.keymap.set("n", "<Esc>", close_win, { buffer = buf, desc = "Cancel" })
 
           -- Build prompt
           local prompt = "Write a concise git commit message for these changes. "
