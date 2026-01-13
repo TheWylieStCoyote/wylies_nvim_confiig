@@ -118,7 +118,7 @@ return {
         { "<leader>k", group = "Docker" },
         { "<leader>l", group = "LSP/Lua" },
         { "<leader>n", group = "Notifications/C#" },
-        { "<leader>o", group = "OCaml" },
+        { "<leader>o", group = "OCaml/Ollama" },
         { "<leader>p", group = "Python/Protobuf" },
         { "<leader>q", group = "Session/Quit" },
         { "<leader>r", group = "Rust/HTTP" },
@@ -182,6 +182,22 @@ return {
         { "<leader>SD", desc = "Toggle DB UI" },
         { "<leader>SA", desc = "Add DB Connection" },
         { "<leader>SF", desc = "Find DB Buffer" },
+
+        -- Search & Replace (Spectre)
+        { "<leader>sr", desc = "Search & Replace" },
+        { "<leader>sw", desc = "Replace Word" },
+        { "<leader>sp", desc = "Replace in File" },
+
+        -- Ollama (Local AI)
+        { "<leader>oo", desc = "Ollama Prompt" },
+        { "<leader>oO", desc = "Select Model" },
+        { "<leader>og", desc = "Generate Code" },
+        { "<leader>oe", desc = "Explain Code" },
+        { "<leader>or", desc = "Review Code" },
+        { "<leader>of", desc = "Fix Code" },
+        { "<leader>ot", desc = "Add Tests" },
+        { "<leader>od", desc = "Add Documentation" },
+        { "<leader>os", desc = "Simplify Code" },
 
         -- Language-specific prefixes (uppercase)
         { "<leader>B", group = "Bash" },
