@@ -43,10 +43,13 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | LaTeX | texlab | latexindent | chktex | - | `<leader>L` | [latex.md](latex.md) |
 | **AI Assistants** |
 | GitHub Copilot | copilot.lua | - | - | - | `<leader>a/cp` | [copilot.md](copilot.md) |
+| Ollama (Local AI) | ollama.nvim | - | - | - | `<leader>o` | [ollama.md](ollama.md) |
 | **Testing** |
 | Neotest | neotest + adapters | - | - | DAP | `<leader>t` | [neotest.md](neotest.md) |
 | **Navigation** |
 | Harpoon | harpoon2 | - | - | - | `<leader>h`, `<leader>1-5` | [harpoon.md](harpoon.md) |
+| Flash | flash.nvim | - | - | - | `s`, `S`, `f/F/t/T` | [flash.md](flash.md) |
+| Treesitter Context | nvim-treesitter-context | - | - | - | `[c` | [treesitter-context.md](treesitter-context.md) |
 | Which-Key | which-key.nvim | - | - | - | (auto) | [which-key.md](which-key.md) |
 | **Git** |
 | Diffview | diffview.nvim | - | - | - | `<leader>g` | [diffview.md](diffview.md) |
@@ -57,6 +60,7 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | **File Management** |
 | Yazi | yazi.nvim | - | - | - | `<leader>y` | [yazi.md](yazi.md) |
 | **Code Quality** |
+| Spectre | nvim-spectre | - | - | - | `<leader>sr` | [spectre.md](spectre.md) |
 | Todo Comments | todo-comments.nvim | - | - | - | `<leader>x/s` | [todo-comments.md](todo-comments.md) |
 | Refactoring | refactoring.nvim | - | - | - | `<leader>e` | [refactoring.md](refactoring.md) |
 | Node Actions | ts-node-action | - | - | - | `gn` | [ts-node-action.md](ts-node-action.md) |

@@ -6,6 +6,10 @@
 
 - [Leader Key Groups](#leader-key-groups)
 - [Harpoon - Quick File Navigation](#harpoon---quick-file-navigation)
+- [Flash - Enhanced Motions](#flash---enhanced-motions)
+- [Spectre - Search & Replace](#spectre---search--replace)
+- [Treesitter Context](#treesitter-context)
+- [Ollama - Local AI](#ollama---local-ai)
 - [Copilot - AI Code Assistance](#copilot---ai-code-assistance)
 - [Diffview - Git Diff Viewer](#diffview---git-diff-viewer)
 - [Neogit - Git Interface](#neogit---git-interface)
@@ -120,6 +124,115 @@
 | `<leader>h3` | n | Replace slot 3 with current file |
 | `<leader>h4` | n | Replace slot 4 with current file |
 | `<leader>h5` | n | Replace slot 5 with current file |
+
+---
+
+## Flash - Enhanced Motions
+
+Jump anywhere with search labels.
+
+### Basic Motions
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `s` | n, x, o | Flash jump (type chars, press label) |
+| `S` | n, x, o | Flash Treesitter select |
+| `r` | o | Remote flash (operate at distance) |
+| `R` | o, x | Treesitter search |
+
+### Enhanced f/F/t/T
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `f{char}` | n, x, o | Jump to {char} with labels |
+| `F{char}` | n, x, o | Jump backward to {char} |
+| `t{char}` | n, x, o | Jump to before {char} |
+| `T{char}` | n, x, o | Jump to after {char} (backward) |
+| `;` | n | Repeat last f/t |
+| `,` | n | Repeat last f/t (opposite direction) |
+
+### Usage Example
+
+```
+Press: s
+Type: fu
+See: Labels [a] [b] [c] on "function" matches
+Press: a
+Result: Jump to first match
+```
+
+---
+
+## Spectre - Search & Replace
+
+Project-wide find and replace.
+
+### Opening Spectre
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>sr` | n | Open search & replace |
+| `<leader>sw` | n | Replace word under cursor |
+| `<leader>sw` | v | Replace selection |
+| `<leader>sp` | n | Replace in current file only |
+
+### Inside Spectre Panel
+
+| Key | Description |
+|-----|-------------|
+| `dd` | Toggle line (exclude from replace) |
+| `<CR>` | Go to file |
+| `<leader>R` | Replace all |
+| `<leader>rc` | Replace current line |
+| `<leader>q` | Send to quickfix |
+| `ti` | Toggle ignore case |
+| `th` | Toggle hidden files |
+
+---
+
+## Treesitter Context
+
+Sticky function/class context at top of screen.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `[c` | n | Jump to context (parent function) |
+| `<leader>uc` | n | Toggle context on/off |
+
+Context automatically shows which function/class you're inside when scrolling.
+
+---
+
+## Ollama - Local AI
+
+Local LLM for code generation and review. Requires Ollama installed.
+
+### Setup
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+ollama pull codellama
+```
+
+### Keybindings
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>oo` | n | Open Ollama prompt |
+| `<leader>oO` | n | Select model |
+| `<leader>og` | n, v | Generate code from selection |
+| `<leader>oe` | n, v | Explain code |
+| `<leader>or` | n, v | Review code |
+| `<leader>of` | n, v | Fix code |
+| `<leader>ot` | n, v | Add tests |
+| `<leader>od` | n, v | Add documentation |
+| `<leader>os` | n, v | Simplify code |
+
+### Usage
+
+1. Select code in visual mode
+2. Press `<leader>oe` to explain, `<leader>or` to review, etc.
+3. AI response appears in a new buffer
 
 ---
 
