@@ -10,6 +10,7 @@ return {
         "python",
         "toml",
         "requirements",
+        "rst", -- reStructuredText for docstrings
       })
     end,
   },
@@ -26,7 +27,7 @@ return {
     end,
   },
 
-  -- pyright LSP configuration (type checking + IntelliSense)
+  -- pyright + ruff LSP configuration
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -53,24 +54,104 @@ return {
               logLevel = "error",
             },
           },
-          keys = {
-            {
-              "<leader>po",
-              function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.organizeImports" },
-                    diagnostics = {},
-                  },
-                })
-              end,
-              desc = "Organize Imports (ruff)",
-            },
-          },
         },
       },
     },
+  },
+
+  -- Python-specific keymaps (merged into single autocmd)
+  {
+    "neovim/nvim-lspconfig",
+    opts = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "python",
+        callback = function(event)
+          local map = function(keys, func, desc)
+            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "Python: " .. desc })
+          end
+
+          -- Import management (via ruff)
+          map("<leader>po", function()
+            vim.lsp.buf.code_action({
+              apply = true,
+              context = { only = { "source.organizeImports" }, diagnostics = {} },
+            })
+          end, "Organize Imports")
+
+          -- Ruff fixes
+          map("<leader>pf", function()
+            vim.lsp.buf.code_action({
+              apply = true,
+              context = { only = { "source.fixAll.ruff" }, diagnostics = {} },
+            })
+          end, "Ruff Fix All")
+
+          -- Type checking
+          map("<leader>pc", "<cmd>split | terminal pyright .<cr>", "Type Check (pyright)")
+          map("<leader>pC", "<cmd>split | terminal mypy .<cr>", "Type Check (mypy)")
+
+          -- Run file
+          map("<leader>pr", function()
+            vim.cmd("split | terminal python " .. vim.fn.expand("%"))
+          end, "Run File")
+
+          map("<leader>pR", function()
+            vim.ui.input({ prompt = "Arguments: " }, function(args)
+              if args then
+                vim.cmd("split | terminal python " .. vim.fn.expand("%") .. " " .. args)
+              end
+            end)
+          end, "Run with Arguments")
+
+          map("<leader>pm", function()
+            vim.ui.input({ prompt = "Module: ", default = vim.fn.expand("%:r"):gsub("/", ".") }, function(module)
+              if module then
+                vim.cmd("split | terminal python -m " .. module)
+              end
+            end)
+          end, "Run as Module")
+
+          -- Interactive/REPL
+          map("<leader>pi", function()
+            vim.cmd("split | terminal python -i " .. vim.fn.expand("%"))
+          end, "Run Interactive")
+
+          map("<leader>pp", "<cmd>split | terminal python<cr>", "Python REPL")
+          map("<leader>pI", "<cmd>split | terminal ipython<cr>", "IPython REPL")
+
+          -- Testing (direct pytest without debugger)
+          map("<leader>ptt", "<cmd>split | terminal pytest<cr>", "Run All Tests")
+          map("<leader>ptf", function()
+            vim.cmd("split | terminal pytest " .. vim.fn.expand("%"))
+          end, "Test Current File")
+          map("<leader>ptv", "<cmd>split | terminal pytest -v<cr>", "Run Tests (verbose)")
+          map("<leader>ptl", "<cmd>split | terminal pytest --lf<cr>", "Run Last Failed")
+          map("<leader>ptw", "<cmd>split | terminal pytest-watch<cr>", "Watch Tests")
+
+          -- Package management
+          map("<leader>pii", "<cmd>split | terminal pip install<cr>", "pip install")
+          map("<leader>pir", "<cmd>split | terminal pip install -r requirements.txt<cr>", "pip install requirements")
+          map("<leader>pie", "<cmd>split | terminal pip install -e .<cr>", "pip install editable")
+          map("<leader>piu", function()
+            vim.ui.input({ prompt = "Package: " }, function(pkg)
+              if pkg then
+                vim.cmd("split | terminal pip install " .. pkg)
+              end
+            end)
+          end, "pip install package")
+
+          -- uv (fast Python package manager)
+          map("<leader>puv", "<cmd>split | terminal uv pip install<cr>", "uv pip install")
+          map("<leader>pur", "<cmd>split | terminal uv pip install -r requirements.txt<cr>", "uv install requirements")
+          map("<leader>pus", "<cmd>split | terminal uv pip sync requirements.txt<cr>", "uv pip sync")
+
+          -- Poetry
+          map("<leader>poa", "<cmd>split | terminal poetry add<cr>", "poetry add")
+          map("<leader>poi", "<cmd>split | terminal poetry install<cr>", "poetry install")
+          map("<leader>por", "<cmd>split | terminal poetry run python %<cr>", "poetry run")
+        end,
+      })
+    end,
   },
 
   -- Code formatting with ruff
@@ -94,7 +175,7 @@ return {
       "nvim-telescope/telescope.nvim",
       "mfussenegger/nvim-dap-python",
     },
-    ft = "python",  -- Only load for Python files
+    ft = "python",
     opts = {
       options = {
         notify_user_on_venv_activation = true,
@@ -106,14 +187,14 @@ return {
     },
   },
 
-  -- Python debugging with debugpy (extends centralized DAP)
+  -- Python debugging with debugpy
   {
     "mfussenegger/nvim-dap-python",
     ft = "python",
     keys = {
       { "<leader>pd", function() require("dap-python").debug_selection() end, desc = "Debug Selection", mode = "v", ft = "python" },
-      { "<leader>pt", function() require("dap-python").test_method() end, desc = "Debug Test Method", ft = "python" },
-      { "<leader>pT", function() require("dap-python").test_class() end, desc = "Debug Test Class", ft = "python" },
+      { "<leader>pdt", function() require("dap-python").test_method() end, desc = "Debug Test Method", ft = "python" },
+      { "<leader>pdT", function() require("dap-python").test_class() end, desc = "Debug Test Class", ft = "python" },
     },
     config = function()
       -- Try Mason's debugpy first, fall back to system python
@@ -131,33 +212,59 @@ return {
       end
       require("dap-python").setup(debugpy_path)
       require("dap-python").test_runner = "pytest"
-    end,
-  },
 
-  -- Python-specific keybindings
-  {
-    "neovim/nvim-lspconfig",
-    opts = function()
-      -- Set up Python-specific keymaps when entering Python files
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "python",
-        callback = function(event)
-          local map = function(keys, func, desc)
-            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "Python: " .. desc })
-          end
+      -- Add Django and Flask debug configurations
+      local dap = require("dap")
 
-          map("<leader>pr", function()
-            vim.cmd("split | terminal python " .. vim.fn.expand("%"))
-          end, "Run File")
+      table.insert(dap.configurations.python, {
+        type = "python",
+        request = "launch",
+        name = "Django: runserver",
+        program = "${workspaceFolder}/manage.py",
+        args = { "runserver", "--noreload" },
+        django = true,
+        justMyCode = false,
+      })
 
-          map("<leader>pi", function()
-            vim.cmd("split | terminal python -i " .. vim.fn.expand("%"))
-          end, "Run Interactive")
+      table.insert(dap.configurations.python, {
+        type = "python",
+        request = "launch",
+        name = "Flask: Run App",
+        module = "flask",
+        args = { "run", "--no-debugger", "--no-reload" },
+        env = {
+          FLASK_APP = "${workspaceFolder}/app.py",
+          FLASK_ENV = "development",
+        },
+        jinja = true,
+        justMyCode = false,
+      })
 
-          map("<leader>pp", function()
-            vim.cmd("split | terminal python")
-          end, "Python REPL")
-        end,
+      table.insert(dap.configurations.python, {
+        type = "python",
+        request = "launch",
+        name = "FastAPI: uvicorn",
+        module = "uvicorn",
+        args = { "main:app", "--reload" },
+        jinja = true,
+        justMyCode = false,
+      })
+
+      table.insert(dap.configurations.python, {
+        type = "python",
+        request = "attach",
+        name = "Attach to Remote",
+        connect = {
+          host = "localhost",
+          port = 5678,
+        },
+        pathMappings = {
+          {
+            localRoot = "${workspaceFolder}",
+            remoteRoot = ".",
+          },
+        },
+        justMyCode = false,
       })
     end,
   },
