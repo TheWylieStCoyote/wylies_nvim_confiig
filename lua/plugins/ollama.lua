@@ -59,9 +59,31 @@ return {
         mode = { "n", "v" },
         desc = "Simplify Code",
       },
+      -- Git commit message
+      {
+        "<leader>om",
+        function()
+          local diff = vim.fn.system("git diff --cached")
+          if diff == "" then
+            vim.notify("No staged changes", vim.log.levels.WARN)
+            return
+          end
+          -- Create a scratch buffer with the diff
+          local buf = vim.api.nvim_create_buf(false, true)
+          vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(diff, "\n"))
+          vim.api.nvim_set_current_buf(buf)
+          vim.bo[buf].buftype = "nofile"
+          vim.bo[buf].bufhidden = "wipe"
+          vim.bo[buf].filetype = "diff"
+          -- Select all and call Ollama
+          vim.cmd("normal! ggVG")
+          require("ollama").prompt("Generate_Commit")
+        end,
+        desc = "Generate Commit Message",
+      },
     },
     opts = {
-      model = "codellama", -- Default model (change to "deepseek-coder" or others)
+      model = "codellama:13b", -- Default model (change to "deepseek-coder" or others)
       url = "http://127.0.0.1:11434",
       serve = {
         on_start = false,
@@ -97,6 +119,10 @@ return {
         },
         Simplify_Code = {
           prompt = "Simplify and refactor the following code to be more readable and maintainable. Only output the improved code:\n\n```$ftype\n$sel\n```",
+          action = "display",
+        },
+        Generate_Commit = {
+          prompt = "Write a concise git commit message for these changes. Follow conventional commits format (feat:, fix:, refactor:, docs:, etc.). First line should be under 50 chars, followed by blank line and bullet points for details if needed. Only output the commit message, nothing else.\n\n$sel",
           action = "display",
         },
       },
