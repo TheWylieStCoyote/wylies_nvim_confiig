@@ -123,22 +123,22 @@ return {
 
     keys = {
       -- Start remote connection
-      { "<leader>rs", "<cmd>RemoteStart<cr>", desc = "Remote: Start" },
+      { "<leader>Rs", "<cmd>RemoteStart<cr>", desc = "Remote: Start" },
 
       -- Stop remote connection
-      { "<leader>rx", "<cmd>RemoteStop<cr>", desc = "Remote: Stop" },
+      { "<leader>Rx", "<cmd>RemoteStop<cr>", desc = "Remote: Stop" },
 
       -- Session info
-      { "<leader>ri", "<cmd>RemoteInfo<cr>", desc = "Remote: Info" },
+      { "<leader>Ri", "<cmd>RemoteInfo<cr>", desc = "Remote: Info" },
 
       -- Cleanup remote resources
-      { "<leader>rc", "<cmd>RemoteCleanup<cr>", desc = "Remote: Cleanup" },
+      { "<leader>Rc", "<cmd>RemoteCleanup<cr>", desc = "Remote: Cleanup" },
 
       -- Delete saved config
-      { "<leader>rd", "<cmd>RemoteConfigDel<cr>", desc = "Remote: Delete Config" },
+      { "<leader>Rd", "<cmd>RemoteConfigDel<cr>", desc = "Remote: Delete Config" },
 
       -- View logs
-      { "<leader>rl", "<cmd>RemoteLog<cr>", desc = "Remote: Logs" },
+      { "<leader>Rl", "<cmd>RemoteLog<cr>", desc = "Remote: Logs" },
     },
   },
 }

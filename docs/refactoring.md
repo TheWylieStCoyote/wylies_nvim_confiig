@@ -9,44 +9,44 @@
 | Plugin | ThePrimeagen/refactoring.nvim |
 | Dependencies | plenary.nvim, nvim-treesitter |
 
-## Keybindings
+## Keybindings (`<leader>e...`)
 
 ### Extract (Visual Mode)
 
 | Key | Description |
 |-----|-------------|
-| `<leader>re` | Extract Function |
-| `<leader>rf` | Extract Function To File |
-| `<leader>rv` | Extract Variable |
+| `<leader>ee` | Extract Function |
+| `<leader>ef` | Extract Function To File |
+| `<leader>ev` | Extract Variable |
 
 ### Inline
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>ri` | n, v | Inline Variable |
-| `<leader>rI` | n | Inline Function |
+| `<leader>ei` | n, v | Inline Variable |
+| `<leader>eI` | n | Inline Function |
 
 ### Block Extract (Normal Mode)
 
 | Key | Description |
 |-----|-------------|
-| `<leader>rb` | Extract Block |
-| `<leader>rB` | Extract Block To File |
+| `<leader>eb` | Extract Block |
+| `<leader>eB` | Extract Block To File |
 
 ### Menu
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>rr` | n, v | Refactoring Menu (Telescope) |
+| `<leader>er` | n, v | Refactoring Menu (Telescope) |
 
 ### Debug Statements
 
 | Key | Description |
 |-----|-------------|
-| `<leader>rp` | Debug Print Below |
-| `<leader>rP` | Debug Print Above |
-| `<leader>rv` | Debug Print Variable |
-| `<leader>rc` | Debug Cleanup |
+| `<leader>ep` | Debug Print Below |
+| `<leader>eP` | Debug Print Above |
+| `<leader>edv` | Debug Print Variable |
+| `<leader>ec` | Debug Cleanup |
 
 ## Supported Languages
 
@@ -62,7 +62,7 @@
 ## Refactoring Operations
 
 ### Extract Function
-Select code in visual mode, `<leader>re` to extract into a new function.
+Select code in visual mode, `<leader>ee` to extract into a new function.
 
 ```python
 # Before (select lines 2-3)
@@ -82,7 +82,7 @@ def process():
 ```
 
 ### Extract Variable
-Select expression in visual mode, `<leader>rv` to extract into a variable.
+Select expression in visual mode, `<leader>ev` to extract into a variable.
 
 ```python
 # Before (select `x * 2 + 10`)
@@ -94,7 +94,7 @@ result = extracted
 ```
 
 ### Inline Variable
-Place cursor on variable, `<leader>ri` to inline its value.
+Place cursor on variable, `<leader>ei` to inline its value.
 
 ```python
 # Before
@@ -106,7 +106,7 @@ result = get_value() * 2
 ```
 
 ### Extract Block
-In normal mode, `<leader>rb` extracts the current block into a function.
+In normal mode, `<leader>eb` extracts the current block into a function.
 
 ## Configuration
 

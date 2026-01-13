@@ -20,15 +20,15 @@
 - Rmarkdown/Quarto support
 - cmp-r completions
 
-## Keybindings
+## Keybindings (`<leader>R...`)
 
 ### Start/Stop
 
 | Key | Action |
 |-----|--------|
-| `<leader>rs` | Start R |
-| `<leader>rq` | Stop R |
-| `<leader>rQ` | Kill R |
+| `<leader>Rs` | Start R |
+| `<leader>Rq` | Stop R |
+| `<leader>RQ` | Kill R |
 
 ### Send Code
 
@@ -36,71 +36,71 @@
 |-----|--------|
 | `<Enter>` | Send Line (normal) |
 | `<Enter>` | Send Selection (visual) |
-| `<leader>rl` | Send Line |
-| `<leader>rp` | Send Paragraph |
-| `<leader>rf` | Send File |
-| `<leader>rb` | Send Above Lines |
-| `<leader>rc` | Send Chunk (Rmd) |
+| `<leader>Rl` | Send Line |
+| `<leader>Rp` | Send Paragraph |
+| `<leader>Rf` | Send File |
+| `<leader>Rb` | Send Above Lines |
+| `<leader>Rc` | Send Chunk (Rmd) |
 
 ### Object Browser
 
 | Key | Action |
 |-----|--------|
-| `<leader>ro` | Object Browser |
-| `<leader>rO` | Clear Objects |
+| `<leader>Ro` | Object Browser |
+| `<leader>RO` | Clear Objects |
 
 ### Help & Docs
 
 | Key | Action |
 |-----|--------|
-| `<leader>rh` | Help (word) |
-| `<leader>rH` | Help (input) |
-| `<leader>re` | Show Example |
-| `<leader>ra` | Show Arguments |
+| `<leader>Rh` | Help (word) |
+| `<leader>RH` | Help (input) |
+| `<leader>Re` | Show Example |
+| `<leader>Ra` | Show Arguments |
 
 ### Data
 
 | Key | Action |
 |-----|--------|
-| `<leader>rv` | View Data Frame |
-| `<leader>rV` | Dput Object |
+| `<leader>Rv` | View Data Frame |
+| `<leader>RV` | Dput Object |
 
 ### Packages
 
 | Key | Action |
 |-----|--------|
-| `<leader>ri` | Install Package |
-| `<leader>rL` | Load Library |
+| `<leader>Ri` | Install Package |
+| `<leader>RL` | Load Library |
 
 ### Working Directory
 
 | Key | Action |
 |-----|--------|
-| `<leader>rw` | Set Working Dir |
-| `<leader>rW` | Get Working Dir |
+| `<leader>Rw` | Set Working Dir |
+| `<leader>RW` | Get Working Dir |
 
 ### Rmarkdown
 
 | Key | Action |
 |-----|--------|
-| `<leader>rk` | Knit Document |
-| `<leader>rK` | Make All (PDF) |
-| `<leader>rm` | Make PDF |
+| `<leader>Rk` | Knit Document |
+| `<leader>RK` | Make All (PDF) |
+| `<leader>Rm` | Make PDF |
 
 ### Plots
 
 | Key | Action |
 |-----|--------|
-| `<leader>rpd` | Close Plot Device |
-| `<leader>rps` | Save Plot |
+| `<leader>Rpd` | Close Plot Device |
+| `<leader>Rps` | Save Plot |
 
 ### Debugging
 
 | Key | Action |
 |-----|--------|
-| `<leader>rdd` | Debug Function |
-| `<leader>rdu` | Undebug Function |
-| `<leader>rdt` | Traceback |
+| `<leader>Rdd` | Debug Function |
+| `<leader>Rdu` | Undebug Function |
+| `<leader>Rdt` | Traceback |
 
 ## Installation
 
@@ -131,12 +131,12 @@ R -e "install.packages(c('languageserver', 'styler', 'lintr'))"
 ## Usage Examples
 
 ### Interactive Analysis
-1. `<leader>rs` - Start R
+1. `<leader>Rs` - Start R
 2. Write code
 3. `<Enter>` - Send lines to R
-4. `<leader>rv` - View data frames
+4. `<leader>Rv` - View data frames
 
 ### Rmarkdown
 1. Open .Rmd file
-2. `<leader>rc` - Run chunks
-3. `<leader>rk` - Knit to output
+2. `<leader>Rc` - Run chunks
+3. `<leader>Rk` - Knit to output

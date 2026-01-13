@@ -168,90 +168,90 @@ return {
           end
 
           -- Start/Stop R
-          map("<leader>rs", function()
+          map("<leader>Rs", function()
             vim.cmd("RStart")
           end, "Start R")
 
-          map("<leader>rq", function()
+          map("<leader>Rq", function()
             vim.cmd("RStop")
           end, "Stop R")
 
-          map("<leader>rQ", function()
+          map("<leader>RQ", function()
             vim.cmd("RKill")
           end, "Kill R")
 
           -- Send code
-          map("<leader>rl", function()
+          map("<leader>Rl", function()
             vim.cmd("RSendLine")
           end, "Send Line")
 
-          map("<leader>rp", function()
+          map("<leader>Rp", function()
             vim.cmd("RSendParagraph")
           end, "Send Paragraph")
 
-          map("<leader>rf", function()
+          map("<leader>Rf", function()
             vim.cmd("RSendFile")
           end, "Send File")
 
-          map("<leader>rb", function()
+          map("<leader>Rb", function()
             vim.cmd("RSendAboveLines")
           end, "Send Above Lines")
 
-          vmap("<leader>rs", function()
+          vmap("<leader>Rs", function()
             vim.cmd("RSendSelection")
           end, "Send Selection")
 
-          map("<leader>rc", function()
+          map("<leader>Rc", function()
             vim.cmd("RSendChunk")
           end, "Send Chunk (Rmd)")
 
           -- Object browser
-          map("<leader>ro", function()
+          map("<leader>Ro", function()
             vim.cmd("RObjectBrowser")
           end, "Object Browser")
 
-          map("<leader>rO", function()
+          map("<leader>RO", function()
             vim.cmd("RClearAll")
           end, "Clear Objects")
 
           -- Help and documentation
-          map("<leader>rh", function()
+          map("<leader>Rh", function()
             vim.cmd("RHelp " .. vim.fn.expand("<cword>"))
           end, "Help (word)")
 
-          map("<leader>rH", function()
+          map("<leader>RH", function()
             local word = vim.fn.input("Help topic: ")
             if word ~= "" then
               vim.cmd("RHelp " .. word)
             end
           end, "Help (input)")
 
-          map("<leader>re", function()
+          map("<leader>Re", function()
             vim.cmd("RShowEx " .. vim.fn.expand("<cword>"))
           end, "Show Example")
 
-          map("<leader>ra", function()
+          map("<leader>Ra", function()
             vim.cmd("RShowArgs " .. vim.fn.expand("<cword>"))
           end, "Show Arguments")
 
           -- Data viewing
-          map("<leader>rv", function()
+          map("<leader>Rv", function()
             vim.cmd("RViewDF " .. vim.fn.expand("<cword>"))
           end, "View Data Frame")
 
-          map("<leader>rV", function()
+          map("<leader>RV", function()
             vim.cmd("RDputObj " .. vim.fn.expand("<cword>"))
           end, "Dput Object")
 
           -- Packages
-          map("<leader>ri", function()
+          map("<leader>Ri", function()
             local pkg = vim.fn.input("Package: ")
             if pkg ~= "" then
               vim.cmd("RSend install.packages('" .. pkg .. "')")
             end
           end, "Install Package")
 
-          map("<leader>rL", function()
+          map("<leader>RL", function()
             local pkg = vim.fn.input("Library: ")
             if pkg ~= "" then
               vim.cmd("RSend library(" .. pkg .. ")")
@@ -259,33 +259,33 @@ return {
           end, "Load Library")
 
           -- Working directory
-          map("<leader>rw", function()
+          map("<leader>Rw", function()
             vim.cmd("RSetwd")
           end, "Set Working Dir")
 
-          map("<leader>rW", function()
+          map("<leader>RW", function()
             vim.cmd("RSend getwd()")
           end, "Get Working Dir")
 
           -- Rmarkdown/Quarto
-          map("<leader>rk", function()
+          map("<leader>Rk", function()
             vim.cmd("RKnit")
           end, "Knit Document")
 
-          map("<leader>rK", function()
+          map("<leader>RK", function()
             vim.cmd("RMakeAll")
           end, "Make All (PDF)")
 
-          map("<leader>rm", function()
+          map("<leader>Rm", function()
             vim.cmd("RMakePDF")
           end, "Make PDF")
 
           -- Plots
-          map("<leader>rpd", function()
+          map("<leader>Rpd", function()
             vim.cmd("RSend dev.off()")
           end, "Close Plot Device")
 
-          map("<leader>rps", function()
+          map("<leader>Rps", function()
             local file = vim.fn.input("Save plot to: ", "plot.png")
             if file ~= "" then
               vim.cmd("RSend ggsave('" .. file .. "')")
@@ -293,38 +293,38 @@ return {
           end, "Save Plot")
 
           -- Console
-          map("<leader>rCc", function()
+          map("<leader>RCc", function()
             vim.cmd("RSend cat('\\014')")
           end, "Clear Console")
 
-          map("<leader>rCh", function()
+          map("<leader>RCh", function()
             vim.cmd("RSend history()")
           end, "Show History")
 
           -- Session
-          map("<leader>rSs", function()
+          map("<leader>RSs", function()
             vim.cmd("RSend save.image()")
           end, "Save Session")
 
-          map("<leader>rSl", function()
+          map("<leader>RSl", function()
             vim.cmd("RSend load('.RData')")
           end, "Load Session")
 
           -- Code actions
-          map("<leader>raa", function()
+          map("<leader>Raa", function()
             vim.lsp.buf.code_action()
           end, "Code Actions")
 
           -- Debugging
-          map("<leader>rdd", function()
+          map("<leader>Rdd", function()
             vim.cmd("RSend debug(" .. vim.fn.expand("<cword>") .. ")")
           end, "Debug Function")
 
-          map("<leader>rdu", function()
+          map("<leader>Rdu", function()
             vim.cmd("RSend undebug(" .. vim.fn.expand("<cword>") .. ")")
           end, "Undebug Function")
 
-          map("<leader>rdt", function()
+          map("<leader>Rdt", function()
             vim.cmd("RSend traceback()")
           end, "Traceback")
         end,

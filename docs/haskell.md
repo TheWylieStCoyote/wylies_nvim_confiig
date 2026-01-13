@@ -22,64 +22,64 @@
 - Case splitting
 - Fill holes
 
-## Keybindings
+## Keybindings (`<leader>H...`)
 
 ### Run & REPL
 
 | Key | Action |
 |-----|--------|
-| `<leader>hr` | Run with runhaskell |
-| `<leader>hR` | Run with runghc |
-| `<leader>hi` | GHCi REPL |
-| `<leader>hI` | GHCi with File |
-| `<leader>hL` | GHCi Load File |
+| `<leader>Hr` | Run with runhaskell |
+| `<leader>HR` | Run with runghc |
+| `<leader>Hi` | GHCi REPL |
+| `<leader>HI` | GHCi with File |
+| `<leader>HL` | GHCi Load File |
 
 ### Cabal
 
 | Key | Action |
 |-----|--------|
-| `<leader>hb` | Cabal Build |
-| `<leader>hB` | Cabal Build All |
-| `<leader>ht` | Cabal Test |
-| `<leader>hT` | Cabal Test (verbose) |
-| `<leader>hx` | Cabal Run |
-| `<leader>hc` | Cabal Clean |
-| `<leader>hu` | Cabal Update |
-| `<leader>hd` | Cabal Install |
-| `<leader>hn` | Cabal Init |
+| `<leader>Hb` | Cabal Build |
+| `<leader>HB` | Cabal Build All |
+| `<leader>Ht` | Cabal Test |
+| `<leader>HT` | Cabal Test (verbose) |
+| `<leader>Hx` | Cabal Run |
+| `<leader>Hc` | Cabal Clean |
+| `<leader>Hu` | Cabal Update |
+| `<leader>Hd` | Cabal Install |
+| `<leader>Hn` | Cabal Init |
 
 ### Stack
 
 | Key | Action |
 |-----|--------|
-| `<leader>hSb` | Stack Build |
-| `<leader>hSt` | Stack Test |
-| `<leader>hSr` | Stack Run |
-| `<leader>hSg` | Stack GHCi |
-| `<leader>hN` | Stack New |
+| `<leader>HSb` | Stack Build |
+| `<leader>HSt` | Stack Test |
+| `<leader>HSr` | Stack Run |
+| `<leader>HSg` | Stack GHCi |
+| `<leader>HN` | Stack New |
 
 ### Hoogle
 
 | Key | Action |
 |-----|--------|
-| `<leader>hh` | Hoogle Search |
-| `<leader>hH` | Hoogle Word |
+| `<leader>Hh` | Hoogle Search |
+| `<leader>HH` | Hoogle Word |
 
 ### HLint & GHC
 
 | Key | Action |
 |-----|--------|
-| `<leader>hl` | HLint File |
-| `<leader>hg` | GHC Compile |
-| `<leader>hG` | GHC Compile (optimized) |
-| `<leader>hD` | Generate Haddock |
+| `<leader>Hl` | HLint File |
+| `<leader>Hg` | GHC Compile |
+| `<leader>HG` | GHC Compile (optimized) |
+| `<leader>HD` | Generate Haddock |
 
 ### LSP
 
 | Key | Action |
 |-----|--------|
-| `<leader>hs` | Show Type |
-| `<leader>ha` | Code Actions |
+| `<leader>Hs` | Show Type |
+| `<leader>Ha` | Code Actions |
 
 ## Installation
 
@@ -114,15 +114,15 @@ All major plugins enabled:
 ## Usage Examples
 
 ### Quick Development
-1. `<leader>hi` - Start GHCi
+1. `<leader>Hi` - Start GHCi
 2. Write code
-3. `<leader>hb` - Build with Cabal
+3. `<leader>Hb` - Build with Cabal
 
 ### Type-Driven Development
 1. Write type signature
 2. Use code actions to fill holes
-3. `<leader>hs` - Check inferred types
+3. `<leader>Hs` - Check inferred types
 
 ### Search Documentation
-1. `<leader>hh` - Search Hoogle
+1. `<leader>Hh` - Search Hoogle
 2. Enter type signature or function name

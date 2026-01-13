@@ -23,73 +23,73 @@
 
 ## Keybindings
 
-### Build (`<leader>d...`)
+### Build (`<leader>k...`)
 
 | Key | Action |
 |-----|--------|
-| `<leader>db` | Build Image |
-| `<leader>dB` | Build (no cache) |
-| `<leader>df` | Build (this file) |
+| `<leader>kb` | Build Image |
+| `<leader>kB` | Build (no cache) |
+| `<leader>kf` | Build (this file) |
 
 ### Run
 
 | Key | Action |
 |-----|--------|
-| `<leader>dr` | Run Container |
-| `<leader>dR` | Run (with ports) |
-| `<leader>de` | Exec Shell |
+| `<leader>kr` | Run Container |
+| `<leader>kR` | Run (with ports) |
+| `<leader>ke` | Exec Shell |
 
 ### Images
 
 | Key | Action |
 |-----|--------|
-| `<leader>di` | List Images |
-| `<leader>dI` | Inspect Image |
-| `<leader>dh` | Image History |
-| `<leader>dD` | Delete Image |
+| `<leader>ki` | List Images |
+| `<leader>kI` | Inspect Image |
+| `<leader>kh` | Image History |
+| `<leader>kD` | Delete Image |
 
 ### Containers
 
 | Key | Action |
 |-----|--------|
-| `<leader>dc` | List Containers |
-| `<leader>dC` | Inspect Container |
-| `<leader>dl` | Container Logs |
-| `<leader>ds` | Stop Container |
-| `<leader>dS` | Start Container |
-| `<leader>dx` | Remove Container |
-| `<leader>dt` | Container Stats |
+| `<leader>kc` | List Containers |
+| `<leader>kC` | Inspect Container |
+| `<leader>kl` | Container Logs |
+| `<leader>ks` | Stop Container |
+| `<leader>kS` | Start Container |
+| `<leader>kx` | Remove Container |
+| `<leader>kt` | Container Stats |
 
 ### Registry
 
 | Key | Action |
 |-----|--------|
-| `<leader>dpp` | Push Image |
-| `<leader>dpl` | Pull Image |
-| `<leader>dlo` | Docker Login |
+| `<leader>kpp` | Push Image |
+| `<leader>kpl` | Pull Image |
+| `<leader>klo` | Docker Login |
 
 ### Cleanup
 
 | Key | Action |
 |-----|--------|
-| `<leader>dp` | Prune System |
-| `<leader>dP` | Prune All |
+| `<leader>kp` | Prune System |
+| `<leader>kP` | Prune All |
 
 ### Network & Volumes
 
 | Key | Action |
 |-----|--------|
-| `<leader>dn` | List Networks |
-| `<leader>dv` | List Volumes |
+| `<leader>kn` | List Networks |
+| `<leader>kv` | List Volumes |
 
 ### Other
 
 | Key | Action |
 |-----|--------|
-| `<leader>dL` | Lint (hadolint) |
-| `<leader>dN` | Insert Template |
-| `<leader>da` | Code Actions |
-| `<leader>dH` | Hover Info |
+| `<leader>kL` | Lint (hadolint) |
+| `<leader>kN` | Insert Template |
+| `<leader>ka` | Code Actions |
+| `<leader>kH` | Hover Info |
 
 ### Docker Compose (`<leader>D...`)
 
@@ -152,7 +152,7 @@ override:
 
 ## Dockerfile Template
 
-Generated with `<leader>dN`:
+Generated with `<leader>kN`:
 ```dockerfile
 # syntax=docker/dockerfile:1
 
@@ -194,9 +194,9 @@ CMD ["./app"]
 
 ### Build & Run
 1. Write Dockerfile
-2. `<leader>dL` - Lint with hadolint
-3. `<leader>db` - Build image
-4. `<leader>dr` - Run container
+2. `<leader>kL` - Lint with hadolint
+3. `<leader>kb` - Build image
+4. `<leader>kr` - Run container
 
 ### Docker Compose
 1. Edit `docker-compose.yml`
@@ -205,6 +205,6 @@ CMD ["./app"]
 4. `<leader>Dl` - View logs
 
 ### Debug Container
-1. `<leader>dc` - List containers
-2. `<leader>de` - Exec shell
-3. `<leader>dl` - View logs
+1. `<leader>kc` - List containers
+2. `<leader>ke` - Exec shell
+3. `<leader>kl` - View logs

@@ -91,21 +91,21 @@ return {
           end
 
           -- Build
-          map("<leader>db", function()
+          map("<leader>kb", function()
             local tag = vim.fn.input("Image tag: ", vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ":latest")
             if tag ~= "" then
               vim.cmd("split | terminal docker build -t " .. tag .. " .")
             end
           end, "Build Image")
 
-          map("<leader>dB", function()
+          map("<leader>kB", function()
             local tag = vim.fn.input("Image tag: ", vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ":latest")
             if tag ~= "" then
               vim.cmd("split | terminal docker build --no-cache -t " .. tag .. " .")
             end
           end, "Build (no cache)")
 
-          map("<leader>df", function()
+          map("<leader>kf", function()
             local file = vim.fn.expand("%")
             local tag = vim.fn.input("Image tag: ", vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ":latest")
             if tag ~= "" then
@@ -114,14 +114,14 @@ return {
           end, "Build (this file)")
 
           -- Run
-          map("<leader>dr", function()
+          map("<leader>kr", function()
             local image = vim.fn.input("Image: ", vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ":latest")
             if image ~= "" then
               vim.cmd("split | terminal docker run --rm -it " .. image)
             end
           end, "Run Container")
 
-          map("<leader>dR", function()
+          map("<leader>kR", function()
             local image = vim.fn.input("Image: ", vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ":latest")
             local ports = vim.fn.input("Ports (e.g., 8080:80): ")
             if image ~= "" then
@@ -133,7 +133,7 @@ return {
             end
           end, "Run (with ports)")
 
-          map("<leader>de", function()
+          map("<leader>ke", function()
             local container = vim.fn.input("Container: ")
             if container ~= "" then
               vim.cmd("split | terminal docker exec -it " .. container .. " /bin/sh")
@@ -141,25 +141,25 @@ return {
           end, "Exec Shell")
 
           -- Images
-          map("<leader>di", function()
+          map("<leader>ki", function()
             vim.cmd("split | terminal docker images")
           end, "List Images")
 
-          map("<leader>dI", function()
+          map("<leader>kI", function()
             local image = vim.fn.input("Image to inspect: ")
             if image ~= "" then
               vim.cmd("split | terminal docker inspect " .. image)
             end
           end, "Inspect Image")
 
-          map("<leader>dh", function()
+          map("<leader>kh", function()
             local image = vim.fn.input("Image: ")
             if image ~= "" then
               vim.cmd("split | terminal docker history " .. image)
             end
           end, "Image History")
 
-          map("<leader>dD", function()
+          map("<leader>kD", function()
             local image = vim.fn.input("Image to delete: ")
             if image ~= "" then
               vim.cmd("split | terminal docker rmi " .. image)
@@ -167,39 +167,39 @@ return {
           end, "Delete Image")
 
           -- Containers
-          map("<leader>dc", function()
+          map("<leader>kc", function()
             vim.cmd("split | terminal docker ps -a")
           end, "List Containers")
 
-          map("<leader>dC", function()
+          map("<leader>kC", function()
             local container = vim.fn.input("Container to inspect: ")
             if container ~= "" then
               vim.cmd("split | terminal docker inspect " .. container)
             end
           end, "Inspect Container")
 
-          map("<leader>dl", function()
+          map("<leader>kl", function()
             local container = vim.fn.input("Container: ")
             if container ~= "" then
               vim.cmd("split | terminal docker logs -f " .. container)
             end
           end, "Container Logs")
 
-          map("<leader>ds", function()
+          map("<leader>ks", function()
             local container = vim.fn.input("Container to stop: ")
             if container ~= "" then
               vim.cmd("split | terminal docker stop " .. container)
             end
           end, "Stop Container")
 
-          map("<leader>dS", function()
+          map("<leader>kS", function()
             local container = vim.fn.input("Container to start: ")
             if container ~= "" then
               vim.cmd("split | terminal docker start " .. container)
             end
           end, "Start Container")
 
-          map("<leader>dx", function()
+          map("<leader>kx", function()
             local container = vim.fn.input("Container to remove: ")
             if container ~= "" then
               vim.cmd("split | terminal docker rm " .. container)
@@ -207,65 +207,65 @@ return {
           end, "Remove Container")
 
           -- Cleanup
-          map("<leader>dp", function()
+          map("<leader>kp", function()
             vim.cmd("split | terminal docker system prune")
           end, "Prune System")
 
-          map("<leader>dP", function()
+          map("<leader>kP", function()
             vim.cmd("split | terminal docker system prune -a --volumes")
           end, "Prune All")
 
           -- Registry
-          map("<leader>dpp", function()
+          map("<leader>kpp", function()
             local image = vim.fn.input("Image to push: ")
             if image ~= "" then
               vim.cmd("split | terminal docker push " .. image)
             end
           end, "Push Image")
 
-          map("<leader>dpl", function()
+          map("<leader>kpl", function()
             local image = vim.fn.input("Image to pull: ")
             if image ~= "" then
               vim.cmd("split | terminal docker pull " .. image)
             end
           end, "Pull Image")
 
-          map("<leader>dlo", function()
+          map("<leader>klo", function()
             vim.cmd("split | terminal docker login")
           end, "Docker Login")
 
           -- Linting
-          map("<leader>dL", function()
+          map("<leader>kL", function()
             local file = vim.fn.expand("%")
             vim.cmd("split | terminal hadolint " .. file)
           end, "Lint (hadolint)")
 
           -- Stats
-          map("<leader>dt", function()
+          map("<leader>kt", function()
             vim.cmd("split | terminal docker stats")
           end, "Container Stats")
 
           -- Network
-          map("<leader>dn", function()
+          map("<leader>kn", function()
             vim.cmd("split | terminal docker network ls")
           end, "List Networks")
 
           -- Volumes
-          map("<leader>dv", function()
+          map("<leader>kv", function()
             vim.cmd("split | terminal docker volume ls")
           end, "List Volumes")
 
           -- Code actions
-          map("<leader>da", function()
+          map("<leader>ka", function()
             vim.lsp.buf.code_action()
           end, "Code Actions")
 
-          map("<leader>dH", function()
+          map("<leader>kH", function()
             vim.lsp.buf.hover()
           end, "Hover Info")
 
           -- Templates
-          map("<leader>dN", function()
+          map("<leader>kN", function()
             local base = vim.fn.input("Base image: ", "alpine:latest")
             local template = string.format([[
 # syntax=docker/dockerfile:1

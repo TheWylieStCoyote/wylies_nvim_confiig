@@ -86,7 +86,7 @@ return {
           },
           keys = {
             {
-              "<leader>Ti",
+              "<leader>jI",
               function()
                 vim.lsp.buf.code_action({
                   apply = true,
@@ -99,7 +99,7 @@ return {
               desc = "Organize Imports",
             },
             {
-              "<leader>tu",
+              "<leader>ju",
               function()
                 vim.lsp.buf.code_action({
                   apply = true,
@@ -112,7 +112,7 @@ return {
               desc = "Remove Unused Imports",
             },
             {
-              "<leader>ti",
+              "<leader>ji",
               function()
                 vim.lsp.buf.code_action({
                   apply = true,
@@ -125,7 +125,7 @@ return {
               desc = "Add Missing Imports",
             },
             {
-              "<leader>tf",
+              "<leader>jf",
               function()
                 vim.lsp.buf.code_action({
                   apply = true,
@@ -138,7 +138,7 @@ return {
               desc = "Fix All",
             },
             {
-              "<leader>tD",
+              "<leader>jD",
               function()
                 local params = vim.lsp.util.make_position_params()
                 vim.lsp.buf.execute_command({
@@ -149,7 +149,7 @@ return {
               desc = "Go to Source Definition",
             },
             {
-              "<leader>tR",
+              "<leader>jR",
               function()
                 vim.lsp.buf.execute_command({
                   command = "typescript.findAllFileReferences",
@@ -282,7 +282,7 @@ return {
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "TS: " .. desc })
           end
 
-          map("<leader>tr", function()
+          map("<leader>jr", function()
             local old_name = vim.fn.expand("%")
             vim.ui.input({ prompt = "New filename: ", default = old_name }, function(new_name)
               if new_name and new_name ~= "" and new_name ~= old_name then
@@ -296,8 +296,8 @@ return {
             end)
           end, "Rename File")
 
-          map("<leader>tn", "<cmd>split | terminal npm run<cr>", "npm run")
-          map("<leader>tt", "<cmd>split | terminal npm test<cr>", "npm test")
+          map("<leader>jn", "<cmd>split | terminal npm run<cr>", "npm run")
+          map("<leader>jt", "<cmd>split | terminal npm test<cr>", "npm test")
         end,
       })
     end,

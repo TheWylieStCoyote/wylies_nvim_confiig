@@ -28,19 +28,19 @@ return {
     keys = {
       -- Extract refactorings (visual mode)
       {
-        "<leader>re",
+        "<leader>ee",
         function() require("refactoring").refactor("Extract Function") end,
         mode = "x",
         desc = "Extract Function",
       },
       {
-        "<leader>rf",
+        "<leader>ef",
         function() require("refactoring").refactor("Extract Function To File") end,
         mode = "x",
         desc = "Extract Function To File",
       },
       {
-        "<leader>rv",
+        "<leader>ev",
         function() require("refactoring").refactor("Extract Variable") end,
         mode = "x",
         desc = "Extract Variable",
@@ -48,13 +48,13 @@ return {
 
       -- Inline refactorings
       {
-        "<leader>rI",
+        "<leader>eI",
         function() require("refactoring").refactor("Inline Function") end,
         mode = "n",
         desc = "Inline Function",
       },
       {
-        "<leader>ri",
+        "<leader>ei",
         function() require("refactoring").refactor("Inline Variable") end,
         mode = { "n", "x" },
         desc = "Inline Variable",
@@ -62,13 +62,13 @@ return {
 
       -- Extract block (normal mode)
       {
-        "<leader>rb",
+        "<leader>eb",
         function() require("refactoring").refactor("Extract Block") end,
         mode = "n",
         desc = "Extract Block",
       },
       {
-        "<leader>rB",
+        "<leader>eB",
         function() require("refactoring").refactor("Extract Block To File") end,
         mode = "n",
         desc = "Extract Block To File",
@@ -76,7 +76,7 @@ return {
 
       -- Refactor menu (Telescope)
       {
-        "<leader>rr",
+        "<leader>er",
         function() require("telescope").extensions.refactoring.refactors() end,
         mode = { "n", "x" },
         desc = "Refactoring Menu",
@@ -84,25 +84,25 @@ return {
 
       -- Debug print statements
       {
-        "<leader>rp",
+        "<leader>ep",
         function() require("refactoring").debug.printf({ below = true }) end,
         mode = "n",
         desc = "Debug Print Below",
       },
       {
-        "<leader>rP",
+        "<leader>eP",
         function() require("refactoring").debug.printf({ below = false }) end,
         mode = "n",
         desc = "Debug Print Above",
       },
       {
-        "<leader>rdv",
+        "<leader>edv",
         function() require("refactoring").debug.print_var() end,
         mode = { "x", "n" },
         desc = "Debug Print Variable",
       },
       {
-        "<leader>rc",
+        "<leader>ec",
         function() require("refactoring").debug.cleanup({}) end,
         mode = "n",
         desc = "Debug Cleanup",

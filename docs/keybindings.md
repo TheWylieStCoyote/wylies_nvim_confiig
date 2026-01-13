@@ -49,14 +49,18 @@
 | `<leader>c` | Code | Code actions, C++, CUDA, Crates, Node actions |
 | `<leader>d` | Debug | Debugging (DAP), Debug print |
 | `<leader>D` | Devcontainer | Container development |
+| `<leader>e` | Extract/Refactor | Code refactoring operations |
 | `<leader>f` | Find/Files | File finding and search |
 | `<leader>g` | Git/Go | Git, Neogit, Go development |
 | `<leader>h` | Harpoon | Quick file navigation |
+| `<leader>j` | JavaScript/TS | TypeScript/JavaScript development |
+| `<leader>k` | Docker | Docker commands (in Dockerfile) |
 | `<leader>l` | LSP/Lua | Language Server Protocol |
 | `<leader>n` | C# | C# development |
 | `<leader>o` | OCaml | OCaml development |
 | `<leader>p` | Python | Python development |
-| `<leader>r` | Remote/Rust/R/Refactor | Remote dev, Rust, R, Refactoring |
+| `<leader>r` | Rust | Rust development (in .rs files) |
+| `<leader>R` | Remote/R | Remote Neovim, R language |
 | `<leader>s` | Search | Search operations, TODOs |
 | `<leader>t` | Test | Testing (Neotest), Coverage |
 | `<leader>u` | UI/Toggle | UI toggles |
@@ -65,6 +69,8 @@
 | `<leader>y` | Yazi | File manager |
 | `<leader>z` | Zig | Zig development |
 | `<leader>C` | CUDA Profile | CUDA profiling commands |
+| `<leader>H` | Haskell | Haskell development |
+| `<leader>T` | Terraform | Terraform/HCL development |
 | `g?` | Debug Print | Insert debug print statements |
 | `gn` | Node Action | TreeSitter node actions |
 
@@ -411,38 +417,38 @@ Quick debug print statement insertion with debugprint.nvim.
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>re` | v | Extract Function |
-| `<leader>rf` | v | Extract Function To File |
-| `<leader>rv` | v | Extract Variable |
+| `<leader>ee` | v | Extract Function |
+| `<leader>ef` | v | Extract Function To File |
+| `<leader>ev` | v | Extract Variable |
 
 ### Inline
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>ri` | n, v | Inline Variable |
-| `<leader>rI` | n | Inline Function |
+| `<leader>ei` | n, v | Inline Variable |
+| `<leader>eI` | n | Inline Function |
 
 ### Block Extract (Normal Mode)
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>rb` | n | Extract Block |
-| `<leader>rB` | n | Extract Block To File |
+| `<leader>eb` | n | Extract Block |
+| `<leader>eB` | n | Extract Block To File |
 
 ### Refactoring Menu
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>rr` | n, v | Refactoring Menu (Telescope) |
+| `<leader>er` | n, v | Refactoring Menu (Telescope) |
 
 ### Debug Statements
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>rp` | n | Debug Print Below |
-| `<leader>rP` | n | Debug Print Above |
-| `<leader>rv` | n, v | Debug Print Variable |
-| `<leader>rc` | n | Debug Cleanup |
+| `<leader>ep` | n | Debug Print Below |
+| `<leader>eP` | n | Debug Print Above |
+| `<leader>edv` | n, v | Debug Print Variable |
+| `<leader>ec` | n | Debug Cleanup |
 
 ---
 
@@ -559,12 +565,12 @@ Multiple cursors for simultaneous editing (VS Code style).
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>rs` | n | Start remote connection |
-| `<leader>rx` | n | Stop remote connection |
-| `<leader>ri` | n | Remote info |
-| `<leader>rc` | n | Cleanup remote resources |
-| `<leader>rd` | n | Delete saved config |
-| `<leader>rl` | n | View logs |
+| `<leader>Rs` | n | Start remote connection |
+| `<leader>Rx` | n | Stop remote connection |
+| `<leader>Ri` | n | Remote info |
+| `<leader>Rc` | n | Cleanup remote resources |
+| `<leader>Rd` | n | Delete saved config |
+| `<leader>Rl` | n | View logs |
 
 ### Devcontainer
 
@@ -784,15 +790,15 @@ Multiple cursors for simultaneous editing (VS Code style).
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>Ti` | n | Organize imports |
-| `<leader>tu` | n | Remove unused imports |
-| `<leader>ti` | n | Add missing imports |
-| `<leader>tf` | n | Fix all |
-| `<leader>tD` | n | Go to source definition |
-| `<leader>tR` | n | File references |
-| `<leader>tr` | n | Rename file |
-| `<leader>tn` | n | npm run |
-| `<leader>tt` | n | npm test |
+| `<leader>jI` | n | Organize imports |
+| `<leader>ju` | n | Remove unused imports |
+| `<leader>ji` | n | Add missing imports |
+| `<leader>jf` | n | Fix all |
+| `<leader>jD` | n | Go to source definition |
+| `<leader>jR` | n | File references |
+| `<leader>jr` | n | Rename file |
+| `<leader>jn` | n | npm run |
+| `<leader>jt` | n | npm test |
 
 ### Java Development
 
@@ -857,36 +863,37 @@ Multiple cursors for simultaneous editing (VS Code style).
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>db` | n | Build image |
-| `<leader>dB` | n | Build (no cache) |
-| `<leader>dr` | n | Run container |
-| `<leader>ds` | n | Stop container |
-| `<leader>dl` | n | View logs |
-| `<leader>di` | n | Inspect |
-| `<leader>dI` | n | Image history |
-| `<leader>dp` | n | Push image |
-| `<leader>dP` | n | Pull image |
-| `<leader>de` | n | Exec into container |
-| `<leader>du` | n | Compose up |
-| `<leader>dU` | n | Compose up (build) |
-| `<leader>dd` | n | Compose down |
-| `<leader>dD` | n | Compose down (volumes) |
+| `<leader>kb` | n | Build image |
+| `<leader>kB` | n | Build (no cache) |
+| `<leader>kr` | n | Run container |
+| `<leader>ks` | n | Stop container |
+| `<leader>kl` | n | View logs |
+| `<leader>ki` | n | List images |
+| `<leader>kI` | n | Inspect image |
+| `<leader>kpp` | n | Push image |
+| `<leader>kpl` | n | Pull image |
+| `<leader>ke` | n | Exec into container |
+| `<leader>kc` | n | List containers |
+| `<leader>kn` | n | List networks |
+| `<leader>kv` | n | List volumes |
+| `<leader>kp` | n | Prune system |
+| `<leader>kP` | n | Prune all |
 
 ### Terraform Development
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>ti` | n | Terraform init |
-| `<leader>tp` | n | Terraform plan |
-| `<leader>ta` | n | Terraform apply |
-| `<leader>td` | n | Terraform destroy |
-| `<leader>tv` | n | Terraform validate |
-| `<leader>tf` | n | Terraform fmt |
-| `<leader>ts` | n | Terraform state list |
-| `<leader>to` | n | Terraform output |
-| `<leader>tg` | n | Terraform graph |
-| `<leader>tw` | n | Terraform workspace list |
-| `<leader>tW` | n | Terraform workspace select |
+| `<leader>Ti` | n | Terraform init |
+| `<leader>Tp` | n | Terraform plan |
+| `<leader>Ta` | n | Terraform apply |
+| `<leader>Td` | n | Terraform destroy |
+| `<leader>Tv` | n | Terraform validate |
+| `<leader>Tf` | n | Terraform fmt |
+| `<leader>Ts` | n | Terraform state list |
+| `<leader>To` | n | Terraform output |
+| `<leader>Tg` | n | Terraform graph |
+| `<leader>Tw` | n | Terraform workspace list |
+| `<leader>TW` | n | Terraform workspace select |
 
 ---
 

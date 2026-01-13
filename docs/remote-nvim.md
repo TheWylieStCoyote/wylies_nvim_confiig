@@ -41,16 +41,16 @@
 :checkhealth remote-nvim
 ```
 
-## Keybindings (`<leader>r...`)
+## Keybindings (`<leader>R...`)
 
 | Key | Action |
 |-----|--------|
-| `<leader>rs` | Start remote connection |
-| `<leader>rx` | Stop remote connection |
-| `<leader>ri` | View session info |
-| `<leader>rc` | Cleanup remote resources |
-| `<leader>rd` | Delete saved host config |
-| `<leader>rl` | View plugin logs |
+| `<leader>Rs` | Start remote connection |
+| `<leader>Rx` | Stop remote connection |
+| `<leader>Ri` | View session info |
+| `<leader>Rc` | Cleanup remote resources |
+| `<leader>Rd` | Delete saved host config |
+| `<leader>Rl` | View plugin logs |
 
 ## Commands
 
@@ -68,7 +68,7 @@
 ### Connect to SSH Server
 
 ```vim
-<leader>rs              " Start remote connection
+<leader>Rs              " Start remote connection
 " Select: SSH
 " Enter hostname: myserver.com
 " Enter username: myuser
@@ -90,7 +90,7 @@ Host devserver
 ```
 
 ```vim
-<leader>rs              " Start remote connection
+<leader>Rs              " Start remote connection
 " Your SSH config hosts will appear in the list
 " Select 'devserver'
 ```
@@ -98,7 +98,7 @@ Host devserver
 ### Connect to Docker Container
 
 ```vim
-<leader>rs              " Start remote connection
+<leader>Rs              " Start remote connection
 " Select: Docker container
 " Choose running container from list
 " Or specify image to create new container
@@ -116,7 +116,7 @@ sudo mv devpod /usr/local/bin/
 ```
 
 ```vim
-<leader>rs              " Start remote connection
+<leader>Rs              " Start remote connection
 " Select: Devcontainer
 " Choose project with .devcontainer/devcontainer.json
 ```
@@ -124,7 +124,7 @@ sudo mv devpod /usr/local/bin/
 ### View Active Sessions
 
 ```vim
-<leader>ri              " Show session info
+<leader>Ri              " Show session info
 " Lists all active remote connections
 " Shows connection details and status
 ```
@@ -132,7 +132,7 @@ sudo mv devpod /usr/local/bin/
 ### Cleanup Remote
 
 ```vim
-<leader>rc              " Cleanup remote
+<leader>Rc              " Cleanup remote
 " Removes Neovim installation from remote
 " Cleans up temporary files
 " Use when done with a server
@@ -263,7 +263,7 @@ offline_mode = {
 Remote sessions are saved and can be reconnected:
 
 ```vim
-<leader>rs              " Shows previous sessions
+<leader>Rs              " Shows previous sessions
 " Select existing session to reconnect
 " Or start new connection
 ```

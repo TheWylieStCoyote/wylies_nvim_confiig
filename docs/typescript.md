@@ -24,21 +24,21 @@
 - File references
 - Jest/Mocha debugging
 
-## Keybindings
+## Keybindings (`<leader>j...`)
 
 ### TypeScript-Specific
 
 | Key | Action |
 |-----|--------|
-| `<leader>to` | Organize Imports |
-| `<leader>tu` | Remove Unused Imports |
-| `<leader>ti` | Add Missing Imports |
-| `<leader>tf` | Fix All |
-| `<leader>tD` | Go to Source Definition |
-| `<leader>tR` | File References |
-| `<leader>tr` | Rename File |
-| `<leader>tn` | npm run |
-| `<leader>tt` | npm test |
+| `<leader>jI` | Organize Imports |
+| `<leader>ju` | Remove Unused Imports |
+| `<leader>ji` | Add Missing Imports |
+| `<leader>jf` | Fix All |
+| `<leader>jD` | Go to Source Definition |
+| `<leader>jR` | File References |
+| `<leader>jr` | Rename File |
+| `<leader>jn` | npm run |
+| `<leader>jt` | npm test |
 
 ### Debugging (DAP)
 
@@ -116,12 +116,12 @@ Available configurations:
 
 ### Import Management
 1. Write code with missing imports
-2. `<leader>ti` - Add missing imports
-3. `<leader>to` - Organize imports
-4. `<leader>tu` - Remove unused imports
+2. `<leader>ji` - Add missing imports
+3. `<leader>jI` - Organize imports
+4. `<leader>ju` - Remove unused imports
 
 ### Quick Fixes
-1. `<leader>tf` - Fix all auto-fixable issues
+1. `<leader>jf` - Fix all auto-fixable issues
 2. Uses both TypeScript and ESLint fixes
 
 ### Debug Node.js App
@@ -135,5 +135,5 @@ Available configurations:
 3. Select "Debug Jest Tests"
 
 ### Rename File with Import Updates
-1. `<leader>tr` - Rename file
+1. `<leader>jr` - Rename file
 2. All imports across project are updated
