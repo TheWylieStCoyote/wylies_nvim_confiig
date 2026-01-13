@@ -50,3 +50,18 @@ map("n", ";", ":", { desc = "Command mode" })
 
 -- Join lines without moving cursor
 map("n", "J", "mzJ`z", { desc = "Join lines (keep cursor)" })
+
+-- Git: stage current file
+map("n", "<leader>ga", function()
+  local file = vim.fn.expand("%")
+  if file == "" then
+    vim.notify("No file to stage", vim.log.levels.WARN)
+    return
+  end
+  vim.fn.system({ "git", "add", file })
+  if vim.v.shell_error == 0 then
+    vim.notify("Staged: " .. vim.fn.fnamemodify(file, ":t"), vim.log.levels.INFO)
+  else
+    vim.notify("Failed to stage file", vim.log.levels.ERROR)
+  end
+end, { desc = "Git add (stage) current file" })
