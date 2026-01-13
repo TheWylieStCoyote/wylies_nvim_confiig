@@ -116,7 +116,19 @@ return {
       { "<leader>pT", function() require("dap-python").test_class() end, desc = "Debug Test Class", ft = "python" },
     },
     config = function()
-      local debugpy_path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
+      -- Try Mason's debugpy first, fall back to system python
+      local mason_debugpy = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
+      local debugpy_path
+      if vim.fn.executable(mason_debugpy) == 1 then
+        debugpy_path = mason_debugpy
+      elseif vim.fn.executable("python3") == 1 then
+        debugpy_path = "python3"
+      elseif vim.fn.executable("python") == 1 then
+        debugpy_path = "python"
+      else
+        vim.notify("No Python interpreter found for debugpy", vim.log.levels.WARN)
+        return
+      end
       require("dap-python").setup(debugpy_path)
       require("dap-python").test_runner = "pytest"
     end,
