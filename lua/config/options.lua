@@ -17,6 +17,10 @@ vim.g.loaded_node_provider = 0
 -- Disable Python provider if not needed (uncomment to disable)
 -- vim.g.loaded_python3_provider = 0
 
+-- Project-specific configuration
+-- Allows .nvim.lua, .nvimrc, or .exrc files in project directories
+vim.opt.exrc = true
+
 -- Folding with Treesitter
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"

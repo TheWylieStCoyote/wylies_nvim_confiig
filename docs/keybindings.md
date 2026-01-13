@@ -37,6 +37,8 @@
   - [Terraform](#terraform-development)
 - [Standard Navigation](#standard-navigation)
 - [Folding (TreeSitter)](#folding-treesitter)
+- [Undotree](#undotree)
+- [UI/Toggle](#uitoggle)
 
 ---
 
@@ -959,6 +961,41 @@ Code folding using TreeSitter for syntax-aware folds.
 |-----|------|-------------|
 | `zv` | n | View cursor line (open folds) |
 | `zi` | n | Toggle foldenable |
+
+---
+
+## Undotree
+
+Visual undo history browser.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>U` | n | Toggle Undotree |
+
+### Inside Undotree
+
+| Key | Description |
+|-----|-------------|
+| `j` / `k` | Navigate undo states |
+| `<CR>` | Restore to selected state |
+| `u` | Undo |
+| `<C-r>` | Redo |
+| `>` | Next saved state |
+| `<` | Previous saved state |
+| `q` | Close Undotree |
+
+---
+
+## UI/Toggle
+
+Plugin and UI management commands.
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>up` | n | Lazy: Profile startup |
+| `<leader>ul` | n | Lazy: Open plugin manager |
+| `<leader>us` | n | Lazy: Sync plugins |
+| `<leader>uc` | n | Lazy: Check for updates |
 
 ---
 

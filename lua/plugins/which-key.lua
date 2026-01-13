@@ -179,6 +179,7 @@ return {
         { "<leader>S", group = "SQL" },
         { "<leader>T", group = "Terraform" },
         { "<leader>V", group = "VHDL" },
+        { "<leader>U", desc = "Undotree" },
 
         -- Bracket navigation
         { "[", group = "Previous" },

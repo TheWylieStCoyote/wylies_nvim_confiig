@@ -64,6 +64,9 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | Code Outline | aerial.nvim | - | - | - | `<leader>cs` | [aerial.md](aerial.md) |
 | Commenting | Comment.nvim | - | - | - | `gcc/gc/gbc` | [comment.md](comment.md) |
 | Multi-Cursors | vim-visual-multi | - | - | - | `<C-n>` | [multicursors.md](multicursors.md) |
+| **Utilities** |
+| Undotree | undotree | - | - | - | `<leader>U` | - |
+| Lazy Profile | lazy.nvim | - | - | - | `<leader>up` | - |
 | **Testing & Debugging** |
 | Test Coverage | nvim-coverage | - | - | - | `<leader>tc` | [coverage.md](coverage.md) |
 | Debug Print | debugprint.nvim | - | - | - | `g?` | [debugprint.md](debugprint.md) |
