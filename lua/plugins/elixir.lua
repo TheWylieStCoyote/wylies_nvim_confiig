@@ -1,6 +1,11 @@
 -- Elixir Development Configuration
 -- LSP (elixir-ls), formatting (mix format), and Phoenix/Mix support
 
+-- Skip entire Elixir config if Elixir is not installed
+if vim.fn.executable("elixir") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Elixir
   {

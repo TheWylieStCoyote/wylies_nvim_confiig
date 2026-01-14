@@ -1,6 +1,11 @@
 -- Rust Development Configuration
 -- LSP (rust-analyzer), debugging, formatting, and crates.nvim
 
+-- Skip entire Rust config if Rust is not installed
+if vim.fn.executable("rustc") ~= 1 and vim.fn.executable("cargo") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Rust
   {

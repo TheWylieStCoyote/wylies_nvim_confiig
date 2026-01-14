@@ -26,7 +26,8 @@ map("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
 map("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting register" })
 
 -- Delete to void register (don't overwrite clipboard)
-map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to void register" })
+-- Using <leader>D to avoid conflict with Debug group
+map({ "n", "v" }, "<leader>D", [["_d]], { desc = "Delete to void register" })
 
 -- Quick save
 map({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })

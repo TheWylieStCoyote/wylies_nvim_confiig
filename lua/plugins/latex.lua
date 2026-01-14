@@ -1,6 +1,11 @@
 -- LaTeX Development Configuration
 -- LSP (texlab), compilation (latexmk), and PDF viewing
 
+-- Skip entire LaTeX config if LaTeX is not installed
+if vim.fn.executable("latexmk") ~= 1 and vim.fn.executable("pdflatex") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for LaTeX
   {

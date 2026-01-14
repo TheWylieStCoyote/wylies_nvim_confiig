@@ -1,6 +1,11 @@
 -- C/C++ Development Configuration
 -- LSP, debugging, formatting, and build system support
 
+-- Skip entire C/C++ config if no C compiler is installed
+if vim.fn.executable("gcc") ~= 1 and vim.fn.executable("clang") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for C/C++ and build systems
   {

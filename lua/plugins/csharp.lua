@@ -1,6 +1,11 @@
 -- C# Development Configuration
 -- LSP (OmniSharp), debugging (netcoredbg), and formatting (csharpier)
 
+-- Skip entire C# config if .NET is not installed
+if vim.fn.executable("dotnet") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for C#
   {

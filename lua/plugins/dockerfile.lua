@@ -1,6 +1,11 @@
 -- Dockerfile Development Configuration
 -- LSP (dockerls), linting (hadolint), and Docker integration
 
+-- Skip entire Dockerfile config if Docker is not installed
+if vim.fn.executable("docker") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Docker
   {

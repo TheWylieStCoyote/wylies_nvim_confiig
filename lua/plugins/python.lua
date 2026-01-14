@@ -1,6 +1,11 @@
 -- Python Development Configuration
 -- LSP (pyright + ruff), debugging, formatting, and venv support
 
+-- Skip entire Python config if Python is not installed
+if vim.fn.executable("python3") ~= 1 and vim.fn.executable("python") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Python
   {

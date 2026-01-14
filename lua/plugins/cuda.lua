@@ -1,6 +1,11 @@
 -- CUDA Development Configuration
 -- LSP (clangd with CUDA support), formatting, and nvcc integration
 
+-- Skip entire CUDA config if CUDA is not installed
+if vim.fn.executable("nvcc") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for CUDA
   {

@@ -1,6 +1,11 @@
 -- TypeScript/JavaScript Development Configuration
 -- LSP (vtsls), debugging, formatting (prettier), and linting (eslint)
 
+-- Skip entire TypeScript/JavaScript config if Node.js is not installed
+if vim.fn.executable("node") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for TypeScript/JavaScript
   {

@@ -1,6 +1,11 @@
 -- Verilog/SystemVerilog Development Configuration
 -- LSP (verible), linting (verilator), and simulation (iverilog) support
 
+-- Skip entire Verilog config if no Verilog tools are installed
+if vim.fn.executable("verilator") ~= 1 and vim.fn.executable("iverilog") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Verilog
   {

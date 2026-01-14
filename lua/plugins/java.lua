@@ -1,6 +1,11 @@
 -- Java Development Configuration
 -- LSP (jdtls via nvim-jdtls), debugging, and test runner
 
+-- Skip entire Java config if Java is not installed
+if vim.fn.executable("java") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Java
   {

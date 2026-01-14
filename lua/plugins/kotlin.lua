@@ -1,6 +1,11 @@
 -- Kotlin Development Configuration
 -- LSP (kotlin-language-server), debugging, and Gradle/Android support
 
+-- Skip entire Kotlin config if Kotlin is not installed
+if vim.fn.executable("kotlin") ~= 1 and vim.fn.executable("kotlinc") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Kotlin
   {

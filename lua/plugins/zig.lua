@@ -1,6 +1,11 @@
 -- Zig Development Configuration
 -- LSP (zls), debugging (codelldb), and formatting (zig fmt)
 
+-- Skip entire Zig config if Zig is not installed
+if vim.fn.executable("zig") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Zig
   {

@@ -1,6 +1,11 @@
 -- VHDL Development Configuration
 -- LSP (vhdl_ls/rust_hdl), linting (ghdl), and simulation support
 
+-- Skip entire VHDL config if GHDL is not installed
+if vim.fn.executable("ghdl") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for VHDL
   {

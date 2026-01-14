@@ -1,6 +1,11 @@
 -- Terraform/HCL Development Configuration
 -- LSP (terraform-ls), formatting, and infrastructure management
 
+-- Skip entire Terraform config if Terraform is not installed
+if vim.fn.executable("terraform") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Terraform/HCL
   {

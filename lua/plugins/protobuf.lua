@@ -1,6 +1,11 @@
 -- Protocol Buffers (Protobuf) Development Configuration
 -- LSP (buf-ls/pbls), linting (buf), and code generation
 
+-- Skip entire Protobuf config if protoc or buf is not installed
+if vim.fn.executable("protoc") ~= 1 and vim.fn.executable("buf") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Protobuf
   {

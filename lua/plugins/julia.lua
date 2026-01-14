@@ -1,6 +1,11 @@
 -- Julia Development Configuration
 -- LSP (julia-lsp), formatting, and REPL support
 
+-- Skip entire Julia config if Julia is not installed
+if vim.fn.executable("julia") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Julia
   {

@@ -19,7 +19,9 @@ vim.g.loaded_node_provider = 0
 
 -- Project-specific configuration
 -- Allows .nvim.lua, .nvimrc, or .exrc files in project directories
+-- secure = true disables dangerous commands (autocmd, shell, write) in local configs
 vim.opt.exrc = true
+vim.opt.secure = true
 
 -- Folding with Treesitter
 vim.opt.foldmethod = "expr"

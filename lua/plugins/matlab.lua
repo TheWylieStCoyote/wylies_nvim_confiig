@@ -1,6 +1,11 @@
 -- MATLAB/Octave Development Configuration
 -- LSP (matlab-language-server), and Octave support
 
+-- Skip entire MATLAB config if MATLAB or Octave is not installed
+if vim.fn.executable("matlab") ~= 1 and vim.fn.executable("octave") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for MATLAB
   {

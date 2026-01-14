@@ -1,6 +1,11 @@
 -- Ruby Development Configuration
 -- LSP (ruby_lsp), linting/formatting (rubocop), and Rails/RSpec support
 
+-- Skip entire Ruby config if Ruby is not installed
+if vim.fn.executable("ruby") ~= 1 then
+  return {}
+end
+
 return {
   -- TreeSitter parsers for Ruby
   {
