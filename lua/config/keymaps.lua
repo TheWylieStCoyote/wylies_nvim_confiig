@@ -11,8 +11,8 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window wi
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Move lines up/down in visual mode (keeps selection)
-map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move selection down" })
-map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move selection up" })
+map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move selection down", silent = true })
+map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move selection up", silent = true })
 
 -- Keep cursor centered when scrolling
 map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down (centered)" })

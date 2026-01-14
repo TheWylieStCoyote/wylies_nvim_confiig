@@ -30,3 +30,8 @@ vim.opt.foldlevel = 99      -- Start with all folds open
 vim.opt.foldlevelstart = 99 -- Start with all folds open
 vim.opt.foldenable = true
 
+-- Persistent undo (survives closing and reopening Neovim)
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
+vim.opt.undolevels = 10000
+
