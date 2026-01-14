@@ -12,56 +12,56 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
     keys = {
-      -- General prompts
-      { "<leader>oo", "<cmd>Ollama<cr>", desc = "Ollama Prompt" },
-      { "<leader>oO", "<cmd>OllamaModel<cr>", desc = "Select Model" },
+      -- General prompts (using <leader>O for Ollama to avoid conflict with OCaml's <leader>o)
+      { "<leader>Oo", "<cmd>Ollama<cr>", desc = "Ollama Prompt" },
+      { "<leader>OO", "<cmd>OllamaModel<cr>", desc = "Select Model" },
 
       -- Code actions
       {
-        "<leader>og",
+        "<leader>Og",
         ":<c-u>lua require('ollama').prompt('Generate_Code')<cr>",
         mode = { "n", "v" },
         desc = "Generate Code",
       },
       {
-        "<leader>oe",
+        "<leader>Oe",
         ":<c-u>lua require('ollama').prompt('Explain_Code')<cr>",
         mode = { "n", "v" },
         desc = "Explain Code",
       },
       {
-        "<leader>or",
+        "<leader>Or",
         ":<c-u>lua require('ollama').prompt('Review_Code')<cr>",
         mode = { "n", "v" },
         desc = "Review Code",
       },
       {
-        "<leader>of",
+        "<leader>Of",
         ":<c-u>lua require('ollama').prompt('Fix_Code')<cr>",
         mode = { "n", "v" },
         desc = "Fix Code",
       },
       {
-        "<leader>ot",
+        "<leader>Ot",
         ":<c-u>lua require('ollama').prompt('Add_Tests')<cr>",
         mode = { "n", "v" },
         desc = "Add Tests",
       },
       {
-        "<leader>od",
+        "<leader>Od",
         ":<c-u>lua require('ollama').prompt('Add_Docs')<cr>",
         mode = { "n", "v" },
         desc = "Add Documentation",
       },
       {
-        "<leader>os",
+        "<leader>Os",
         ":<c-u>lua require('ollama').prompt('Simplify_Code')<cr>",
         mode = { "n", "v" },
         desc = "Simplify Code",
       },
       -- Git commit message with integrated commit
       {
-        "<leader>om",
+        "<leader>Om",
         function()
           local diff = vim.fn.system("git diff --cached")
           if diff == "" then

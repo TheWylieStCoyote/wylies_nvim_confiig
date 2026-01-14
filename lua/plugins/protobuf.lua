@@ -95,34 +95,34 @@ return {
           end
 
           -- Buf commands
-          map("<leader>pb", function()
+          map("<leader>Pb", function()
             vim.cmd("split | terminal buf build")
           end, "Buf Build")
 
-          map("<leader>pl", function()
+          map("<leader>Pl", function()
             vim.cmd("split | terminal buf lint")
           end, "Buf Lint")
 
-          map("<leader>pL", function()
+          map("<leader>PL", function()
             local file = vim.fn.expand("%")
             vim.cmd("split | terminal buf lint " .. file)
           end, "Buf Lint (file)")
 
-          map("<leader>pf", function()
+          map("<leader>Pf", function()
             vim.cmd("split | terminal buf format -w")
           end, "Buf Format")
 
-          map("<leader>pF", function()
+          map("<leader>PF", function()
             local file = vim.fn.expand("%")
             vim.cmd("split | terminal buf format -w " .. file)
           end, "Buf Format (file)")
 
           -- Breaking change detection
-          map("<leader>pB", function()
+          map("<leader>PB", function()
             vim.cmd("split | terminal buf breaking --against '.git#branch=main'")
           end, "Breaking Changes (vs main)")
 
-          map("<leader>pBt", function()
+          map("<leader>PBt", function()
             local tag = vim.fn.input("Compare against tag: ")
             if tag ~= "" then
               vim.cmd("split | terminal buf breaking --against '.git#tag=" .. tag .. "'")
@@ -130,58 +130,58 @@ return {
           end, "Breaking Changes (vs tag)")
 
           -- Code generation
-          map("<leader>pg", function()
+          map("<leader>Pg", function()
             vim.cmd("split | terminal buf generate")
           end, "Generate Code")
 
-          map("<leader>pG", function()
+          map("<leader>PG", function()
             local template = vim.fn.input("Template: ", "buf.gen.yaml")
             vim.cmd("split | terminal buf generate --template " .. template)
           end, "Generate (template)")
 
           -- Protoc (if not using buf)
-          map("<leader>ppc", function()
+          map("<leader>Ppc", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.input("Output dir: ", "./gen")
             vim.cmd("split | terminal protoc --go_out=" .. out .. " --go-grpc_out=" .. out .. " " .. file)
           end, "Protoc (Go)")
 
-          map("<leader>ppp", function()
+          map("<leader>Ppp", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.input("Output dir: ", "./gen")
             vim.cmd("split | terminal protoc --python_out=" .. out .. " --grpc_python_out=" .. out .. " " .. file)
           end, "Protoc (Python)")
 
-          map("<leader>ppj", function()
+          map("<leader>Ppj", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.input("Output dir: ", "./gen")
             vim.cmd("split | terminal protoc --js_out=import_style=commonjs:" .. out .. " --grpc-web_out=import_style=commonjs,mode=grpcwebtext:" .. out .. " " .. file)
           end, "Protoc (JS)")
 
-          map("<leader>ppr", function()
+          map("<leader>Ppr", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.input("Output dir: ", "./gen")
             vim.cmd("split | terminal protoc --rust_out=" .. out .. " " .. file)
           end, "Protoc (Rust)")
 
           -- Protolint
-          map("<leader>pll", function()
+          map("<leader>Pll", function()
             local file = vim.fn.expand("%")
             vim.cmd("split | terminal protolint lint " .. file)
           end, "Protolint")
 
-          map("<leader>plf", function()
+          map("<leader>Plf", function()
             local file = vim.fn.expand("%")
             vim.cmd("split | terminal protolint lint --fix " .. file)
             vim.cmd("e!")
           end, "Protolint Fix")
 
           -- BSR (Buf Schema Registry)
-          map("<leader>prp", function()
+          map("<leader>Prp", function()
             vim.cmd("split | terminal buf push")
           end, "Push to BSR")
 
-          map("<leader>prd", function()
+          map("<leader>Prd", function()
             local module = vim.fn.input("Module: ")
             if module ~= "" then
               vim.cmd("split | terminal buf mod update " .. module)
@@ -189,11 +189,11 @@ return {
           end, "Update Dependency")
 
           -- Init/Config
-          map("<leader>pi", function()
+          map("<leader>Pi", function()
             vim.cmd("split | terminal buf mod init")
           end, "Init Module")
 
-          map("<leader>pI", function()
+          map("<leader>PI", function()
             local template = [[
 # buf.yaml
 version: v1
@@ -217,7 +217,7 @@ breaking:
             end
           end, "Create buf.yaml")
 
-          map("<leader>pIG", function()
+          map("<leader>PIG", function()
             local template = [[
 # buf.gen.yaml
 version: v1
@@ -250,7 +250,7 @@ plugins:
           end, "Create buf.gen.yaml")
 
           -- Templates
-          map("<leader>pn", function()
+          map("<leader>Pn", function()
             local name = vim.fn.input("Service name: ")
             if name ~= "" then
               local template = string.format([[
@@ -353,11 +353,11 @@ message Delete%sResponse {}
           end, "New Service")
 
           -- Code actions
-          map("<leader>pa", function()
+          map("<leader>Pa", function()
             vim.lsp.buf.code_action()
           end, "Code Actions")
 
-          map("<leader>ph", function()
+          map("<leader>Ph", function()
             vim.lsp.buf.hover()
           end, "Hover Info")
         end,

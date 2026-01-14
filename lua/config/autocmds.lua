@@ -6,31 +6,16 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+--
+-- NOTE: The following are provided by LazyVim and removed from this file:
+--   - highlight_yank (lazyvim_highlight_yank)
+--   - restore_cursor (lazyvim_last_loc)
+--   - close_with_q (lazyvim_close_with_q)
+--   - checktime (lazyvim_checktime)
+--   - resize_splits (lazyvim_resize_splits)
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-
--- Highlight yanked text briefly
-autocmd("TextYankPost", {
-  group = augroup("highlight_yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
-  end,
-  desc = "Highlight yanked text",
-})
-
--- Return to last edit position when opening files
-autocmd("BufReadPost", {
-  group = augroup("restore_cursor", { clear = true }),
-  callback = function(event)
-    local mark = vim.api.nvim_buf_get_mark(event.buf, '"')
-    local line_count = vim.api.nvim_buf_line_count(event.buf)
-    if mark[1] > 0 and mark[1] <= line_count then
-      pcall(vim.api.nvim_win_set_cursor, 0, mark)
-    end
-  end,
-  desc = "Restore cursor to last position",
-})
 
 -- Auto-create parent directories when saving a file
 autocmd("BufWritePre", {
@@ -61,33 +46,6 @@ autocmd("BufWritePre", {
   desc = "Remove trailing whitespace on save",
 })
 
--- Resize splits when window is resized
-autocmd("VimResized", {
-  group = augroup("resize_splits", { clear = true }),
-  command = "tabdo wincmd =",
-  desc = "Resize splits on window resize",
-})
-
--- Close certain filetypes with just 'q'
-autocmd("FileType", {
-  group = augroup("close_with_q", { clear = true }),
-  pattern = {
-    "help",
-    "lspinfo",
-    "notify",
-    "qf",
-    "checkhealth",
-    "man",
-    "git",
-    "fugitive",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-  end,
-  desc = "Close helper windows with q",
-})
-
 -- Disable line numbers in terminal
 autocmd("TermOpen", {
   group = augroup("terminal_settings", { clear = true }),
@@ -97,15 +55,4 @@ autocmd("TermOpen", {
     vim.opt_local.signcolumn = "no"
   end,
   desc = "Disable line numbers in terminal",
-})
-
--- Check if file changed outside of Neovim when focusing
-autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-  group = augroup("checktime", { clear = true }),
-  callback = function()
-    if vim.o.buftype ~= "nofile" then
-      vim.cmd("checktime")
-    end
-  end,
-  desc = "Check for file changes when focusing",
 })

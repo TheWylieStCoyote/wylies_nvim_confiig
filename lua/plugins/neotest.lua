@@ -145,8 +145,23 @@ return {
       -- Build adapters list dynamically based on what's available
       local adapters = {}
 
-      -- Helper to safely load an adapter
-      local function try_adapter(name, config)
+      -- Helper to check if any of the given files exist in the project
+      local function has_project_file(...)
+        local files = { ... }
+        for _, file in ipairs(files) do
+          if vim.fn.filereadable(file) == 1 or vim.fn.glob(file) ~= "" then
+            return true
+          end
+        end
+        return false
+      end
+
+      -- Helper to safely load an adapter with project detection
+      local function try_adapter(name, config, project_files)
+        -- Skip if project files specified and none exist
+        if project_files and not has_project_file(unpack(project_files)) then
+          return
+        end
         local ok, adapter = pcall(require, name)
         if ok then
           if config then
@@ -157,7 +172,7 @@ return {
         end
       end
 
-      -- Python
+      -- Python (pytest.ini, pyproject.toml, setup.py, setup.cfg, or test files)
       try_adapter("neotest-python", {
         dap = { justMyCode = false },
         runner = "pytest",
@@ -168,65 +183,65 @@ return {
           end
           return "python3"
         end,
-      })
+      }, { "pytest.ini", "pyproject.toml", "setup.py", "setup.cfg", "tests/*.py", "test_*.py" })
 
-      -- Go
+      -- Go (go.mod)
       try_adapter("neotest-go", {
         experimental = { test_table = true },
         args = { "-count=1", "-timeout=60s" },
-      })
+      }, { "go.mod" })
 
-      -- Rust
+      -- Rust (Cargo.toml)
       try_adapter("neotest-rust", {
         args = { "--no-capture" },
         dap_adapter = "codelldb",
-      })
+      }, { "Cargo.toml" })
 
-      -- Vitest (JS/TS)
+      -- Vitest (vitest.config.* or vite.config.* with vitest)
       try_adapter("neotest-vitest", {
         vitestCommand = "npx vitest",
-      })
+      }, { "vitest.config.ts", "vitest.config.js", "vitest.config.mts" })
 
-      -- Jest (JS/TS)
+      -- Jest (jest.config.* or package.json with jest)
       try_adapter("neotest-jest", {
         jestCommand = "npm test --",
         env = { CI = true },
         cwd = function()
           return vim.fn.getcwd()
         end,
-      })
+      }, { "jest.config.js", "jest.config.ts", "jest.config.mjs" })
 
-      -- Elixir
-      try_adapter("neotest-elixir")
+      -- Elixir (mix.exs)
+      try_adapter("neotest-elixir", nil, { "mix.exs" })
 
-      -- Haskell
+      -- Haskell (stack.yaml or *.cabal)
       try_adapter("neotest-haskell", {
         build_tools = { "stack", "cabal" },
         frameworks = { "hspec", "tasty" },
-      })
+      }, { "stack.yaml", "*.cabal", "cabal.project" })
 
-      -- Java
+      -- Java (pom.xml or build.gradle)
       try_adapter("neotest-java", {
         junit_jar = nil,
-      })
+      }, { "pom.xml", "build.gradle", "build.gradle.kts" })
 
-      -- C# / .NET
+      -- C# / .NET (*.csproj or *.sln)
       try_adapter("neotest-dotnet", {
         dap = { justMyCode = false },
-      })
+      }, { "*.csproj", "*.sln" })
 
-      -- Ruby RSpec
+      -- Ruby RSpec (spec/ directory or .rspec)
       try_adapter("neotest-rspec", {
         rspec_cmd = function()
           return { "bundle", "exec", "rspec" }
         end,
-      })
+      }, { ".rspec", "spec/*.rb" })
 
-      -- Ruby Minitest
-      try_adapter("neotest-minitest")
+      -- Ruby Minitest (test/ directory with minitest)
+      try_adapter("neotest-minitest", nil, { "test/*.rb", "test/test_*.rb" })
 
-      -- Zig
-      try_adapter("neotest-zig")
+      -- Zig (build.zig)
+      try_adapter("neotest-zig", nil, { "build.zig" })
 
       require("neotest").setup({
         adapters = adapters,
