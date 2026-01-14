@@ -66,3 +66,6 @@ map("n", "<leader>ga", function()
     vim.notify("Failed to stage file", vim.log.levels.ERROR)
   end
 end, { desc = "Git add (stage) current file" })
+
+-- Terminal in new tab
+map("n", "<leader>tN", "<cmd>tabnew | terminal<cr>", { desc = "Terminal in new tab" })
