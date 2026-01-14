@@ -23,73 +23,73 @@
 
 ## Keybindings
 
-### Buf Commands (`<leader>p...`)
+### Buf Commands (`<leader>P...`)
 
 | Key | Action |
 |-----|--------|
-| `<leader>pb` | Buf Build |
-| `<leader>pl` | Buf Lint |
-| `<leader>pL` | Buf Lint (file) |
-| `<leader>pf` | Buf Format |
-| `<leader>pF` | Buf Format (file) |
+| `<leader>Pb` | Buf Build |
+| `<leader>Pl` | Buf Lint |
+| `<leader>PL` | Buf Lint (file) |
+| `<leader>Pf` | Buf Format |
+| `<leader>PF` | Buf Format (file) |
 
 ### Breaking Changes
 
 | Key | Action |
 |-----|--------|
-| `<leader>pB` | Breaking Changes (vs main) |
-| `<leader>pBt` | Breaking Changes (vs tag) |
+| `<leader>PB` | Breaking Changes (vs main) |
+| `<leader>PBt` | Breaking Changes (vs tag) |
 
 ### Code Generation
 
 | Key | Action |
 |-----|--------|
-| `<leader>pg` | Generate Code |
-| `<leader>pG` | Generate (template) |
+| `<leader>Pg` | Generate Code |
+| `<leader>PG` | Generate (template) |
 
 ### Protoc (Direct)
 
 | Key | Action |
 |-----|--------|
-| `<leader>ppc` | Protoc (Go) |
-| `<leader>ppp` | Protoc (Python) |
-| `<leader>ppj` | Protoc (JS) |
-| `<leader>ppr` | Protoc (Rust) |
+| `<leader>Ppc` | Protoc (Go) |
+| `<leader>Ppp` | Protoc (Python) |
+| `<leader>Ppj` | Protoc (JS) |
+| `<leader>Ppr` | Protoc (Rust) |
 
 ### Protolint
 
 | Key | Action |
 |-----|--------|
-| `<leader>pll` | Protolint |
-| `<leader>plf` | Protolint Fix |
+| `<leader>Pll` | Protolint |
+| `<leader>Plf` | Protolint Fix |
 
 ### BSR (Buf Schema Registry)
 
 | Key | Action |
 |-----|--------|
-| `<leader>prp` | Push to BSR |
-| `<leader>prd` | Update Dependency |
+| `<leader>Prp` | Push to BSR |
+| `<leader>Prd` | Update Dependency |
 
 ### Init/Config
 
 | Key | Action |
 |-----|--------|
-| `<leader>pi` | Init Module |
-| `<leader>pI` | Create buf.yaml |
-| `<leader>pIG` | Create buf.gen.yaml |
+| `<leader>Pi` | Init Module |
+| `<leader>PI` | Create buf.yaml |
+| `<leader>PIG` | Create buf.gen.yaml |
 
 ### Templates
 
 | Key | Action |
 |-----|--------|
-| `<leader>pn` | New Service |
+| `<leader>Pn` | New Service |
 
 ### LSP
 
 | Key | Action |
 |-----|--------|
-| `<leader>pa` | Code Actions |
-| `<leader>ph` | Hover Info |
+| `<leader>Pa` | Code Actions |
+| `<leader>Ph` | Hover Info |
 
 ## Installation
 
@@ -211,20 +211,20 @@ message GetUserResponse {
 
 ### Development Workflow
 1. Write proto file
-2. `<leader>pl` - Lint
-3. `<leader>pf` - Format
-4. `<leader>pg` - Generate code
+2. `<leader>Pl` - Lint
+3. `<leader>Pf` - Format
+4. `<leader>Pg` - Generate code
 
 ### Breaking Change Check
-1. `<leader>pB` - Compare against main
-2. `<leader>pBt` - Compare against tag
+1. `<leader>PB` - Compare against main
+2. `<leader>PBt` - Compare against tag
 
 ### New Service
-1. `<leader>pn` - Generate service template
+1. `<leader>Pn` - Generate service template
 2. Edit messages and RPCs
-3. `<leader>pg` - Generate stubs
+3. `<leader>Pg` - Generate stubs
 
 ### Buf Setup
-1. `<leader>pi` - Init module
-2. `<leader>pI` - Create buf.yaml
-3. `<leader>pIG` - Create buf.gen.yaml
+1. `<leader>Pi` - Init module
+2. `<leader>PI` - Create buf.yaml
+3. `<leader>PIG` - Create buf.gen.yaml

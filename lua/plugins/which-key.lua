@@ -117,7 +117,7 @@ return {
         { "<leader>j", group = "JavaScript/TS" },
         { "<leader>k", group = "Docker" },
         { "<leader>l", group = "LSP/Lua" },
-        { "<leader>n", group = "Notifications" },
+        { "<leader>n", group = "C#" },
         { "<leader>o", group = "OCaml" },
         { "<leader>p", group = "Python" },
         { "<leader>q", group = "Session/Quit" },
@@ -127,6 +127,7 @@ return {
         { "<leader>u", group = "UI/Toggle" },
         { "<leader>w", group = "Window" },
         { "<leader>x", group = "Diagnostics/Elixir" },
+        { "<leader>y", group = "YAML/Yazi" },
         { "<leader>z", group = "Zig" },
 
         -- Git subgroups
@@ -197,7 +198,7 @@ return {
         { "<leader>J", group = "Java/Julia" },
         { "<leader>K", group = "Kotlin" },
         { "<leader>L", group = "LaTeX" },
-        { "<leader>M", group = "MATLAB" },
+        { "<leader>m", group = "MATLAB" },
         { "<leader>O", group = "Ollama (Local AI)" },
         { "<leader>P", group = "Protobuf" },
         { "<leader>R", group = "Remote/R" },

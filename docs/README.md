@@ -15,7 +15,7 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | **Web & Backend** |
 | TypeScript/JS | vtsls | prettier | eslint_d | js-debug | `<leader>j` | [typescript.md](typescript.md) |
 | Python | pyright | ruff | ruff | debugpy | `<leader>p` | [python.md](python.md) |
-| Ruby | ruby_lsp | rubocop | rubocop | rdbg | `<leader>Ru` | [ruby.md](ruby.md) |
+| Ruby | ruby_lsp | rubocop | rubocop | rdbg | `<leader>R` | [ruby.md](ruby.md) |
 | Elixir | elixir-ls | mix format | - | elixir-ls | `<leader>x` | [elixir.md](elixir.md) |
 | Kotlin | kotlin-language-server | ktlint | ktlint | kotlin-debug | `<leader>K` | [kotlin.md](kotlin.md) |
 | Java | jdtls | google-java-format | - | java-debug | `<leader>J` | [java.md](java.md) |
@@ -38,12 +38,12 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | Terraform | terraform-ls | terraform fmt | tflint, tfsec | - | `<leader>T` | [terraform.md](terraform.md) |
 | Dockerfile | dockerls | - | hadolint | - | `<leader>k` | [dockerfile.md](dockerfile.md) |
 | SQL | sqls | sql-formatter | sqlfluff | - | `<leader>S` | [sql.md](sql.md) |
-| Protobuf | bufls | buf | buf, protolint | - | `<leader>p` | [protobuf.md](protobuf.md) |
+| Protobuf | bufls | buf | buf, protolint | - | `<leader>P` | [protobuf.md](protobuf.md) |
 | **Documentation** |
 | LaTeX | texlab | latexindent | chktex | - | `<leader>L` | [latex.md](latex.md) |
 | **AI Assistants** |
 | GitHub Copilot | copilot.lua | - | - | - | `<leader>a/cp` | [copilot.md](copilot.md) |
-| Ollama (Local AI) | ollama.nvim | - | - | - | `<leader>o` | [ollama.md](ollama.md) |
+| Ollama (Local AI) | ollama.nvim | - | - | - | `<leader>O` | [ollama.md](ollama.md) |
 | **Testing** |
 | Neotest | neotest + adapters | - | - | DAP | `<leader>t` | [neotest.md](neotest.md) |
 | **Navigation** |
@@ -82,6 +82,11 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | **Testing & Debugging** |
 | Test Coverage | nvim-coverage | - | - | - | `<leader>tc` | [coverage.md](coverage.md) |
 | Debug Print | debugprint.nvim | - | - | - | `g?` | [debugprint.md](debugprint.md) |
+
+**Note:** Some prefixes are shared between features (context-dependent by filetype):
+- `<leader>R` - Ruby, R language, Remote-nvim
+- `<leader>J` - Java, Julia
+- `<leader>y` - YAML subcommands, Yazi file manager
 
 ## Additional Resources
 
