@@ -121,35 +121,52 @@ return {
             .. "First line under 50 chars, then blank line, then bullet points if needed. "
             .. "Only output the commit message.\n\n" .. diff
 
-          -- Call Ollama API directly
+          -- Call Ollama API using vim.system (built-in, more reliable than plenary.curl)
           local ollama = require("ollama")
-          require("plenary.curl").post(ollama.config.url .. "/api/generate", {
-            body = vim.json.encode({
-              model = ollama.config.model,
-              prompt = prompt,
-              stream = true,
-            }),
-            stream = function(_, chunk)
-              vim.schedule(function()
-                if not vim.api.nvim_buf_is_valid(buf) then return end
-                local ok, body = pcall(vim.json.decode, chunk)
-                if ok and body and body.response then
-                  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-                  if lines[1] == "Generating commit message..." then
-                    lines = { "" }
-                  end
-                  local last_line = lines[#lines] or ""
-                  local new_text = last_line .. body.response
-                  local new_lines = vim.split(new_text, "\n", { plain = true })
-                  lines[#lines] = new_lines[1]
-                  for i = 2, #new_lines do
-                    table.insert(lines, new_lines[i])
-                  end
-                  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-                end
-              end)
-            end,
+          local request_body = vim.json.encode({
+            model = ollama.config.model,
+            prompt = prompt,
+            stream = true,
           })
+
+          -- Use stdin to pass data (avoids E2BIG for large diffs)
+          vim.system(
+            { "curl", "-sN", ollama.config.url .. "/api/generate", "-d", "@-" },
+            {
+              stdin = request_body,
+              stdout = function(_, data)
+                if not data then return end
+                vim.schedule(function()
+                  if not vim.api.nvim_buf_is_valid(buf) then return end
+                  -- Process each line (streaming JSON)
+                  for line in data:gmatch("[^\n]+") do
+                    local ok, body = pcall(vim.json.decode, line)
+                    if ok and body and body.response then
+                      local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+                      if lines[1] == "Generating commit message..." then
+                        lines = { "" }
+                      end
+                      local last_line = lines[#lines] or ""
+                      local new_text = last_line .. body.response
+                      local new_lines = vim.split(new_text, "\n", { plain = true })
+                      lines[#lines] = new_lines[1]
+                      for i = 2, #new_lines do
+                        table.insert(lines, new_lines[i])
+                      end
+                      vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+                    end
+                  end
+                end)
+              end,
+              stderr = function(_, data)
+                if data and data ~= "" then
+                  vim.schedule(function()
+                    vim.notify("Ollama error: " .. data, vim.log.levels.ERROR)
+                  end)
+                end
+              end,
+            }
+          )
         end,
         desc = "Generate Commit Message",
       },
