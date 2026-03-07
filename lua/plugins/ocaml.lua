@@ -21,15 +21,6 @@ return {
 
   -- Mason: ensure OCaml tools are installed
   -- Note: Requires opam. Install manually: opam install ocaml-lsp-server ocamlformat
-  -- {
-  --   "mason-org/mason.nvim",
-  --   opts = function(_, opts)
-  --     vim.list_extend(opts.ensure_installed or {}, {
-  --       "ocaml-lsp",
-  --       "ocamlformat",
-  --     })
-  --   end,
-  -- },
 
   -- ocamllsp configuration (only if opam is available)
   -- Completely skip this config if opam is not installed to prevent mason-lspconfig auto-install

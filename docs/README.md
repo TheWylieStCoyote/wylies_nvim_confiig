@@ -44,6 +44,7 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | **AI Assistants** |
 | GitHub Copilot | copilot.lua | - | - | - | `<leader>a/cp` | [copilot.md](copilot.md) |
 | Ollama (Local AI) | ollama.nvim | - | - | - | `<leader>O` | [ollama.md](ollama.md) |
+| Avante | avante.nvim | - | - | - | `<leader>A` | [avante.md](avante.md) |
 | **Testing** |
 | Neotest | neotest + adapters | - | - | DAP | `<leader>t` | [neotest.md](neotest.md) |
 | **Navigation** |
@@ -54,34 +55,48 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | **Git** |
 | Diffview | diffview.nvim | - | - | - | `<leader>g` | [diffview.md](diffview.md) |
 | Neogit | neogit | - | - | - | `<leader>g` | [neogit.md](neogit.md) |
+| Octo | octo.nvim | - | - | - | `<leader>go` | [octo.md](octo.md) |
 | **Remote Development** |
 | Remote Neovim | remote-nvim.nvim | - | - | - | `<leader>R` | [remote-nvim.md](remote-nvim.md) |
 | Devcontainer | nvim-dev-container | - | - | - | `<leader>D` | [devcontainer.md](devcontainer.md) |
 | **File Management** |
 | Yazi | yazi.nvim | - | - | - | `<leader>y` | [yazi.md](yazi.md) |
+| Oil | oil.nvim | - | - | - | `-`, `<leader>fo` | [oil.md](oil.md) |
 | **Code Quality** |
 | Trouble | trouble.nvim | - | - | - | `<leader>xx` | [trouble.md](trouble.md) |
 | Grug-Far | grug-far.nvim | - | - | - | `<leader>sr` | (LazyVim built-in) |
 | Todo Comments | todo-comments.nvim | - | - | - | `<leader>x/s` | [todo-comments.md](todo-comments.md) |
 | Refactoring | refactoring.nvim | - | - | - | `<leader>e` | [refactoring.md](refactoring.md) |
 | Node Actions | ts-node-action | - | - | - | `gn` | [ts-node-action.md](ts-node-action.md) |
+| Render Markdown | render-markdown.nvim | - | - | - | `<leader>um` | [render-markdown.md](render-markdown.md) |
+| Tiny Inline Diagnostic | tiny-inline-diagnostic.nvim | - | - | - | (auto) | [tiny-inline-diagnostic.md](tiny-inline-diagnostic.md) |
 | **Code Editing** |
 | Code Outline | aerial.nvim | - | - | - | `<leader>cs` | [aerial.md](aerial.md) |
 | Commenting | Comment.nvim | - | - | - | `gcc/gc/gbc` | [comment.md](comment.md) |
 | Multi-Cursors | vim-visual-multi | - | - | - | `<C-n>` | [multicursors.md](multicursors.md) |
+| Neogen | neogen | - | - | - | `<leader>cg` | [neogen.md](neogen.md) |
+| NeoComposer | NeoComposer.nvim | - | - | - | `q`, `Q`, `<M-q>` | [neocomposer.md](neocomposer.md) |
+| Various Text Objects | nvim-various-textobjs | - | - | - | (auto) | [various-textobjs.md](various-textobjs.md) |
 | **Utilities** |
 | Session Management | auto-session | - | - | - | `<leader>q` | [sessions.md](sessions.md) |
-| Database UI | vim-dadbod + UI | - | - | - | `<leader>S` | [database.md](database.md) |
+| Database UI | vim-dadbod + UI | - | - | - | `<leader>S` | [database.md](database.md), [dadbod.md](dadbod.md) |
 | HTTP Client | rest.nvim | - | - | - | `<leader>r` | [http-client.md](http-client.md) |
-| Statusline | lualine.nvim | - | - | - | - | [statusline.md](statusline.md) |
-| Undotree | undotree | - | - | - | `<leader>U` | - |
-| Lazy Profile | lazy.nvim | - | - | - | `<leader>up` | - |
+| Statusline | lualine.nvim | - | - | - | - | [statusline.md](statusline.md), [lualine.md](lualine.md) |
+| Overseer | overseer.nvim | - | - | - | `<leader>v` | [overseer.md](overseer.md) |
+| Undotree | undotree | - | - | - | `<leader>U` | [utilities.md](utilities.md) |
+| Lazy Profile | lazy.nvim | - | - | - | `<leader>up` | [utilities.md](utilities.md) |
 | Zen Mode | zen-mode.nvim | - | - | - | `<leader>uz` | [zen-mode.md](zen-mode.md) |
 | Better Quickfix | nvim-bqf | - | - | - | (auto) | [bqf.md](bqf.md) |
 | Spell Checking | (built-in) | - | - | - | `z=`, `]s`, `[s` | [spell.md](spell.md) |
 | **Testing & Debugging** |
+| DAP | nvim-dap + UI | - | - | - | `<leader>d`, `<F5/9/10/11>` | [dap.md](dap.md) |
 | Test Coverage | nvim-coverage | - | - | - | `<leader>tc` | [coverage.md](coverage.md) |
 | Debug Print | debugprint.nvim | - | - | - | `g?` | [debugprint.md](debugprint.md) |
+| **Infrastructure** |
+| Mason | mason.nvim | - | - | - | - | [mason.md](mason.md) |
+| TreeSitter | nvim-treesitter | - | - | - | - | [treesitter.md](treesitter.md) |
+| Theme | monokai-pro + themes | - | - | - | - | [theme.md](theme.md) |
+| Tweaks | misc config | - | - | - | - | [tweaks.md](tweaks.md) |
 
 **Note:** Some prefixes are shared between features (context-dependent by filetype):
 - `<leader>R` - Ruby, R language, Remote-nvim

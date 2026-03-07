@@ -4,7 +4,7 @@
 return {
   {
     "rmagatti/auto-session",
-    lazy = false,
+    event = "VeryLazy",
     opts = {
       auto_restore = false, -- Don't auto-restore, use keybinding
       auto_save = true, -- Auto-save session on exit

@@ -28,14 +28,6 @@ return {
 
   -- Mason: ensure R tools are installed
   -- Note: Requires R. Install in R: install.packages("languageserver")
-  -- {
-  --   "mason-org/mason.nvim",
-  --   opts = function(_, opts)
-  --     vim.list_extend(opts.ensure_installed or {}, {
-  --       "r-languageserver",
-  --     })
-  --   end,
-  -- },
 
   -- R language server configuration (only if R is available)
   -- Completely skip this config if R is not installed to prevent mason-lspconfig auto-install

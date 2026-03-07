@@ -206,7 +206,7 @@ return {
             vim.cmd("split | terminal yosys -p 'read_verilog " .. file .. "; synth; write_json " .. out .. ".json'")
           end, "Synthesize (yosys)")
 
-          map("<leader>yY", function()
+          map("<leader>vY", function()
             local script = vim.fn.input("Yosys script: ", vim.fn.getcwd() .. "/", "file")
             if script ~= "" then
               vim.cmd("split | terminal yosys -s " .. script)
