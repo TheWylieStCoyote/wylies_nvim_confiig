@@ -189,6 +189,18 @@ return {
         { "<leader>sw", desc = "Replace Word" },
         { "<leader>sp", desc = "Replace in File" },
 
+        -- Avante AI
+        { "<leader>A", group = "Avante (AI)" },
+
+        -- Overseer tasks
+        { "<leader>v", group = "Overseer (Tasks)" },
+
+        -- Octo (GitHub)
+        { "<leader>go", group = "Octo (GitHub)" },
+
+        -- Neogen (docstrings)
+        { "<leader>cg", group = "Generate Docs" },
+
         -- Language-specific prefixes (uppercase)
         { "<leader>B", group = "Bash" },
         { "<leader>C", group = "C/C++" },
