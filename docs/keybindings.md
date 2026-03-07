@@ -11,7 +11,7 @@
 - [Spell Checking](#spell-checking)
 - [Harpoon - Quick File Navigation](#harpoon---quick-file-navigation)
 - [Flash - Enhanced Motions](#flash---enhanced-motions)
-- [Spectre - Search & Replace](#spectre---search--replace)
+- [Grug-Far - Search & Replace](#grug-far---search--replace)
 - [Treesitter Context](#treesitter-context)
 - [Ollama - Local AI](#ollama---local-ai)
 - [Copilot - AI Code Assistance](#copilot---ai-code-assistance)
@@ -232,30 +232,13 @@ Result: Jump to first match
 
 ---
 
-## Spectre - Search & Replace
+## Grug-Far - Search & Replace
 
-Project-wide find and replace.
-
-### Opening Spectre
+Project-wide find and replace (via LazyVim).
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>sr` | n | Open search & replace |
-| `<leader>sw` | n | Replace word under cursor |
-| `<leader>sw` | v | Replace selection |
-| `<leader>sp` | n | Replace in current file only |
-
-### Inside Spectre Panel
-
-| Key | Description |
-|-----|-------------|
-| `dd` | Toggle line (exclude from replace) |
-| `<CR>` | Go to file |
-| `<leader>R` | Replace all |
-| `<leader>rc` | Replace current line |
-| `<leader>q` | Send to quickfix |
-| `ti` | Toggle ignore case |
-| `th` | Toggle hidden files |
+| `<leader>sr` | n, x | Search and replace (scoped to filetype) |
 
 ---
 
@@ -482,7 +465,6 @@ Visual database browser using vim-dadbod.
 | `<leader>SD` | n | Toggle database UI |
 | `<leader>SA` | n | Add database connection |
 | `<leader>SF` | n | Find database buffer |
-| `<leader>Sq` | n | Execute query |
 
 ### DBUI Sidebar
 
@@ -1106,14 +1088,22 @@ Multiple cursors for simultaneous editing (VS Code style).
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>se` | n,v | Execute query |
-| `<leader>sE` | n | Execute file |
-| `<leader>sd` | n | Describe table |
-| `<leader>sl` | n | List tables |
-| `<leader>sf` | n | Format SQL |
-| `<leader>sc` | n | Show connections |
-| `<leader>sC` | n | Switch connection |
-| `<leader>si` | n | Init .sqls.yaml |
+| `<leader>Sq` | n | Execute query (sqls) |
+| `<leader>Sq` | v | Execute selection (sqls) |
+| `<leader>Ss` | n | Show databases |
+| `<leader>St` | n | Show tables |
+| `<leader>Se` | n | Describe table |
+| `<leader>Sc` | n | Show connections |
+| `<leader>SC` | n | Switch connection |
+| `<leader>Sd` | n | Switch database |
+| `<leader>Sf` | n | Format buffer |
+| `<leader>Sx` | n | Lint file |
+| `<leader>SL` | n | Lint & fix |
+| `<leader>Si` | n | Init .sqls.yaml |
+| `<leader>Sn` | n | Insert CREATE TABLE template |
+| `<leader>SN` | n | Insert SELECT template |
+| `<leader>Sa` | n | Code actions |
+| `<leader>Sh` | n | Hover info |
 
 ### LaTeX Development
 

@@ -17,7 +17,6 @@ Visual database browser and query executor using vim-dadbod.
 | `<leader>SD` | Toggle database UI sidebar |
 | `<leader>SA` | Add new database connection |
 | `<leader>SF` | Find database buffer |
-| `<leader>Sq` | Execute query |
 
 ## Connection URL Formats
 
@@ -134,7 +133,7 @@ When you expand a table, quick actions are available:
    LIMIT 10;
 
 3. Select the query (or place cursor on it)
-4. Press <leader>Sq to execute
+4. Press <leader>Sq to execute (requires sqls LSP)
 5. Results appear in split window
 ```
 
@@ -149,7 +148,7 @@ When you expand a table, quick actions are available:
 
 ## Completion
 
-SQL completion is automatically enabled in `.sql`, `.mysql`, and `.plsql` files when connected to a database.
+SQL completion is automatically enabled via blink.cmp in `.sql`, `.mysql`, and `.plsql` files when connected to a database.
 
 Completions include:
 - Table names

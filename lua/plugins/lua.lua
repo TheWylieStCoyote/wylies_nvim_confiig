@@ -125,8 +125,12 @@ return {
             vim.notify("Sourced: " .. vim.fn.expand("%:t"), vim.log.levels.INFO)
           end, "Source File")
 
-          -- Execute selected Lua code
+          -- Execute selected Lua code (requires Neovim 0.10+)
           vmap("<leader>le", function()
+            if not vim.fn.getregion then
+              vim.notify("Execute Selection requires Neovim 0.10+", vim.log.levels.WARN)
+              return
+            end
             local lines = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })
             local code = table.concat(lines, "\n")
             local func, err = load(code)

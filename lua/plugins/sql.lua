@@ -25,7 +25,10 @@ return {
     end,
   },
 
-  -- sqls configuration
+  -- sqls.nvim for enhanced SQL features (requires sqls LSP - needs Go installed)
+  { "nanotee/sqls.nvim", enabled = vim.fn.executable("sqls") == 1, lazy = true },
+
+  -- sqls configuration (with sqls.nvim on_attach when available)
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -36,6 +39,12 @@ return {
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
             return lspconfig.util.root_pattern(".sqls.yaml", ".git")(fname) or vim.fn.getcwd()
+          end,
+          on_attach = function(client, bufnr)
+            local ok, sqls = pcall(require, "sqls")
+            if ok then
+              sqls.on_attach(client, bufnr)
+            end
           end,
           settings = {
             sqls = {
@@ -52,20 +61,6 @@ return {
         },
       },
     },
-  },
-
-  -- sqls.nvim for enhanced SQL features (requires sqls LSP - needs Go installed)
-  {
-    "nanotee/sqls.nvim",
-    enabled = vim.fn.executable("sqls") == 1, -- Only enable if sqls is installed
-    ft = { "sql", "mysql", "plsql" },
-    config = function()
-      require("lspconfig").sqls.setup({
-        on_attach = function(client, bufnr)
-          require("sqls").on_attach(client, bufnr)
-        end,
-      })
-    end,
   },
 
   -- Code formatting with sql-formatter
@@ -147,7 +142,7 @@ return {
             vim.cmd("SqlsSwitchDatabase")
           end, "Switch Database")
 
-          map("<leader>SD", function()
+          map("<leader>Se", function()
             vim.cmd("SqlsDescribeTable")
           end, "Describe Table")
 
@@ -199,7 +194,7 @@ return {
           end, "Format Buffer")
 
           -- Linting
-          map("<leader>Sl", function()
+          map("<leader>Sx", function()
             local file = vim.fn.expand("%")
             vim.cmd("split | terminal sqlfluff lint " .. file)
           end, "Lint File")

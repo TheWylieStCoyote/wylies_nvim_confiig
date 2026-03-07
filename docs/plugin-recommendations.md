@@ -189,8 +189,7 @@ A curated list of Neovim plugins to consider for enhancing your development work
 
 | Plugin | Description | URL |
 |--------|-------------|-----|
-| **nvim-pack/nvim-spectre** | Search and replace panel | [GitHub](https://github.com/nvim-pack/nvim-spectre) |
-| **MagicDuck/grug-far.nvim** | Find and replace | [GitHub](https://github.com/MagicDuck/grug-far.nvim) |
+| **MagicDuck/grug-far.nvim** | Find and replace (LazyVim default) | [GitHub](https://github.com/MagicDuck/grug-far.nvim) |
 | **cshuaimin/ssr.nvim** | Structural search/replace | [GitHub](https://github.com/cshuaimin/ssr.nvim) |
 | **AckslD/muren.nvim** | Multiple replacements | [GitHub](https://github.com/AckslD/muren.nvim) |
 

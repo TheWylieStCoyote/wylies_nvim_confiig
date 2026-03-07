@@ -61,7 +61,7 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | Yazi | yazi.nvim | - | - | - | `<leader>y` | [yazi.md](yazi.md) |
 | **Code Quality** |
 | Trouble | trouble.nvim | - | - | - | `<leader>xx` | [trouble.md](trouble.md) |
-| Spectre | nvim-spectre | - | - | - | `<leader>sr` | [spectre.md](spectre.md) |
+| Grug-Far | grug-far.nvim | - | - | - | `<leader>sr` | (LazyVim built-in) |
 | Todo Comments | todo-comments.nvim | - | - | - | `<leader>x/s` | [todo-comments.md](todo-comments.md) |
 | Refactoring | refactoring.nvim | - | - | - | `<leader>e` | [refactoring.md](refactoring.md) |
 | Node Actions | ts-node-action | - | - | - | `gn` | [ts-node-action.md](ts-node-action.md) |

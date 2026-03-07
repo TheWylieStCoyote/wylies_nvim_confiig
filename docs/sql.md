@@ -33,7 +33,7 @@
 | `<leader>Sc` | Show Connections |
 | `<leader>SC` | Switch Connection |
 | `<leader>Sd` | Switch Database |
-| `<leader>SD` | Describe Table |
+| `<leader>Se` | Describe Table |
 
 ### PostgreSQL
 
@@ -61,7 +61,7 @@
 | Key | Action |
 |-----|--------|
 | `<leader>Sf` | Format Buffer |
-| `<leader>Sl` | Lint File |
+| `<leader>Sx` | Lint File |
 | `<leader>SL` | Lint & Fix |
 
 ### Templates
@@ -195,9 +195,9 @@ LIMIT 100;
 1. `<leader>Ss` - List databases
 2. `<leader>Sd` - Switch database
 3. `<leader>St` - List tables
-4. `<leader>SD` - Describe table
+4. `<leader>Se` - Describe table
 
 ### Code Quality
-1. `<leader>Sl` - Lint file
+1. `<leader>Sx` - Lint file
 2. `<leader>SL` - Auto-fix issues
 3. `<leader>Sf` - Format

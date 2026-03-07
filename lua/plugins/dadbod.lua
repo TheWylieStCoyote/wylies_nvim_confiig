@@ -6,9 +6,7 @@ return {
   {
     "tpope/vim-dadbod",
     cmd = "DB",
-    keys = {
-      { "<leader>Sq", "<cmd>DB<cr>", desc = "Execute Query" },
-    },
+    keys = {},
   },
 
   -- Database UI browser
@@ -59,27 +57,24 @@ return {
     end,
   },
 
-  -- SQL Completion (integrates with existing completion setup)
+  -- SQL Completion via blink.cmp
   {
-    "kristijanhusak/vim-dadbod-completion",
-    dependencies = { "tpope/vim-dadbod" },
-    ft = { "sql", "mysql", "plsql" },
-    init = function()
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "sql", "mysql", "plsql" },
-        callback = function()
-          -- Try to add dadbod completion source if using blink.cmp
-          local ok, cmp = pcall(require, "cmp")
-          if ok then
-            cmp.setup.buffer({
-              sources = {
-                { name = "vim-dadbod-completion" },
-                { name = "buffer" },
-              },
-            })
-          end
-        end,
-      })
-    end,
+    "saghen/blink.cmp",
+    optional = true,
+    opts = {
+      sources = {
+        per_filetype = {
+          sql = { inherit_defaults = true, "dadbod" },
+          mysql = { inherit_defaults = true, "dadbod" },
+          plsql = { inherit_defaults = true, "dadbod" },
+        },
+        providers = {
+          dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+        },
+      },
+    },
+    dependencies = {
+      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" } },
+    },
   },
 }
