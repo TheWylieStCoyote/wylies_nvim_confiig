@@ -35,3 +35,10 @@ vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.undolevels = 10000
 
+-- Custom filetype detection
+vim.filetype.add({
+  extension = {
+    jsonl = "jsonl",
+  },
+})
+

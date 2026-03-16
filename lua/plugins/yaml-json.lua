@@ -13,6 +13,8 @@ return {
         "jsonc",
         "toml",
       })
+      -- jsonl has no dedicated parser; reuse json
+      vim.treesitter.language.register("json", "jsonl")
     end,
   },
 
@@ -145,19 +147,27 @@ return {
   -- SchemaStore for JSON schemas
   {
     "b0o/schemastore.nvim",
-    lazy = true,  -- Loaded by jsonls when needed
+    lazy = true, -- Loaded by jsonls when needed
   },
 
   -- Code formatting
   {
     "stevearc/conform.nvim",
     opts = {
+      formatters = {
+        jq_lines = {
+          command = "jq",
+          args = { "." },
+          stdin = true,
+        },
+      },
       formatters_by_ft = {
-        yaml = { "prettier" },
-        json = { "prettier" },
+        yaml  = { "prettier" },
+        json  = { "prettier" },
         jsonc = { "prettier" },
         json5 = { "prettier" },
-        toml = { "taplo" },
+        jsonl = { "jq_lines" },
+        toml  = { "taplo" },
       },
     },
   },
@@ -344,7 +354,12 @@ return {
           map("<leader>jt", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r") .. ".toml"
-            vim.cmd("split | terminal python3 -c \"import json,toml,sys; print(toml.dumps(json.load(open('" .. file .. "'))))\" > " .. out)
+            vim.cmd(
+              "split | terminal python3 -c \"import json,toml,sys; print(toml.dumps(json.load(open('"
+                .. file
+                .. "'))))\" > "
+                .. out
+            )
           end, "Convert to TOML (python)")
 
           -- Extract paths
@@ -409,6 +424,52 @@ return {
           map("<leader>th", function()
             vim.lsp.buf.hover()
           end, "Hover Info")
+        end,
+      })
+
+      -- JSONL keybindings (jq-based; no LSP or prettier — they don't support multi-value files)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "jsonl" },
+        callback = function(event)
+          local map = function(keys, func, desc)
+            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "JSONL: " .. desc })
+          end
+
+          -- Format each line via jq
+          map("<leader>jf", function()
+            vim.cmd("%!jq '.'")
+          end, "Format lines (jq)")
+
+          -- Minify each line
+          map("<leader>jm", function()
+            vim.cmd("%!jq -c '.'")
+          end, "Minify lines (jq)")
+
+          -- jq query across all lines
+          map("<leader>jq", function()
+            local query = vim.fn.input("jq query: ", ".")
+            if query ~= "" then
+              vim.cmd("%!jq '" .. query .. "'")
+            end
+          end, "jq Query")
+
+          map("<leader>jQ", function()
+            local query = vim.fn.input("jq query: ", ".")
+            local file = vim.fn.expand("%")
+            if query ~= "" then
+              vim.cmd("split | terminal jq '" .. query .. "' " .. file)
+            end
+          end, "jq Query (preview)")
+
+          -- Sort keys on each line
+          map("<leader>js", function()
+            vim.cmd("%!jq -c -S '.'")
+          end, "Sort Keys")
+
+          -- Show diagnostics
+          map("<leader>jv", function()
+            vim.diagnostic.setloclist()
+          end, "Show Diagnostics")
         end,
       })
     end,

@@ -1,0 +1,4 @@
+{"id":1,"name":"Alice","age":30,"roles":["admin","editor"],"active":true}
+{"id":2,"name":"Bob","age":25,"roles":["viewer"],"active":true}
+{"id":3,"name":"Carol","age":35,"roles":["editor"],"active":false}
+{"id":4,"name":"Dave","age":28,"roles":["admin"],"active":true}
