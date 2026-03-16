@@ -1,0 +1,8 @@
+---
+globals:
+  LazyVim:
+    any: true
+  MiniIcons:
+    any: true
+  Snacks:
+    any: true
