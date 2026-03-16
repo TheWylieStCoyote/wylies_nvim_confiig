@@ -91,10 +91,25 @@ return {
       },
     },
     keys = {
-      { "<leader>ci", "<cmd>ClangdSymbolInfo<cr>", desc = "Symbol Info" },
-      { "<leader>ct", "<cmd>ClangdTypeHierarchy<cr>", desc = "Type Hierarchy" },
-      { "<leader>cu", "<cmd>ClangdMemoryUsage<cr>", desc = "Memory Usage" },
-      { "<leader>ca", "<cmd>ClangdAST<cr>", desc = "View AST" },
+      {
+        "<leader>ci",
+        "<cmd>ClangdSymbolInfo<cr>",
+        desc = "Symbol Info",
+        ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+      },
+      {
+        "<leader>ct",
+        "<cmd>ClangdTypeHierarchy<cr>",
+        desc = "Type Hierarchy",
+        ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+      },
+      {
+        "<leader>cu",
+        "<cmd>ClangdMemoryUsage<cr>",
+        desc = "Memory Usage",
+        ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+      },
+      { "<leader>ca", "<cmd>ClangdAST<cr>", desc = "View AST", ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" } },
     },
   },
 

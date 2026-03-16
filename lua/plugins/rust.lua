@@ -148,6 +148,7 @@ return {
           require("crates").upgrade_all_crates()
         end,
         desc = "Update All Crates",
+        ft = "toml",
       },
       {
         "<leader>cU",
@@ -155,6 +156,7 @@ return {
           require("crates").upgrade_crate()
         end,
         desc = "Update Crate",
+        ft = "toml",
       },
       {
         "<leader>cf",
@@ -162,6 +164,7 @@ return {
           require("crates").show_features_popup()
         end,
         desc = "Show Crate Features",
+        ft = "toml",
       },
       {
         "<leader>cv",
@@ -169,6 +172,7 @@ return {
           require("crates").show_versions_popup()
         end,
         desc = "Show Crate Versions",
+        ft = "toml",
       },
       {
         "<leader>cD",
@@ -176,6 +180,7 @@ return {
           require("crates").show_dependencies_popup()
         end,
         desc = "Show Dependencies",
+        ft = "toml",
       },
       {
         "<leader>cH",
@@ -183,6 +188,7 @@ return {
           require("crates").open_homepage()
         end,
         desc = "Open Homepage",
+        ft = "toml",
       },
       {
         "<leader>cR",
@@ -190,6 +196,7 @@ return {
           require("crates").open_repository()
         end,
         desc = "Open Repository",
+        ft = "toml",
       },
       {
         "<leader>cd",
@@ -197,6 +204,7 @@ return {
           require("crates").open_documentation()
         end,
         desc = "Open Documentation",
+        ft = "toml",
       },
       {
         "<leader>cC",
@@ -204,6 +212,7 @@ return {
           require("crates").open_crates_io()
         end,
         desc = "Open crates.io",
+        ft = "toml",
       },
     },
   },

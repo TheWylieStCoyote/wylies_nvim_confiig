@@ -131,20 +131,20 @@ return {
         { "<leader>z", group = "Zig" },
 
         -- Git subgroups
-        { "<leader>gd", group = "Diffview" },
-        { "<leader>gh", group = "Hunk/History" },
-        { "<leader>gn", group = "Neogit" },
+        -- Note: <leader>gd, <leader>gh are direct actions (DiffviewOpen, FileHistory); no group needed
+        { "<leader>gn", group = "Neogit" }, -- <leader>gn opens Neogit, gnc/gnb are sub-commands
+        { "<leader>go", group = "Octo (GitHub)" },
 
         -- Debug subgroups
         { "<leader>da", group = "Adapters" },
-        { "<leader>db", group = "Breakpoints" },
+        -- Note: <leader>db is a direct action (Toggle Breakpoint); no group needed
 
-        -- Code actions
-        { "<leader>ca", group = "Actions" },
+        -- Code subgroups
+        -- Note: <leader>ca is a direct action (ClangdAST, ft-scoped); no group needed
         { "<leader>cf", group = "Format" },
-        { "<leader>co", group = "Conflict Ours" },
-        { "<leader>ct", group = "Conflict Theirs" },
-        { "<leader>cb", group = "Conflict Base" },
+        { "<leader>cg", group = "Generate Docs" },
+        { "<leader>cm", group = "CMake" },
+        { "<leader>cp", group = "Copilot" },
 
         -- Copilot
         { "<leader>cp", group = "Copilot Chat" },
@@ -194,12 +194,6 @@ return {
 
         -- Overseer tasks
         { "<leader>v", group = "Overseer (Tasks)" },
-
-        -- Octo (GitHub)
-        { "<leader>go", group = "Octo (GitHub)" },
-
-        -- Neogen (docstrings)
-        { "<leader>cg", group = "Generate Docs" },
 
         -- Language-specific prefixes (uppercase)
         { "<leader>B", group = "Bash" },
