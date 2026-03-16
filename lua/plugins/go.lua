@@ -230,7 +230,9 @@ return {
           name = "Attach",
           mode = "local",
           request = "attach",
-          processId = function() return require("dap.utils").pick_process() end,
+          processId = function()
+            return require("dap.utils").pick_process()
+          end,
         },
       },
       delve = {
@@ -242,8 +244,22 @@ return {
       },
     },
     keys = {
-      { "<leader>dgt", function() require("dap-go").debug_test() end, desc = "Debug Go Test", ft = "go" },
-      { "<leader>dgl", function() require("dap-go").debug_last_test() end, desc = "Debug Last Go Test", ft = "go" },
+      {
+        "<leader>dgt",
+        function()
+          require("dap-go").debug_test()
+        end,
+        desc = "Debug Go Test",
+        ft = "go",
+      },
+      {
+        "<leader>dgl",
+        function()
+          require("dap-go").debug_last_test()
+        end,
+        desc = "Debug Last Go Test",
+        ft = "go",
+      },
     },
   },
 }

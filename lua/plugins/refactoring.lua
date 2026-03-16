@@ -29,19 +29,25 @@ return {
       -- Extract refactorings (visual mode)
       {
         "<leader>ee",
-        function() require("refactoring").refactor("Extract Function") end,
+        function()
+          require("refactoring").refactor("Extract Function")
+        end,
         mode = "x",
         desc = "Extract Function",
       },
       {
         "<leader>ef",
-        function() require("refactoring").refactor("Extract Function To File") end,
+        function()
+          require("refactoring").refactor("Extract Function To File")
+        end,
         mode = "x",
         desc = "Extract Function To File",
       },
       {
         "<leader>ev",
-        function() require("refactoring").refactor("Extract Variable") end,
+        function()
+          require("refactoring").refactor("Extract Variable")
+        end,
         mode = "x",
         desc = "Extract Variable",
       },
@@ -49,13 +55,17 @@ return {
       -- Inline refactorings
       {
         "<leader>eI",
-        function() require("refactoring").refactor("Inline Function") end,
+        function()
+          require("refactoring").refactor("Inline Function")
+        end,
         mode = "n",
         desc = "Inline Function",
       },
       {
         "<leader>ei",
-        function() require("refactoring").refactor("Inline Variable") end,
+        function()
+          require("refactoring").refactor("Inline Variable")
+        end,
         mode = { "n", "x" },
         desc = "Inline Variable",
       },
@@ -63,13 +73,17 @@ return {
       -- Extract block (normal mode)
       {
         "<leader>eb",
-        function() require("refactoring").refactor("Extract Block") end,
+        function()
+          require("refactoring").refactor("Extract Block")
+        end,
         mode = "n",
         desc = "Extract Block",
       },
       {
         "<leader>eB",
-        function() require("refactoring").refactor("Extract Block To File") end,
+        function()
+          require("refactoring").refactor("Extract Block To File")
+        end,
         mode = "n",
         desc = "Extract Block To File",
       },
@@ -77,7 +91,9 @@ return {
       -- Refactor menu (Telescope)
       {
         "<leader>er",
-        function() require("telescope").extensions.refactoring.refactors() end,
+        function()
+          require("telescope").extensions.refactoring.refactors()
+        end,
         mode = { "n", "x" },
         desc = "Refactoring Menu",
       },
@@ -85,25 +101,33 @@ return {
       -- Debug print statements
       {
         "<leader>ep",
-        function() require("refactoring").debug.printf({ below = true }) end,
+        function()
+          require("refactoring").debug.printf({ below = true })
+        end,
         mode = "n",
         desc = "Debug Print Below",
       },
       {
         "<leader>eP",
-        function() require("refactoring").debug.printf({ below = false }) end,
+        function()
+          require("refactoring").debug.printf({ below = false })
+        end,
         mode = "n",
         desc = "Debug Print Above",
       },
       {
         "<leader>edv",
-        function() require("refactoring").debug.print_var() end,
+        function()
+          require("refactoring").debug.print_var()
+        end,
         mode = { "x", "n" },
         desc = "Debug Print Variable",
       },
       {
         "<leader>ec",
-        function() require("refactoring").debug.cleanup({}) end,
+        function()
+          require("refactoring").debug.cleanup({})
+        end,
         mode = "n",
         desc = "Debug Cleanup",
       },

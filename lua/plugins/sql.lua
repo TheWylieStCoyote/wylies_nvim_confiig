@@ -246,7 +246,8 @@ connections:
           map("<leader>Sn", function()
             local table_name = vim.fn.input("Table name: ")
             if table_name ~= "" then
-              local template = string.format([[
+              local template = string.format(
+                [[
 -- Create table: %s
 CREATE TABLE IF NOT EXISTS %s (
     id SERIAL PRIMARY KEY,
@@ -259,7 +260,14 @@ CREATE INDEX idx_%s_created_at ON %s(created_at);
 
 -- Add comment
 COMMENT ON TABLE %s IS 'Description of %s table';
-]], table_name, table_name, table_name, table_name, table_name, table_name)
+]],
+                table_name,
+                table_name,
+                table_name,
+                table_name,
+                table_name,
+                table_name
+              )
 
               local lines = vim.split(template, "\n")
               vim.api.nvim_buf_set_lines(event.buf, -1, -1, false, lines)
@@ -269,14 +277,18 @@ COMMENT ON TABLE %s IS 'Description of %s table';
           map("<leader>SN", function()
             local table_name = vim.fn.input("Table name: ")
             if table_name ~= "" then
-              local template = string.format([[
+              local template = string.format(
+                [[
 -- Select from %s
 SELECT *
 FROM %s
 WHERE 1=1
 ORDER BY created_at DESC
 LIMIT 100;
-]], table_name, table_name)
+]],
+                table_name,
+                table_name
+              )
 
               local lines = vim.split(template, "\n")
               vim.api.nvim_buf_set_lines(event.buf, -1, -1, false, lines)

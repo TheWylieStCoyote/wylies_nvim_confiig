@@ -12,7 +12,13 @@ return {
     "crnvl96/lazydocker.nvim",
     lazy = true,
     keys = {
-      { "<leader>kd", function() require("lazydocker").toggle() end, desc = "LazyDocker" },
+      {
+        "<leader>kd",
+        function()
+          require("lazydocker").toggle()
+        end,
+        desc = "LazyDocker",
+      },
     },
     opts = {
       window = {
@@ -58,11 +64,7 @@ return {
           filetypes = { "dockerfile" },
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              "Dockerfile",
-              "dockerfile",
-              ".git"
-            )(fname) or vim.fn.getcwd()
+            return lspconfig.util.root_pattern("Dockerfile", "dockerfile", ".git")(fname) or vim.fn.getcwd()
           end,
           settings = {
             docker = {
@@ -294,7 +296,8 @@ return {
           -- Templates
           map("<leader>kN", function()
             local base = vim.fn.input("Base image: ", "alpine:latest")
-            local template = string.format([[
+            local template = string.format(
+              [[
 # syntax=docker/dockerfile:1
 
 FROM %s
@@ -329,7 +332,9 @@ USER appuser
 
 # Start application
 CMD ["./app"]
-]], base)
+]],
+              base
+            )
 
             local lines = vim.split(template, "\n")
             vim.api.nvim_buf_set_lines(event.buf, 0, -1, false, lines)

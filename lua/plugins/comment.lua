@@ -22,19 +22,19 @@ return {
         ignore = "^$", -- Ignore empty lines
         -- LHS of toggle mappings in NORMAL mode
         toggler = {
-          line = "gcc",  -- Line-comment toggle
+          line = "gcc", -- Line-comment toggle
           block = "gbc", -- Block-comment toggle
         },
         -- LHS of operator-pending mappings in NORMAL and VISUAL mode
         opleader = {
-          line = "gc",  -- Line-comment operator
+          line = "gc", -- Line-comment operator
           block = "gb", -- Block-comment operator
         },
         -- Extra mappings
         extra = {
           above = "gcO", -- Add comment on line above
           below = "gco", -- Add comment on line below
-          eol = "gcA",   -- Add comment at end of line
+          eol = "gcA", -- Add comment at end of line
         },
         -- Enable keybindings
         mappings = {

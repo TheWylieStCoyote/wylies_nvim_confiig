@@ -24,9 +24,9 @@ return {
       commands = true,
 
       highlights = {
-        covered = { fg = "#a6e3a1" },   -- Green for covered
+        covered = { fg = "#a6e3a1" }, -- Green for covered
         uncovered = { fg = "#f38ba8" }, -- Red for uncovered
-        partial = { fg = "#f9e2af" },   -- Yellow for partial
+        partial = { fg = "#f9e2af" }, -- Yellow for partial
       },
 
       signs = {
@@ -96,12 +96,16 @@ return {
       { "<leader>tcc", "<cmd>CoverageToggle<cr>", desc = "Toggle Coverage" },
       { "<leader>tcs", "<cmd>CoverageSummary<cr>", desc = "Coverage Summary" },
       { "<leader>tcC", "<cmd>CoverageClear<cr>", desc = "Clear Coverage" },
-      { "<leader>tcL", function()
-        local file = vim.fn.input("LCOV file: ", "coverage/lcov.info", "file")
-        if file ~= "" then
-          vim.cmd("CoverageLoadLcov " .. file)
-        end
-      end, desc = "Load LCOV File" },
+      {
+        "<leader>tcL",
+        function()
+          local file = vim.fn.input("LCOV file: ", "coverage/lcov.info", "file")
+          if file ~= "" then
+            vim.cmd("CoverageLoadLcov " .. file)
+          end
+        end,
+        desc = "Load LCOV File",
+      },
     },
   },
 }

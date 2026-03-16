@@ -54,11 +54,8 @@ return {
 
       -- Add java-debug-adapter (if installed)
       if mason_registry.is_installed("java-debug-adapter") then
-        local java_debug_bundle = vim.fn.glob(
-          mason_path .. "/share/java-debug-adapter/com.microsoft.java.debug.plugin-*.jar",
-          false,
-          true
-        )
+        local java_debug_bundle =
+          vim.fn.glob(mason_path .. "/share/java-debug-adapter/com.microsoft.java.debug.plugin-*.jar", false, true)
         vim.list_extend(bundles, java_debug_bundle)
       end
 
@@ -181,16 +178,32 @@ return {
           end
 
           -- Code actions
-          map("<leader>jo", function() require("jdtls").organize_imports() end, "Organize Imports")
-          map("<leader>jv", function() require("jdtls").extract_variable() end, "Extract Variable")
-          vmap("<leader>jv", function() require("jdtls").extract_variable(true) end, "Extract Variable")
-          map("<leader>jc", function() require("jdtls").extract_constant() end, "Extract Constant")
-          vmap("<leader>jc", function() require("jdtls").extract_constant(true) end, "Extract Constant")
-          vmap("<leader>jm", function() require("jdtls").extract_method(true) end, "Extract Method")
+          map("<leader>jo", function()
+            require("jdtls").organize_imports()
+          end, "Organize Imports")
+          map("<leader>jv", function()
+            require("jdtls").extract_variable()
+          end, "Extract Variable")
+          vmap("<leader>jv", function()
+            require("jdtls").extract_variable(true)
+          end, "Extract Variable")
+          map("<leader>jc", function()
+            require("jdtls").extract_constant()
+          end, "Extract Constant")
+          vmap("<leader>jc", function()
+            require("jdtls").extract_constant(true)
+          end, "Extract Constant")
+          vmap("<leader>jm", function()
+            require("jdtls").extract_method(true)
+          end, "Extract Method")
 
           -- Test commands
-          map("<leader>jt", function() require("jdtls").test_nearest_method() end, "Test Nearest Method")
-          map("<leader>jT", function() require("jdtls").test_class() end, "Test Class")
+          map("<leader>jt", function()
+            require("jdtls").test_nearest_method()
+          end, "Test Nearest Method")
+          map("<leader>jT", function()
+            require("jdtls").test_class()
+          end, "Test Class")
           map("<leader>jd", function()
             require("jdtls").test_nearest_method({ config = { noDebug = false } })
           end, "Debug Nearest Test")
@@ -199,7 +212,9 @@ return {
           end, "Debug Test Class")
 
           -- Project commands
-          map("<leader>ju", function() require("jdtls").update_project_config() end, "Update Project Config")
+          map("<leader>ju", function()
+            require("jdtls").update_project_config()
+          end, "Update Project Config")
           map("<leader>jb", function()
             require("jdtls").compile("full")
             vim.notify("Building project...", vim.log.levels.INFO)
@@ -219,11 +234,21 @@ return {
           end, "Generate...")
 
           -- Debug keymaps
-          map("<F5>", function() require("dap").continue() end, "Debug: Start/Continue")
-          map("<F9>", function() require("dap").toggle_breakpoint() end, "Debug: Toggle Breakpoint")
-          map("<F10>", function() require("dap").step_over() end, "Debug: Step Over")
-          map("<F11>", function() require("dap").step_into() end, "Debug: Step Into")
-          map("<S-F11>", function() require("dap").step_out() end, "Debug: Step Out")
+          map("<F5>", function()
+            require("dap").continue()
+          end, "Debug: Start/Continue")
+          map("<F9>", function()
+            require("dap").toggle_breakpoint()
+          end, "Debug: Toggle Breakpoint")
+          map("<F10>", function()
+            require("dap").step_over()
+          end, "Debug: Step Over")
+          map("<F11>", function()
+            require("dap").step_into()
+          end, "Debug: Step Into")
+          map("<S-F11>", function()
+            require("dap").step_out()
+          end, "Debug: Step Out")
         end,
       })
     end,

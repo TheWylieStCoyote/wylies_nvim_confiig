@@ -38,10 +38,7 @@ return {
           filetypes = { "matlab" },
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              "*.m",
-              ".git"
-            )(fname) or vim.fn.getcwd()
+            return lspconfig.util.root_pattern("*.m", ".git")(fname) or vim.fn.getcwd()
           end,
           settings = {
             matlab = {
@@ -113,31 +110,31 @@ return {
 
             map("<leader>ml", function()
               local line = vim.api.nvim_get_current_line()
-              vim.cmd("split | terminal octave --no-gui --eval \"" .. line:gsub('"', '\\"') .. "\"")
+              vim.cmd('split | terminal octave --no-gui --eval "' .. line:gsub('"', '\\"') .. '"')
             end, "Run Line")
 
             vmap("<leader>ms", function()
               local lines = vim.fn.getline("'<", "'>")
               local code = table.concat(lines, "; ")
-              vim.cmd("split | terminal octave --no-gui --eval \"" .. code:gsub('"', '\\"') .. "\"")
+              vim.cmd('split | terminal octave --no-gui --eval "' .. code:gsub('"', '\\"') .. '"')
             end, "Run Selection")
 
             -- Octave package management
             map("<leader>mp", function()
-              vim.cmd("split | terminal octave --no-gui --eval \"pkg list\"")
+              vim.cmd('split | terminal octave --no-gui --eval "pkg list"')
             end, "List Packages")
 
             map("<leader>mP", function()
               local pkg = vim.fn.input("Package: ")
               if pkg ~= "" then
-                vim.cmd("split | terminal octave --no-gui --eval \"pkg install -forge " .. pkg .. "\"")
+                vim.cmd('split | terminal octave --no-gui --eval "pkg install -forge ' .. pkg .. '"')
               end
             end, "Install Package")
 
             map("<leader>mL", function()
               local pkg = vim.fn.input("Package: ")
               if pkg ~= "" then
-                vim.cmd("split | terminal octave --no-gui --eval \"pkg load " .. pkg .. "\"")
+                vim.cmd('split | terminal octave --no-gui --eval "pkg load ' .. pkg .. '"')
               end
             end, "Load Package")
           else
@@ -162,32 +159,35 @@ return {
 
             map("<leader>ml", function()
               local line = vim.api.nvim_get_current_line()
-              vim.cmd("split | terminal matlab -batch \"" .. line:gsub('"', '\\"') .. "\"")
+              vim.cmd('split | terminal matlab -batch "' .. line:gsub('"', '\\"') .. '"')
             end, "Run Line")
 
             vmap("<leader>ms", function()
               local lines = vim.fn.getline("'<", "'>")
               local code = table.concat(lines, "; ")
-              vim.cmd("split | terminal matlab -batch \"" .. code:gsub('"', '\\"') .. "\"")
+              vim.cmd('split | terminal matlab -batch "' .. code:gsub('"', '\\"') .. '"')
             end, "Run Selection")
           end
 
           -- Common commands (work for both)
           map("<leader>mc", function()
-            vim.cmd("split | terminal " .. (use_octave and "octave --no-gui --eval \"clear all\"" or "matlab -batch \"clear all\""))
+            vim.cmd(
+              "split | terminal "
+                .. (use_octave and 'octave --no-gui --eval "clear all"' or 'matlab -batch "clear all"')
+            )
           end, "Clear Workspace")
 
           map("<leader>mw", function()
-            vim.cmd("split | terminal " .. (use_octave and "octave --no-gui --eval \"whos\"" or "matlab -batch \"whos\""))
+            vim.cmd("split | terminal " .. (use_octave and 'octave --no-gui --eval "whos"' or 'matlab -batch "whos"'))
           end, "Show Workspace")
 
           -- Help
           map("<leader>mh", function()
             local word = vim.fn.expand("<cword>")
             if use_octave then
-              vim.cmd("split | terminal octave --no-gui --eval \"help " .. word .. "\"")
+              vim.cmd('split | terminal octave --no-gui --eval "help ' .. word .. '"')
             else
-              vim.cmd("split | terminal matlab -batch \"help " .. word .. "\"")
+              vim.cmd('split | terminal matlab -batch "help ' .. word .. '"')
             end
           end, "Help (word)")
 
@@ -195,9 +195,9 @@ return {
             local word = vim.fn.input("Help topic: ")
             if word ~= "" then
               if use_octave then
-                vim.cmd("split | terminal octave --no-gui --eval \"help " .. word .. "\"")
+                vim.cmd('split | terminal octave --no-gui --eval "help ' .. word .. '"')
               else
-                vim.cmd("split | terminal matlab -batch \"help " .. word .. "\"")
+                vim.cmd('split | terminal matlab -batch "help ' .. word .. '"')
               end
             end
           end, "Help (input)")
@@ -205,18 +205,20 @@ return {
           map("<leader>md", function()
             local word = vim.fn.expand("<cword>")
             if use_octave then
-              vim.cmd("split | terminal octave --no-gui --eval \"doc " .. word .. "\"")
+              vim.cmd('split | terminal octave --no-gui --eval "doc ' .. word .. '"')
             else
-              vim.cmd("split | terminal matlab -batch \"doc " .. word .. "\"")
+              vim.cmd('split | terminal matlab -batch "doc ' .. word .. '"')
             end
           end, "Documentation")
 
           -- Plotting
           map("<leader>mpf", function()
             if use_octave then
-              vim.cmd("split | terminal octave --no-gui --eval \"figure; " .. vim.api.nvim_get_current_line() .. "; pause\"")
+              vim.cmd(
+                'split | terminal octave --no-gui --eval "figure; ' .. vim.api.nvim_get_current_line() .. '; pause"'
+              )
             else
-              vim.cmd("split | terminal matlab -batch \"figure; " .. vim.api.nvim_get_current_line() .. "; pause\"")
+              vim.cmd('split | terminal matlab -batch "figure; ' .. vim.api.nvim_get_current_line() .. '; pause"')
             end
           end, "Plot Line")
 
@@ -248,17 +250,17 @@ return {
             local file = vim.fn.expand("%:r")
             local line = vim.fn.line(".")
             if use_octave then
-              vim.cmd("split | terminal octave --no-gui --eval \"dbstop in " .. file .. " at " .. line .. "\"")
+              vim.cmd('split | terminal octave --no-gui --eval "dbstop in ' .. file .. " at " .. line .. '"')
             else
-              vim.cmd("split | terminal matlab -batch \"dbstop in " .. file .. " at " .. line .. "\"")
+              vim.cmd('split | terminal matlab -batch "dbstop in ' .. file .. " at " .. line .. '"')
             end
           end, "Set Breakpoint")
 
           map("<leader>mdc", function()
             if use_octave then
-              vim.cmd("split | terminal octave --no-gui --eval \"dbclear all\"")
+              vim.cmd('split | terminal octave --no-gui --eval "dbclear all"')
             else
-              vim.cmd("split | terminal matlab -batch \"dbclear all\"")
+              vim.cmd('split | terminal matlab -batch "dbclear all"')
             end
           end, "Clear Breakpoints")
 
@@ -266,7 +268,7 @@ return {
           map("<leader>mt", function()
             local file = vim.fn.expand("%:r")
             if use_octave then
-              vim.cmd("split | terminal octave --no-gui --eval \"test " .. file .. "\"")
+              vim.cmd('split | terminal octave --no-gui --eval "test ' .. file .. '"')
             else
               vim.cmd("split | terminal matlab -batch \"results = runtests('" .. file .. "'); disp(results)\"")
             end
@@ -276,7 +278,8 @@ return {
           map("<leader>mn", function()
             local name = vim.fn.input("Function name: ")
             if name ~= "" then
-              local template = string.format([[
+              local template = string.format(
+                [[
 function [output] = %s(input)
 %%  %s - Short description
 %%
@@ -297,7 +300,12 @@ function [output] = %s(input)
 output = input;
 
 end
-]], name, string.upper(name), name, name)
+]],
+                name,
+                string.upper(name),
+                name,
+                name
+              )
 
               local filename = name .. ".m"
               local file = io.open(filename, "w")
@@ -314,7 +322,8 @@ end
           map("<leader>mN", function()
             local name = vim.fn.input("Class name: ")
             if name ~= "" then
-              local template = string.format([[
+              local template = string.format(
+                [[
 classdef %s
     %%  %s - Short description
     %%
@@ -339,7 +348,12 @@ classdef %s
         end
     end
 end
-]], name, string.upper(name), name, name)
+]],
+                name,
+                string.upper(name),
+                name,
+                name
+              )
 
               local filename = name .. ".m"
               local file = io.open(filename, "w")

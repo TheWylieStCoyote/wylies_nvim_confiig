@@ -1,0 +1,10 @@
+---
+globals:
+  vim:
+    any: true
+  LazyVim:
+    any: true
+  MiniIcons:
+    any: true
+  Snacks:
+    any: true

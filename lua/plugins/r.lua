@@ -4,7 +4,9 @@
 -- Skip entire R config if R languageserver is not installed
 -- (R may be installed but languageserver requires manual setup in R)
 local function has_r_languageserver()
-  if vim.fn.executable("R") ~= 1 then return false end
+  if vim.fn.executable("R") ~= 1 then
+    return false
+  end
   local result = vim.fn.system("R --slave -e 'packageVersion(\"languageserver\")' 2>/dev/null")
   return result:match("%d+%.%d+") ~= nil
 end
@@ -40,12 +42,8 @@ return {
           filetypes = { "r", "rmd" },
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              ".Rproj.user",
-              "*.Rproj",
-              "DESCRIPTION",
-              ".git"
-            )(fname) or vim.fn.getcwd()
+            return lspconfig.util.root_pattern(".Rproj.user", "*.Rproj", "DESCRIPTION", ".git")(fname)
+              or vim.fn.getcwd()
           end,
           settings = {
             r = {

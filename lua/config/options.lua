@@ -2,7 +2,7 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 vim.opt.relativenumber = true -- Shows relative numbers
-vim.opt.number = true         -- Shows absolute number on the cursor line
+vim.opt.number = true -- Shows absolute number on the cursor line
 vim.opt.signcolumn = "number" -- Keeps space for signs/numbers consistent
 
 -- Disable unused providers for faster startup
@@ -26,7 +26,7 @@ vim.opt.secure = true
 -- Folding with Treesitter
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldlevel = 99      -- Start with all folds open
+vim.opt.foldlevel = 99 -- Start with all folds open
 vim.opt.foldlevelstart = 99 -- Start with all folds open
 vim.opt.foldenable = true
 
@@ -41,4 +41,3 @@ vim.filetype.add({
     jsonl = "jsonl",
   },
 })
-

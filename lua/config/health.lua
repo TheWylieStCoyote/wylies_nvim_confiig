@@ -126,7 +126,7 @@ M.check = function()
   -- TreeSitter
   vim.health.start("TreeSitter")
   if check_module("nvim-treesitter") then
-    local ok, parsers = pcall(vim.treesitter.language.get_filetypes, nil)
+    local ok, _parsers = pcall(vim.treesitter.language.get_filetypes, nil)
     if not ok then
       -- Count installed parsers by checking the parser directory
       local parser_dir = vim.fn.stdpath("data") .. "/site/parser"

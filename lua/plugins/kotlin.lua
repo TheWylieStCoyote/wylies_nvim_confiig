@@ -166,7 +166,15 @@ return {
           map("<leader>kR", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r")
-            vim.cmd("split | terminal kotlinc " .. file .. " -include-runtime -d " .. out .. ".jar && java -jar " .. out .. ".jar")
+            vim.cmd(
+              "split | terminal kotlinc "
+                .. file
+                .. " -include-runtime -d "
+                .. out
+                .. ".jar && java -jar "
+                .. out
+                .. ".jar"
+            )
           end, "Compile & Run")
 
           map("<leader>ki", function()

@@ -10,7 +10,17 @@
 return {
   {
     "yetone/avante.nvim",
-    cmd = { "AvanteAsk", "AvanteEdit", "AvanteRefresh", "AvanteToggle", "AvanteFocus", "AvanteSwitchProvider", "AvanteChat", "AvanteStop", "AvanteHistory" },
+    cmd = {
+      "AvanteAsk",
+      "AvanteEdit",
+      "AvanteRefresh",
+      "AvanteToggle",
+      "AvanteFocus",
+      "AvanteSwitchProvider",
+      "AvanteChat",
+      "AvanteStop",
+      "AvanteHistory",
+    },
     version = false, -- Use latest
     build = "make",
     dependencies = {

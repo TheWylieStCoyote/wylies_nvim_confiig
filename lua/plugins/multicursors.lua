@@ -18,13 +18,13 @@ return {
     vim.g.VM_highlight_matches = "underline"
 
     vim.g.VM_maps = {
-      ["Find Under"] = "<C-n>",         -- Select word under cursor
+      ["Find Under"] = "<C-n>", -- Select word under cursor
       ["Find Subword Under"] = "<C-n>", -- Select partial word
-      ["Select All"] = "<C-S-n>",       -- Select all occurrences
+      ["Select All"] = "<C-S-n>", -- Select all occurrences
       ["Add Cursor Down"] = "<M-Down>", -- Add cursor below
-      ["Add Cursor Up"] = "<M-Up>",     -- Add cursor above
-      ["Skip Region"] = "q",            -- Skip current match
-      ["Remove Region"] = "Q",          -- Remove current cursor
+      ["Add Cursor Up"] = "<M-Up>", -- Add cursor above
+      ["Skip Region"] = "q", -- Skip current match
+      ["Remove Region"] = "Q", -- Remove current cursor
       ["Undo"] = "u",
       ["Redo"] = "<C-r>",
     }

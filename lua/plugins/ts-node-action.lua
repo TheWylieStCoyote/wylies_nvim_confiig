@@ -11,12 +11,16 @@ return {
     keys = {
       {
         "<leader>cn",
-        function() require("ts-node-action").node_action() end,
+        function()
+          require("ts-node-action").node_action()
+        end,
         desc = "Node Action",
       },
       {
         "gn",
-        function() require("ts-node-action").node_action() end,
+        function()
+          require("ts-node-action").node_action()
+        end,
         desc = "Node Action",
       },
     },

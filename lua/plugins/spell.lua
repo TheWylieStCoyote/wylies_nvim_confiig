@@ -11,7 +11,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
+    opts = function(_, _opts)
       -- Enable spell checking with treesitter support
       vim.opt.spell = true
       vim.opt.spelllang = { "en_us" }
@@ -23,9 +23,24 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         group = "SpellCheck",
         pattern = {
-          "lua", "python", "javascript", "typescript", "typescriptreact", "javascriptreact",
-          "rust", "go", "c", "cpp", "java", "kotlin", "ruby", "elixir", "haskell",
-          "markdown", "text", "gitcommit",
+          "lua",
+          "python",
+          "javascript",
+          "typescript",
+          "typescriptreact",
+          "javascriptreact",
+          "rust",
+          "go",
+          "c",
+          "cpp",
+          "java",
+          "kotlin",
+          "ruby",
+          "elixir",
+          "haskell",
+          "markdown",
+          "text",
+          "gitcommit",
         },
         callback = function()
           vim.opt_local.spell = true

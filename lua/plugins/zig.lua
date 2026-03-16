@@ -115,7 +115,9 @@ return {
           name = "Attach to process",
           type = "codelldb",
           request = "attach",
-          pid = function() return require("dap.utils").pick_process() end,
+          pid = function()
+            return require("dap.utils").pick_process()
+          end,
           cwd = "${workspaceFolder}",
         },
       }

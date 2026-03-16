@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master, dev]
+  pull_request:
+    branches: [main, master, dev]
+
+jobs:
+  checks:
+    name: Lua checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Lua 5.1 (for luac)
+        uses: leafo/gh-actions-lua@v10
+        with:
+          luaVersion: "5.1"
+
+      - name: Check formatting (StyLua)
+        uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: "2.4.0"
+          args: --check .
+
+      - name: Syntax check (luac)
+        run: find . -type f -name "*.lua" -not -path "./.git/*" -not -path "./.lua/*" | xargs luac -p
+
+      - name: Install selene
+        run: |
+          SELENE_VERSION="0.27.1"
+          curl -fsSL \
+            "https://github.com/Kampfkarren/selene/releases/download/${SELENE_VERSION}/selene-${SELENE_VERSION}-linux.zip" \
+            -o selene.zip
+          unzip -q selene.zip selene && chmod +x selene
+          sudo mv selene /usr/local/bin/selene
+
+      - name: Semantic lint (selene)
+        run: selene --display-style=rich lua/
