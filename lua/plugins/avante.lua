@@ -10,7 +10,7 @@
 return {
   {
     "yetone/avante.nvim",
-    event = "VeryLazy",
+    cmd = { "AvanteAsk", "AvanteEdit", "AvanteRefresh", "AvanteToggle", "AvanteFocus", "AvanteSwitchProvider", "AvanteChat", "AvanteStop", "AvanteHistory" },
     version = false, -- Use latest
     build = "make",
     dependencies = {

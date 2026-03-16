@@ -63,6 +63,12 @@ return {
       {
         "<leader>Om",
         function()
+          local check = vim.fn.system("curl -s --max-time 1 http://localhost:11434 2>/dev/null")
+          if vim.v.shell_error ~= 0 then
+            vim.notify("Ollama not running", vim.log.levels.WARN)
+            return
+          end
+
           local diff = vim.fn.system("git diff --cached")
           if diff == "" then
             vim.notify("No staged changes", vim.log.levels.WARN)

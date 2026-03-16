@@ -32,6 +32,9 @@ return {
           formatters = {
             json = "jq",
             html = function(body)
+              if vim.fn.executable("tidy") ~= 1 then
+                return body
+              end
               return vim.fn.system({ "tidy", "-i", "-q", "-" }, body)
             end,
           },

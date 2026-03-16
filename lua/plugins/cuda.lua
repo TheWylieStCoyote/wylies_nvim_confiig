@@ -31,43 +31,34 @@ return {
     end,
   },
 
-  -- Clangd LSP with CUDA support
+  -- Extend clangd LSP with CUDA-specific flags (builds on cpp.lua's base config)
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        clangd = {
-          cmd = {
-            "clangd",
-            "--background-index",
-            "--clang-tidy",
-            "--header-insertion=iwyu",
-            "--completion-style=detailed",
-            "--function-arg-placeholders",
-            "--fallback-style=llvm",
-            -- CUDA support
-            "--cuda-gpu-arch=sm_75", -- Adjust for your GPU
-            "--cuda-path=/usr/local/cuda", -- Adjust for your CUDA path
-          },
-          filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              "compile_commands.json",
-              "compile_flags.txt",
-              "Makefile",
-              "CMakeLists.txt",
-              ".git"
-            )(fname) or vim.fn.getcwd()
-          end,
-          init_options = {
-            usePlaceholders = true,
-            completeUnimported = true,
-            clangdFileStatus = true,
-          },
-        },
-      },
-    },
+    opts = function(_, opts)
+      opts.servers = opts.servers or {}
+      local clangd = opts.servers.clangd or {}
+      -- Append CUDA-specific flags to the existing cmd list
+      local cmd = clangd.cmd or { "clangd" }
+      vim.list_extend(cmd, {
+        "--cuda-gpu-arch=sm_75", -- Adjust for your GPU
+        "--cuda-path=/usr/local/cuda", -- Adjust for your CUDA path
+      })
+      opts.servers.clangd = vim.tbl_deep_extend("force", clangd, {
+        cmd = cmd,
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+        root_dir = function(fname)
+          local lspconfig = require("lspconfig")
+          return lspconfig.util.root_pattern(
+            "compile_commands.json",
+            "compile_flags.txt",
+            "Makefile",
+            "CMakeLists.txt",
+            ".git"
+          )(fname) or vim.fn.getcwd()
+        end,
+      })
+      return opts
+    end,
   },
 
   -- Code formatting with clang-format
@@ -80,7 +71,7 @@ return {
     },
   },
 
-  -- CUDA-specific keybindings
+  -- CUDA-specific keybindings (all under <leader>Cu prefix)
   {
     "neovim/nvim-lspconfig",
     opts = function()
@@ -92,25 +83,25 @@ return {
           end
 
           -- Compilation
-          map("<leader>cc", function()
+          map("<leader>Cuc", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r")
             vim.cmd("split | terminal nvcc -o " .. out .. " " .. file)
           end, "Compile (nvcc)")
 
-          map("<leader>cC", function()
+          map("<leader>CuC", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r")
             vim.cmd("split | terminal nvcc -O3 -o " .. out .. " " .. file)
           end, "Compile (optimized)")
 
-          map("<leader>cg", function()
+          map("<leader>Cug", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r")
             vim.cmd("split | terminal nvcc -g -G -o " .. out .. " " .. file)
           end, "Compile (debug)")
 
-          map("<leader>ca", function()
+          map("<leader>Cua", function()
             local file = vim.fn.expand("%")
             local arch = vim.fn.input("GPU arch (e.g., sm_75): ", "sm_75")
             local out = vim.fn.expand("%:r")
@@ -118,32 +109,32 @@ return {
           end, "Compile (specify arch)")
 
           -- Run
-          map("<leader>cr", function()
+          map("<leader>Cur", function()
             local out = vim.fn.expand("%:r")
             vim.cmd("split | terminal ./" .. out)
           end, "Run")
 
-          map("<leader>cR", function()
+          map("<leader>CuR", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r")
             vim.cmd("split | terminal nvcc -o " .. out .. " " .. file .. " && ./" .. out)
           end, "Compile & Run")
 
-          -- PTX generation
-          map("<leader>Cp", function()
+          -- PTX / CUBIN generation
+          map("<leader>Cup", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r") .. ".ptx"
             vim.cmd("split | terminal nvcc -ptx -o " .. out .. " " .. file)
           end, "Generate PTX")
 
-          map("<leader>cP", function()
+          map("<leader>CuP", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r") .. ".cubin"
             vim.cmd("split | terminal nvcc -cubin -o " .. out .. " " .. file)
           end, "Generate CUBIN")
 
           -- SASS (GPU assembly)
-          map("<leader>cs", function()
+          map("<leader>Cus", function()
             local cubin = vim.fn.expand("%:r") .. ".cubin"
             vim.cmd("split | terminal cuobjdump -sass " .. cubin)
           end, "Disassemble SASS")
@@ -170,57 +161,57 @@ return {
           end, "Memory Check")
 
           -- GPU Info
-          map("<leader>ci", function()
+          map("<leader>Cui", function()
             vim.cmd("split | terminal nvidia-smi")
           end, "GPU Info (nvidia-smi)")
 
-          map("<leader>cI", function()
+          map("<leader>CuI", function()
             vim.cmd("split | terminal nvidia-smi -q")
           end, "GPU Info (detailed)")
 
-          map("<leader>cd", function()
+          map("<leader>Cud", function()
             vim.cmd("split | terminal nvidia-smi --query-gpu=name,compute_cap,memory.total --format=csv")
           end, "GPU Device Info")
 
           -- CUDA samples/deviceQuery
-          map("<leader>cq", function()
+          map("<leader>Cuq", function()
             vim.cmd("split | terminal deviceQuery")
           end, "Device Query")
 
           -- Library compilation
-          map("<leader>cl", function()
+          map("<leader>Cul", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r") .. ".o"
             vim.cmd("split | terminal nvcc -c -o " .. out .. " " .. file)
           end, "Compile to Object")
 
-          map("<leader>cL", function()
+          map("<leader>CuL", function()
             local file = vim.fn.expand("%")
             local out = "lib" .. vim.fn.expand("%:r") .. ".a"
             vim.cmd("split | terminal nvcc -lib -o " .. out .. " " .. file)
           end, "Compile to Library")
 
-          -- CMake
-          map("<leader>cmb", function()
+          -- CMake (CUDA project)
+          map("<leader>Cumb", function()
             vim.cmd("split | terminal mkdir -p build && cd build && cmake .. && make")
           end, "CMake Build")
 
-          map("<leader>cmc", function()
+          map("<leader>Cumc", function()
             vim.cmd("split | terminal cd build && cmake ..")
           end, "CMake Configure")
 
-          map("<leader>cmm", function()
+          map("<leader>Cumm", function()
             vim.cmd("split | terminal cd build && make -j$(nproc)")
           end, "Make (parallel)")
 
           -- Debugging
-          map("<leader>cdb", function()
+          map("<leader>Cudb", function()
             local out = vim.fn.expand("%:r")
             vim.cmd("split | terminal cuda-gdb ./" .. out)
           end, "Debug (cuda-gdb)")
 
           -- Code generation templates
-          map("<leader>cn", function()
+          map("<leader>Cun", function()
             local name = vim.fn.input("Kernel name: ")
             if name ~= "" then
               local template = string.format([[
@@ -306,7 +297,7 @@ int main() {
           end, "New Kernel File")
 
           -- Shared memory kernel template
-          map("<leader>cN", function()
+          map("<leader>CuN", function()
             local name = vim.fn.input("Kernel name: ")
             if name ~= "" then
               local template = string.format([[
@@ -407,7 +398,7 @@ int main() {
           end, "New Shared Memory Kernel")
 
           -- Thrust template
-          map("<leader>ct", function()
+          map("<leader>Cut", function()
             local template = [[
 #include <thrust/device_vector.h>
 #include <thrust/host_vector.h>
@@ -463,16 +454,16 @@ int main() {
           end, "New Thrust Example")
 
           -- Code actions
-          map("<leader>ch", function()
+          map("<leader>Cuh", function()
             vim.lsp.buf.hover()
           end, "Hover Info")
 
-          map("<leader>caa", function()
+          map("<leader>Cuaa", function()
             vim.lsp.buf.code_action()
           end, "Code Actions")
 
           -- Switch between .cu and .cuh
-          map("<leader>co", function()
+          map("<leader>Cuo", function()
             local file = vim.fn.expand("%")
             local ext = vim.fn.expand("%:e")
             local base = vim.fn.expand("%:r")
