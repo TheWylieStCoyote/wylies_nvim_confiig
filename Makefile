@@ -9,7 +9,7 @@ fmt:
 	stylua .
 
 syntax:
-	find . -name "*.lua" -not -path "./.git/*" -not -path "./.lua/*" | xargs luac -p
+	find . -type f -name "*.lua" -not -path "./.git/*" -not -path "./.lua/*" | xargs luac -p
 
 selene:
 	selene --display-style=rich lua/
