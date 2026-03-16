@@ -14,12 +14,12 @@ return {
         auto_trigger = true,
         debounce = 75,
         keymap = {
-          accept = "<M-l>",           -- Alt+l to accept
-          accept_word = "<M-k>",      -- Alt+k to accept word
-          accept_line = "<M-j>",      -- Alt+j to accept line
-          next = "<M-]>",             -- Alt+] for next suggestion
-          prev = "<M-[>",             -- Alt+[ for previous suggestion
-          dismiss = "<C-]>",          -- Ctrl+] to dismiss
+          accept = "<M-l>", -- Alt+l to accept
+          accept_word = "<M-k>", -- Alt+k to accept word
+          accept_line = "<M-j>", -- Alt+j to accept line
+          next = "<M-]>", -- Alt+] for next suggestion
+          prev = "<M-[>", -- Alt+[ for previous suggestion
+          dismiss = "<C-]>", -- Ctrl+] to dismiss
         },
       },
       panel = {
@@ -30,10 +30,10 @@ return {
           jump_next = "]]",
           accept = "<CR>",
           refresh = "gr",
-          open = "<M-CR>",            -- Alt+Enter to open panel
+          open = "<M-CR>", -- Alt+Enter to open panel
         },
         layout = {
-          position = "bottom",        -- "bottom" | "top" | "left" | "right"
+          position = "bottom", -- "bottom" | "top" | "left" | "right"
           ratio = 0.4,
         },
       },
@@ -46,9 +46,9 @@ return {
         hgcommit = false,
         svn = false,
         cvs = false,
-        ["."] = false,                -- Disable for files without extension
+        ["."] = false, -- Disable for files without extension
       },
-      copilot_node_command = "node",  -- Node.js version must be > 18.x
+      copilot_node_command = "node", -- Node.js version must be > 18.x
       server_opts_overrides = {},
     },
   },
@@ -68,15 +68,15 @@ return {
       { "zbirenbaum/copilot.lua" },
       { "nvim-lua/plenary.nvim" },
     },
-    build = "make tiktoken",  -- Only on MacOS or Linux
+    build = "make tiktoken", -- Only on MacOS or Linux
     opts = {
       debug = false,
-      model = "gpt-4o",       -- Default model
+      model = "gpt-4o", -- Default model
       temperature = 0.1,
-      context = "buffers",    -- "buffers" | "buffer" | nil
+      context = "buffers", -- "buffers" | "buffer" | nil
       show_help = true,
       window = {
-        layout = "vertical",  -- "vertical" | "horizontal" | "float" | "replace"
+        layout = "vertical", -- "vertical" | "horizontal" | "float" | "replace"
         width = 0.5,
         height = 0.5,
         border = "single",

@@ -39,12 +39,7 @@ return {
           filetypes = { "verilog", "systemverilog" },
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              "verible.filelist",
-              ".git",
-              "*.sv",
-              "*.v"
-            )(fname) or vim.fn.getcwd()
+            return lspconfig.util.root_pattern("verible.filelist", ".git", "*.sv", "*.v")(fname) or vim.fn.getcwd()
           end,
           settings = {},
         },
@@ -54,10 +49,7 @@ return {
           filetypes = { "verilog", "systemverilog" },
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              ".svls.toml",
-              ".git"
-            )(fname) or vim.fn.getcwd()
+            return lspconfig.util.root_pattern(".svls.toml", ".git")(fname) or vim.fn.getcwd()
           end,
           settings = {},
         },
@@ -217,7 +209,8 @@ return {
           map("<leader>vt", function()
             local module = vim.fn.input("Module name: ", vim.fn.expand("%:r"))
             local tb_file = module .. "_tb.v"
-            local template = string.format([[
+            local template = string.format(
+              [[
 `timescale 1ns/1ps
 
 module %s_tb;
@@ -263,7 +256,12 @@ module %s_tb;
   end
 
 endmodule
-]], module, module, module, module)
+]],
+              module,
+              module,
+              module,
+              module
+            )
 
             -- Create testbench file
             local file = io.open(tb_file, "w")
@@ -279,7 +277,8 @@ endmodule
           map("<leader>vn", function()
             local module = vim.fn.input("Module name: ")
             if module ~= "" then
-              local template = string.format([[
+              local template = string.format(
+                [[
 module %s #(
   parameter WIDTH = 8
 ) (
@@ -303,7 +302,9 @@ module %s #(
   // Combinational logic
 
 endmodule
-]], module)
+]],
+                module
+              )
 
               local filename = module .. ".v"
               local file = io.open(filename, "w")
@@ -337,7 +338,11 @@ endmodule
           -- Module hierarchy (using verible)
           map("<leader>vm", function()
             local file = vim.fn.expand("%")
-            vim.cmd("split | terminal verible-verilog-kythe-extractor " .. file .. " 2>/dev/null || echo 'Install verible for hierarchy'")
+            vim.cmd(
+              "split | terminal verible-verilog-kythe-extractor "
+                .. file
+                .. " 2>/dev/null || echo 'Install verible for hierarchy'"
+            )
           end, "Module Info")
         end,
       })

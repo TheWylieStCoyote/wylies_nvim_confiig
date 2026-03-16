@@ -40,11 +40,7 @@ return {
           filetypes = { "proto" },
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              "buf.yaml",
-              "buf.gen.yaml",
-              ".git"
-            )(fname) or vim.fn.getcwd()
+            return lspconfig.util.root_pattern("buf.yaml", "buf.gen.yaml", ".git")(fname) or vim.fn.getcwd()
           end,
         },
         -- Alternative: pbls (Protocol Buffers Language Server)
@@ -155,7 +151,14 @@ return {
           map("<leader>Ppj", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.input("Output dir: ", "./gen")
-            vim.cmd("split | terminal protoc --js_out=import_style=commonjs:" .. out .. " --grpc-web_out=import_style=commonjs,mode=grpcwebtext:" .. out .. " " .. file)
+            vim.cmd(
+              "split | terminal protoc --js_out=import_style=commonjs:"
+                .. out
+                .. " --grpc-web_out=import_style=commonjs,mode=grpcwebtext:"
+                .. out
+                .. " "
+                .. file
+            )
           end, "Protoc (JS)")
 
           map("<leader>Ppr", function()
@@ -253,7 +256,8 @@ plugins:
           map("<leader>Pn", function()
             local name = vim.fn.input("Service name: ")
             if name ~= "" then
-              local template = string.format([[
+              local template = string.format(
+                [[
 syntax = "proto3";
 
 package %s.v1;
@@ -325,21 +329,56 @@ message Delete%sRequest {
 
 message Delete%sResponse {}
 ]],
-                name:lower(), name:lower(), name:lower(),
-                name, name, name:lower(),
-                name, name, name,
-                name:lower(), name, name, name,
-                name:lower(), name, name, name,
-                name:lower(), name, name, name,
-                name:lower(), name, name, name,
-                name, name,
-                name, name, name, name:lower(),
-                name, name, name, name:lower(),
-                name, name, name:lower(),
-                name, name, name:lower(),
-                name, name, name:lower(),
-                name, name, name:lower(),
-                name, name)
+                name:lower(),
+                name:lower(),
+                name:lower(),
+                name,
+                name,
+                name:lower(),
+                name,
+                name,
+                name,
+                name:lower(),
+                name,
+                name,
+                name,
+                name:lower(),
+                name,
+                name,
+                name,
+                name:lower(),
+                name,
+                name,
+                name,
+                name:lower(),
+                name,
+                name,
+                name,
+                name,
+                name,
+                name,
+                name,
+                name,
+                name:lower(),
+                name,
+                name,
+                name,
+                name:lower(),
+                name,
+                name,
+                name:lower(),
+                name,
+                name,
+                name:lower(),
+                name,
+                name,
+                name:lower(),
+                name,
+                name,
+                name:lower(),
+                name,
+                name
+              )
 
               local filename = name:lower() .. ".proto"
               local file = io.open(filename, "w")

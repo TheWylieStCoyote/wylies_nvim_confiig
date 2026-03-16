@@ -51,11 +51,7 @@ return {
           filetypes = { "julia" },
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              "Project.toml",
-              "JuliaProject.toml",
-              ".git"
-            )(fname) or vim.fn.getcwd()
+            return lspconfig.util.root_pattern("Project.toml", "JuliaProject.toml", ".git")(fname) or vim.fn.getcwd()
           end,
           settings = {
             julia = {
@@ -259,7 +255,7 @@ return {
           map("<leader>jC", function()
             local name = vim.fn.input("App name: ")
             if name ~= "" then
-              vim.cmd("split | terminal julia -e 'using PackageCompiler; create_app(\".\", \"" .. name .. "\")'")
+              vim.cmd('split | terminal julia -e \'using PackageCompiler; create_app(".", "' .. name .. "\")'")
             end
           end, "Create App")
 

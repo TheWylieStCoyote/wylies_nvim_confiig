@@ -42,17 +42,39 @@ return {
             vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "Rust: " .. desc })
           end
 
-          map("<leader>rr", function() vim.cmd.RustLsp("runnables") end, "Runnables")
-          map("<leader>rt", function() vim.cmd.RustLsp("testables") end, "Testables")
-          map("<leader>rd", function() vim.cmd.RustLsp("openDocs") end, "Open docs.rs")
-          map("<leader>rc", function() vim.cmd.RustLsp("openCargo") end, "Open Cargo.toml")
-          map("<leader>rm", function() vim.cmd.RustLsp("expandMacro") end, "Expand Macro")
-          map("<leader>rp", function() vim.cmd.RustLsp("parentModule") end, "Parent Module")
-          map("<leader>rj", function() vim.cmd.RustLsp("joinLines") end, "Join Lines")
-          map("<leader>ra", function() vim.cmd.RustLsp("codeAction") end, "Code Action")
-          map("<leader>re", function() vim.cmd.RustLsp("explainError") end, "Explain Error")
-          map("<leader>rh", function() vim.cmd.RustLsp("hover", "actions") end, "Hover Actions")
-          map("<leader>rD", function() vim.cmd.RustLsp("debuggables") end, "Debuggables")
+          map("<leader>rr", function()
+            vim.cmd.RustLsp("runnables")
+          end, "Runnables")
+          map("<leader>rt", function()
+            vim.cmd.RustLsp("testables")
+          end, "Testables")
+          map("<leader>rd", function()
+            vim.cmd.RustLsp("openDocs")
+          end, "Open docs.rs")
+          map("<leader>rc", function()
+            vim.cmd.RustLsp("openCargo")
+          end, "Open Cargo.toml")
+          map("<leader>rm", function()
+            vim.cmd.RustLsp("expandMacro")
+          end, "Expand Macro")
+          map("<leader>rp", function()
+            vim.cmd.RustLsp("parentModule")
+          end, "Parent Module")
+          map("<leader>rj", function()
+            vim.cmd.RustLsp("joinLines")
+          end, "Join Lines")
+          map("<leader>ra", function()
+            vim.cmd.RustLsp("codeAction")
+          end, "Code Action")
+          map("<leader>re", function()
+            vim.cmd.RustLsp("explainError")
+          end, "Explain Error")
+          map("<leader>rh", function()
+            vim.cmd.RustLsp("hover", "actions")
+          end, "Hover Actions")
+          map("<leader>rD", function()
+            vim.cmd.RustLsp("debuggables")
+          end, "Debuggables")
         end,
         default_settings = {
           ["rust-analyzer"] = {
@@ -120,15 +142,69 @@ return {
       },
     },
     keys = {
-      { "<leader>cu", function() require("crates").upgrade_all_crates() end, desc = "Update All Crates" },
-      { "<leader>cU", function() require("crates").upgrade_crate() end, desc = "Update Crate" },
-      { "<leader>cf", function() require("crates").show_features_popup() end, desc = "Show Crate Features" },
-      { "<leader>cv", function() require("crates").show_versions_popup() end, desc = "Show Crate Versions" },
-      { "<leader>cD", function() require("crates").show_dependencies_popup() end, desc = "Show Dependencies" },
-      { "<leader>cH", function() require("crates").open_homepage() end, desc = "Open Homepage" },
-      { "<leader>cR", function() require("crates").open_repository() end, desc = "Open Repository" },
-      { "<leader>cd", function() require("crates").open_documentation() end, desc = "Open Documentation" },
-      { "<leader>cC", function() require("crates").open_crates_io() end, desc = "Open crates.io" },
+      {
+        "<leader>cu",
+        function()
+          require("crates").upgrade_all_crates()
+        end,
+        desc = "Update All Crates",
+      },
+      {
+        "<leader>cU",
+        function()
+          require("crates").upgrade_crate()
+        end,
+        desc = "Update Crate",
+      },
+      {
+        "<leader>cf",
+        function()
+          require("crates").show_features_popup()
+        end,
+        desc = "Show Crate Features",
+      },
+      {
+        "<leader>cv",
+        function()
+          require("crates").show_versions_popup()
+        end,
+        desc = "Show Crate Versions",
+      },
+      {
+        "<leader>cD",
+        function()
+          require("crates").show_dependencies_popup()
+        end,
+        desc = "Show Dependencies",
+      },
+      {
+        "<leader>cH",
+        function()
+          require("crates").open_homepage()
+        end,
+        desc = "Open Homepage",
+      },
+      {
+        "<leader>cR",
+        function()
+          require("crates").open_repository()
+        end,
+        desc = "Open Repository",
+      },
+      {
+        "<leader>cd",
+        function()
+          require("crates").open_documentation()
+        end,
+        desc = "Open Documentation",
+      },
+      {
+        "<leader>cC",
+        function()
+          require("crates").open_crates_io()
+        end,
+        desc = "Open crates.io",
+      },
     },
   },
 

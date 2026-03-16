@@ -197,9 +197,31 @@ return {
     "mfussenegger/nvim-dap-python",
     ft = "python",
     keys = {
-      { "<leader>pd", function() require("dap-python").debug_selection() end, desc = "Debug Selection", mode = "v", ft = "python" },
-      { "<leader>pdt", function() require("dap-python").test_method() end, desc = "Debug Test Method", ft = "python" },
-      { "<leader>pdT", function() require("dap-python").test_class() end, desc = "Debug Test Class", ft = "python" },
+      {
+        "<leader>pd",
+        function()
+          require("dap-python").debug_selection()
+        end,
+        desc = "Debug Selection",
+        mode = "v",
+        ft = "python",
+      },
+      {
+        "<leader>pdt",
+        function()
+          require("dap-python").test_method()
+        end,
+        desc = "Debug Test Method",
+        ft = "python",
+      },
+      {
+        "<leader>pdT",
+        function()
+          require("dap-python").test_class()
+        end,
+        desc = "Debug Test Class",
+        ft = "python",
+      },
     },
     config = function()
       -- Try Mason's debugpy first, fall back to system python

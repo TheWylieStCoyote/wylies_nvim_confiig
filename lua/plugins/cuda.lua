@@ -214,7 +214,8 @@ return {
           map("<leader>Cun", function()
             local name = vim.fn.input("Kernel name: ")
             if name ~= "" then
-              local template = string.format([[
+              local template = string.format(
+                [[
 #include <cuda_runtime.h>
 #include <stdio.h>
 
@@ -283,7 +284,10 @@ int main() {
 
     return 0;
 }
-]], name, name)
+]],
+                name,
+                name
+              )
 
               local filename = name .. ".cu"
               local file = io.open(filename, "w")
@@ -300,7 +304,8 @@ int main() {
           map("<leader>CuN", function()
             local name = vim.fn.input("Kernel name: ")
             if name ~= "" then
-              local template = string.format([[
+              local template = string.format(
+                [[
 #include <cuda_runtime.h>
 #include <stdio.h>
 
@@ -384,7 +389,10 @@ int main() {
 
     return 0;
 }
-]], name, name)
+]],
+                name,
+                name
+              )
 
               local filename = name .. "_shared.cu"
               local file = io.open(filename, "w")

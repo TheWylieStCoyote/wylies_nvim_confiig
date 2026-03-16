@@ -185,7 +185,9 @@ return {
           type = "coreclr",
           name = "Attach",
           request = "attach",
-          processId = function() return require("dap.utils").pick_process() end,
+          processId = function()
+            return require("dap.utils").pick_process()
+          end,
         },
       }
     end,

@@ -40,11 +40,7 @@ return {
           filetypes = { "terraform", "terraform-vars", "tf" },
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              ".terraform",
-              ".git",
-              "*.tf"
-            )(fname) or vim.fn.getcwd()
+            return lspconfig.util.root_pattern(".terraform", ".git", "*.tf")(fname) or vim.fn.getcwd()
           end,
           settings = {
             terraform = {
@@ -61,11 +57,7 @@ return {
           filetypes = { "terraform", "tf" },
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              ".tflint.hcl",
-              ".terraform",
-              ".git"
-            )(fname) or vim.fn.getcwd()
+            return lspconfig.util.root_pattern(".tflint.hcl", ".terraform", ".git")(fname) or vim.fn.getcwd()
           end,
         },
       },

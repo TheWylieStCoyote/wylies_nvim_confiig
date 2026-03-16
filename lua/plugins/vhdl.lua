@@ -31,12 +31,8 @@ return {
           filetypes = { "vhdl" },
           root_dir = function(fname)
             local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              "vhdl_ls.toml",
-              ".vhdl_ls.toml",
-              "hdl-prj.json",
-              ".git"
-            )(fname) or vim.fn.getcwd()
+            return lspconfig.util.root_pattern("vhdl_ls.toml", ".vhdl_ls.toml", "hdl-prj.json", ".git")(fname)
+              or vim.fn.getcwd()
           end,
           settings = {},
           -- Note: vhdl_ls requires a vhdl_ls.toml config file
@@ -132,7 +128,9 @@ return {
             local unit = vim.fn.input("Unit to run: ", vim.fn.expand("%:r"))
             local time = vim.fn.input("Stop time (e.g., 100ns): ", "1us")
             if unit ~= "" then
-              vim.cmd("split | terminal ghdl -r --std=08 " .. unit .. " --stop-time=" .. time .. " --wave=" .. unit .. ".ghw")
+              vim.cmd(
+                "split | terminal ghdl -r --std=08 " .. unit .. " --stop-time=" .. time .. " --wave=" .. unit .. ".ghw"
+              )
             end
           end, "Run Simulation (timed)")
 
@@ -140,7 +138,17 @@ return {
           map("<leader>Vx", function()
             local file = vim.fn.expand("%")
             local unit = vim.fn.expand("%:r")
-            vim.cmd("split | terminal ghdl -a --std=08 " .. file .. " && ghdl -e --std=08 " .. unit .. " && ghdl -r --std=08 " .. unit .. " --wave=" .. unit .. ".ghw")
+            vim.cmd(
+              "split | terminal ghdl -a --std=08 "
+                .. file
+                .. " && ghdl -e --std=08 "
+                .. unit
+                .. " && ghdl -r --std=08 "
+                .. unit
+                .. " --wave="
+                .. unit
+                .. ".ghw"
+            )
           end, "Analyze + Elaborate + Run")
 
           -- Syntax check only
@@ -223,7 +231,8 @@ work.standard = "2008"
           map("<leader>Vt", function()
             local entity = vim.fn.input("Entity name: ", vim.fn.expand("%:r"))
             local tb_file = entity .. "_tb.vhd"
-            local template = string.format([[
+            local template = string.format(
+              [[
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -271,7 +280,12 @@ begin
   end process stim_proc;
 
 end architecture sim;
-]], entity, entity, entity, entity)
+]],
+              entity,
+              entity,
+              entity,
+              entity
+            )
 
             local file = io.open(tb_file, "w")
             if file then
@@ -286,7 +300,8 @@ end architecture sim;
           map("<leader>Vn", function()
             local entity = vim.fn.input("Entity name: ")
             if entity ~= "" then
-              local template = string.format([[
+              local template = string.format(
+                [[
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -321,7 +336,11 @@ begin
   -- Combinational logic
 
 end architecture rtl;
-]], entity, entity, entity)
+]],
+                entity,
+                entity,
+                entity
+              )
 
               local filename = entity .. ".vhd"
               local file = io.open(filename, "w")
@@ -338,7 +357,8 @@ end architecture rtl;
           map("<leader>Vp", function()
             local pkg = vim.fn.input("Package name: ")
             if pkg ~= "" then
-              local template = string.format([[
+              local template = string.format(
+                [[
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -375,7 +395,12 @@ package body %s is
   end function log2ceil;
 
 end package body %s;
-]], pkg, pkg, pkg, pkg)
+]],
+                pkg,
+                pkg,
+                pkg,
+                pkg
+              )
 
               local filename = pkg .. "_pkg.vhd"
               local file = io.open(filename, "w")
@@ -409,7 +434,11 @@ end package body %s;
           -- Format with emacs vhdl-mode (alternative)
           map("<leader>Vf", function()
             local file = vim.fn.expand("%")
-            vim.cmd("split | terminal emacs --batch " .. file .. " -f vhdl-beautify-buffer -f save-buffer 2>/dev/null && echo 'Formatted with emacs vhdl-mode'")
+            vim.cmd(
+              "split | terminal emacs --batch "
+                .. file
+                .. " -f vhdl-beautify-buffer -f save-buffer 2>/dev/null && echo 'Formatted with emacs vhdl-mode'"
+            )
             vim.cmd("e!")
           end, "Format (emacs)")
         end,
