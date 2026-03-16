@@ -1,0 +1,13 @@
+name = "nvim-config"
+std = "vim+lua51"
+
+[rules]
+unused_variable = "warn"
+undefined_variable = "warn"
+incorrect_standard_library_use = "warn"
+
+# Runtime globals injected by LazyVim and bundled plugins
+[globals]
+LazyVim = { any = true }
+MiniIcons = { any = true }
+Snacks = { any = true }
