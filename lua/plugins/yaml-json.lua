@@ -209,14 +209,8 @@ return {
           map("<leader>yj", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r") .. ".json"
-            vim.cmd("split | terminal yq -o=json '.' " .. file .. " > " .. out)
+            vim.cmd("split | terminal yq '.' " .. file .. " > " .. out)
           end, "Convert to JSON (yq)")
-
-          map("<leader>yt", function()
-            local file = vim.fn.expand("%")
-            local out = vim.fn.expand("%:r") .. ".toml"
-            vim.cmd("split | terminal yq -o=toml '.' " .. file .. " > " .. out)
-          end, "Convert to TOML (yq)")
 
           -- Docker Compose
           map("<leader>ydc", function()
@@ -273,7 +267,7 @@ return {
         end,
       })
 
-      -- JSON keybindings
+      -- JSON keybindings (all JSON types)
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "json", "jsonc", "json5" },
         callback = function(event)
@@ -291,11 +285,31 @@ return {
             vim.cmd("split | terminal jsonlint " .. file)
           end, "Lint (jsonlint)")
 
-          -- Format/Minify
+          -- Format
           map("<leader>jf", function()
             vim.lsp.buf.format()
           end, "Format (pretty)")
 
+          -- Code actions
+          map("<leader>ja", function()
+            vim.lsp.buf.code_action()
+          end, "Code Actions")
+
+          map("<leader>jh", function()
+            vim.lsp.buf.hover()
+          end, "Hover Info")
+        end,
+      })
+
+      -- jq keybindings (plain JSON only — jq does not support comments)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "json", "json5" },
+        callback = function(event)
+          local map = function(keys, func, desc)
+            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "JSON: " .. desc })
+          end
+
+          -- Minify/Format via jq
           map("<leader>jm", function()
             vim.cmd("%!jq -c .")
           end, "Minify (jq)")
@@ -324,8 +338,14 @@ return {
           map("<leader>jy", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r") .. ".yaml"
-            vim.cmd("split | terminal yq -P '.' " .. file .. " > " .. out)
+            vim.cmd("split | terminal yq -y '.' " .. file .. " > " .. out)
           end, "Convert to YAML (yq)")
+
+          map("<leader>jt", function()
+            local file = vim.fn.expand("%")
+            local out = vim.fn.expand("%:r") .. ".toml"
+            vim.cmd("split | terminal python3 -c \"import json,toml,sys; print(toml.dumps(json.load(open('" .. file .. "'))))\" > " .. out)
+          end, "Convert to TOML (python)")
 
           -- Extract paths
           map("<leader>jp", function()
@@ -340,15 +360,6 @@ return {
           map("<leader>js", function()
             vim.cmd("%!jq -S '.'")
           end, "Sort Keys")
-
-          -- Code actions
-          map("<leader>ja", function()
-            vim.lsp.buf.code_action()
-          end, "Code Actions")
-
-          map("<leader>jh", function()
-            vim.lsp.buf.hover()
-          end, "Hover Info")
         end,
       })
 
@@ -381,13 +392,13 @@ return {
           map("<leader>tj", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r") .. ".json"
-            vim.cmd("split | terminal yq -o=json '.' " .. file .. " > " .. out)
+            vim.cmd("split | terminal yq '.' " .. file .. " > " .. out)
           end, "Convert to JSON")
 
           map("<leader>ty", function()
             local file = vim.fn.expand("%")
             local out = vim.fn.expand("%:r") .. ".yaml"
-            vim.cmd("split | terminal yq -o=yaml '.' " .. file .. " > " .. out)
+            vim.cmd("split | terminal yq -y '.' " .. file .. " > " .. out)
           end, "Convert to YAML")
 
           -- Code actions

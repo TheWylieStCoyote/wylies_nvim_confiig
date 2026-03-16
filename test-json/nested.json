@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "roles": ["admin", "editor"],
+      "meta": { "created": "2024-01-01", "active": true }
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "roles": ["viewer"],
+      "meta": { "created": "2024-06-15", "active": false }
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "per_page": 20,
+    "total": 2
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "broken",
+  "missing_comma": "here"
+  "extra": "field",
+  "trailing_comma": [1, 2, 3,],
+  "unclosed": {
+    "key": "value"
+}

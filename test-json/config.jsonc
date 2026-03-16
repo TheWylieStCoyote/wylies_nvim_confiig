@@ -1,0 +1,15 @@
+// This is a JSONC file (JSON with Comments)
+{
+  // App configuration
+  "app": {
+    "name": "my-app",
+    "debug": false, // set to true for verbose logs
+    "port": 8080
+  },
+  /* Database settings */
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "mydb"
+  }
+}
