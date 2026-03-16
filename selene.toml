@@ -1,4 +1,4 @@
-std = "vim+lua51+nvim-globals"
+std = "lua51+nvim-globals"
 
 [lints]
 unused_variable = "warn"

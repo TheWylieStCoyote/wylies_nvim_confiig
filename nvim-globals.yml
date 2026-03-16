@@ -1,5 +1,7 @@
 ---
 globals:
+  vim:
+    any: true
   LazyVim:
     any: true
   MiniIcons:
