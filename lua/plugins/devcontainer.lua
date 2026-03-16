@@ -133,25 +133,25 @@ return {
 
     keys = {
       -- Start/Attach
-      { "<leader>Ds", "<cmd>DevcontainerStart<cr>", desc = "Devcontainer: Start" },
-      { "<leader>Da", "<cmd>DevcontainerAttach<cr>", desc = "Devcontainer: Attach" },
-      { "<leader>De", "<cmd>DevcontainerExec<cr>", desc = "Devcontainer: Execute" },
+      { "<leader>Vs", "<cmd>DevcontainerStart<cr>", desc = "Devcontainer: Start" },
+      { "<leader>Va", "<cmd>DevcontainerAttach<cr>", desc = "Devcontainer: Attach" },
+      { "<leader>Ve", "<cmd>DevcontainerExec<cr>", desc = "Devcontainer: Execute" },
 
       -- Stop/Remove
-      { "<leader>Dx", "<cmd>DevcontainerStop<cr>", desc = "Devcontainer: Stop" },
-      { "<leader>DX", "<cmd>DevcontainerStopAll<cr>", desc = "Devcontainer: Stop All" },
-      { "<leader>DR", "<cmd>DevcontainerRemoveAll<cr>", desc = "Devcontainer: Remove All" },
+      { "<leader>Vx", "<cmd>DevcontainerStop<cr>", desc = "Devcontainer: Stop" },
+      { "<leader>VX", "<cmd>DevcontainerStopAll<cr>", desc = "Devcontainer: Stop All" },
+      { "<leader>VR", "<cmd>DevcontainerRemoveAll<cr>", desc = "Devcontainer: Remove All" },
 
       -- Logs
-      { "<leader>Dl", "<cmd>DevcontainerLogs<cr>", desc = "Devcontainer: Logs" },
+      { "<leader>Vl", "<cmd>DevcontainerLogs<cr>", desc = "Devcontainer: Logs" },
 
       -- Config
-      { "<leader>Dc", "<cmd>DevcontainerEditNearestConfig<cr>", desc = "Devcontainer: Edit Config" },
+      { "<leader>Vc", "<cmd>DevcontainerEditNearestConfig<cr>", desc = "Devcontainer: Edit Config" },
 
       -- Compose
-      { "<leader>Du", "<cmd>DevcontainerComposeUp<cr>", desc = "Devcontainer: Compose Up" },
-      { "<leader>Dd", "<cmd>DevcontainerComposeDown<cr>", desc = "Devcontainer: Compose Down" },
-      { "<leader>Dr", "<cmd>DevcontainerComposeRm<cr>", desc = "Devcontainer: Compose Remove" },
+      { "<leader>Vu", "<cmd>DevcontainerComposeUp<cr>", desc = "Devcontainer: Compose Up" },
+      { "<leader>Vd", "<cmd>DevcontainerComposeDown<cr>", desc = "Devcontainer: Compose Down" },
+      { "<leader>Vr", "<cmd>DevcontainerComposeRm<cr>", desc = "Devcontainer: Compose Remove" },
     },
   },
 }

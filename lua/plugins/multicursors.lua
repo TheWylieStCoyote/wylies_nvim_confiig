@@ -6,8 +6,8 @@ return {
   branch = "master",
   keys = {
     { "<C-n>", mode = { "n", "v" }, desc = "Multi-cursor: Select word" },
-    { "<C-Down>", desc = "Multi-cursor: Add cursor down" },
-    { "<C-Up>", desc = "Multi-cursor: Add cursor above" },
+    { "<M-Down>", desc = "Multi-cursor: Add cursor down" },
+    { "<M-Up>", desc = "Multi-cursor: Add cursor above" },
     { "<C-S-n>", desc = "Multi-cursor: Select all" },
   },
   init = function()
@@ -21,8 +21,8 @@ return {
       ["Find Under"] = "<C-n>",         -- Select word under cursor
       ["Find Subword Under"] = "<C-n>", -- Select partial word
       ["Select All"] = "<C-S-n>",       -- Select all occurrences
-      ["Add Cursor Down"] = "<C-Down>", -- Add cursor below
-      ["Add Cursor Up"] = "<C-Up>",     -- Add cursor above
+      ["Add Cursor Down"] = "<M-Down>", -- Add cursor below
+      ["Add Cursor Up"] = "<M-Up>",     -- Add cursor above
       ["Skip Region"] = "q",            -- Skip current match
       ["Remove Region"] = "Q",          -- Remove current cursor
       ["Undo"] = "u",

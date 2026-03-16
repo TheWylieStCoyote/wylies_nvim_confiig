@@ -17,8 +17,11 @@ return {
       vim.opt.spelllang = { "en_us" }
       vim.opt.spelloptions = "camel" -- Treat CamelCase as separate words
 
+      vim.api.nvim_create_augroup("SpellCheck", { clear = true })
+
       -- Enable spell checking for code files (treesitter limits to comments/strings)
       vim.api.nvim_create_autocmd("FileType", {
+        group = "SpellCheck",
         pattern = {
           "lua", "python", "javascript", "typescript", "typescriptreact", "javascriptreact",
           "rust", "go", "c", "cpp", "java", "kotlin", "ruby", "elixir", "haskell",
@@ -31,6 +34,7 @@ return {
 
       -- Disable spell in certain filetypes
       vim.api.nvim_create_autocmd("FileType", {
+        group = "SpellCheck",
         pattern = { "help", "terminal", "lazy", "mason", "notify", "qf", "oil", "NvimTree", "neo-tree" },
         callback = function()
           vim.opt_local.spell = false

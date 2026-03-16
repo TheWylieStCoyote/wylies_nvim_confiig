@@ -61,7 +61,7 @@ return {
                 changeTypeSignature = { globalOn = true },
                 class = { globalOn = true },
                 eval = { globalOn = true },
-                excplicitFixity = { globalOn = true },
+                explicitFixity = { globalOn = true },
                 gadt = { globalOn = true },
                 ["ghcide-code-actions-bindings"] = { globalOn = true },
                 ["ghcide-code-actions-fill-holes"] = { globalOn = true },

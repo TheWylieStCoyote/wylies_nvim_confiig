@@ -184,7 +184,7 @@ return {
         { "<leader>SA", desc = "Add DB Connection" },
         { "<leader>SF", desc = "Find DB Buffer" },
 
-        -- Search & Replace (Spectre)
+        -- Search & Replace (Grug-Far)
         { "<leader>sr", desc = "Search & Replace" },
         { "<leader>sw", desc = "Replace Word" },
         { "<leader>sp", desc = "Replace in File" },
@@ -204,7 +204,7 @@ return {
         -- Language-specific prefixes (uppercase)
         { "<leader>B", group = "Bash" },
         { "<leader>C", group = "C/C++" },
-        { "<leader>D", group = "Devcontainer" },
+        { "<leader>V", group = "Devcontainer" },
         { "<leader>G", group = "Go" },
         { "<leader>H", group = "Haskell" },
         { "<leader>J", group = "Java/Julia" },
@@ -217,7 +217,6 @@ return {
         { "<leader>S", group = "SQL" },
         { "<leader>T", group = "Terraform" },
         { "<leader>U", desc = "Undotree" },
-        { "<leader>V", group = "VHDL" },
 
         -- Bracket navigation
         { "[", group = "Previous" },
@@ -230,6 +229,7 @@ return {
         { "]x", desc = "Next conflict" },
         { "[c", desc = "Previous hunk" },
         { "]c", desc = "Next hunk" },
+        { "[C", desc = "Go to context" },
         { "[t", desc = "Previous test" },
         { "]t", desc = "Next test" },
 

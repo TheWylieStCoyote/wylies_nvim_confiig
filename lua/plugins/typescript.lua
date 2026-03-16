@@ -182,7 +182,7 @@ return {
           map("<leader>jx", function()
             local file = vim.fn.expand("%")
             local ext = vim.fn.expand("%:e")
-            local cmd = ext == "ts" or ext == "tsx" and "npx tsx" or "node"
+            local cmd = (ext == "ts" or ext == "tsx") and "npx tsx" or "node"
             vim.cmd("split | terminal " .. cmd .. " " .. file)
           end, "Run File")
 

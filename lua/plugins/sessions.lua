@@ -11,7 +11,7 @@ return {
       auto_create = true, -- Auto-create session when opening Neovim
       suppressed_dirs = { "~/", "~/Downloads", "~/Documents", "/" },
       allowed_dirs = nil, -- Allow all dirs except suppressed
-      bypass_save_filetypes = { "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+      bypass_save_filetypes = { "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason", "oil", "oil_preview" },
       session_lens = {
         load_on_setup = true,
         theme_conf = { border = true },

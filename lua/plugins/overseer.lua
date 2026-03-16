@@ -6,6 +6,7 @@ return {
     "stevearc/overseer.nvim",
     cmd = {
       "OverseerRun",
+      "OverseerRunLast",
       "OverseerToggle",
       "OverseerOpen",
       "OverseerClose",
@@ -19,7 +20,7 @@ return {
       { "<leader>vr", "<cmd>OverseerRun<cr>", desc = "Overseer: Run Task" },
       { "<leader>vt", "<cmd>OverseerToggle<cr>", desc = "Overseer: Toggle Panel" },
       { "<leader>va", "<cmd>OverseerTaskAction<cr>", desc = "Overseer: Task Action" },
-      { "<leader>vl", "<cmd>OverseerRun<cr>", desc = "Overseer: Run Last" },
+      { "<leader>vl", "<cmd>OverseerRunLast<cr>", desc = "Overseer: Run Last" },
       { "<leader>vb", "<cmd>OverseerBuild<cr>", desc = "Overseer: Build" },
       { "<leader>vi", "<cmd>OverseerInfo<cr>", desc = "Overseer: Info" },
       { "<leader>vs", "<cmd>OverseerSaveBundle<cr>", desc = "Overseer: Save Bundle" },

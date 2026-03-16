@@ -57,7 +57,7 @@ return {
               hints = {
                 typeHints = true,
                 parameterHints = true,
-                chaineHints = true,
+                chainHints = true,
               },
               completion = {
                 snippets = {

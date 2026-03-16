@@ -38,7 +38,7 @@ return {
         cond = function()
           return vim.fn.reg_recording() ~= ""
         end,
-        color = { fg = "#ff6188", gui = "bold" }, -- Monokai pink for visibility
+        color = { fg = "DiagnosticError", gui = "bold" },
       })
 
       -- Add search count indicator
@@ -47,7 +47,7 @@ return {
         cond = function()
           return vim.v.hlsearch == 1
         end,
-        color = { fg = "#a9dc76" }, -- Monokai green
+        color = { fg = "DiagnosticOk" },
       })
     end,
   },
