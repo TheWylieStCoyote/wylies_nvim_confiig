@@ -255,7 +255,7 @@ return {
           map("<leader>jC", function()
             local name = vim.fn.input("App name: ")
             if name ~= "" then
-              vim.cmd("split | terminal julia -e 'using PackageCompiler; create_app(\".\", \"" .. name .. "\")'")
+              vim.cmd('split | terminal julia -e \'using PackageCompiler; create_app(".", "' .. name .. "\")'")
             end
           end, "Create App")
 
