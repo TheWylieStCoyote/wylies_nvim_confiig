@@ -26,7 +26,7 @@ jobs:
           args: --check .
 
       - name: Syntax check (luac)
-        run: find . -name "*.lua" -not -path "./.git/*" | xargs luac -p
+        run: find . -name "*.lua" -not -path "./.git/*" -not -path "./.lua/*" | xargs luac -p
 
       - name: Install selene
         run: |
