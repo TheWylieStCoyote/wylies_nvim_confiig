@@ -97,7 +97,7 @@ return {
         },
 
         hooks = {
-          view_opened = function(view)
+          view_opened = function(_view)
             -- Disable certain features in diff view
             vim.opt_local.spell = false
             vim.opt_local.wrap = false

@@ -154,6 +154,7 @@ return {
           map("<leader>lp", function()
             local word = vim.fn.expand("<cword>")
             local ok, result = pcall(function()
+              -- selene: allow(incorrect_standard_library_use)
               return load("return " .. word)()
             end)
             if ok then

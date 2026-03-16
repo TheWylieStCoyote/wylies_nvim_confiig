@@ -472,7 +472,7 @@ int main() {
 
           -- Switch between .cu and .cuh
           map("<leader>Cuo", function()
-            local file = vim.fn.expand("%")
+            vim.fn.expand("%")
             local ext = vim.fn.expand("%:e")
             local base = vim.fn.expand("%:r")
             if ext == "cu" then

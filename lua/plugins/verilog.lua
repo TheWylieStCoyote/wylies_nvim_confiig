@@ -165,7 +165,7 @@ return {
 
           map("<leader>vv", function()
             local file = vim.fn.expand("%")
-            local out = vim.fn.expand("%:r")
+            vim.fn.expand("%:r")
             vim.cmd("split | terminal verilator --cc --exe --build -j 0 " .. file)
           end, "Verilator Build")
 

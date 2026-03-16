@@ -105,7 +105,7 @@ return {
         },
 
         -- Client callbacks
-        client_callback = function(port, workspace_config)
+        client_callback = function(port, _workspace_config)
           -- Called when remote server is ready
           -- Opens a new Neovim instance connected to the remote
           local cmd = ("nvim --server localhost:%s --remote-ui"):format(port)

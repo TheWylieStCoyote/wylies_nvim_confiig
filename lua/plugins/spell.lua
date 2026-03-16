@@ -11,7 +11,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
+    opts = function(_, _opts)
       -- Enable spell checking with treesitter support
       vim.opt.spell = true
       vim.opt.spelllang = { "en_us" }
