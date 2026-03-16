@@ -1,6 +1,12 @@
 -- NeoComposer Configuration
 -- Macro management with browse, edit, and replay via telescope
 
+-- sqlite.lua requires a compatible libsqlite3; skip if unavailable (e.g. snap glibc mismatch)
+local ok = pcall(require, "sqlite")
+if not ok then
+  return {}
+end
+
 return {
   {
     "ecthelionvi/NeoComposer.nvim",
