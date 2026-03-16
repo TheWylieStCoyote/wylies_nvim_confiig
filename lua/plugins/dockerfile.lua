@@ -7,6 +7,25 @@ if vim.fn.executable("docker") ~= 1 then
 end
 
 return {
+  -- Lazydocker TUI in a floating window
+  {
+    "crnvl96/lazydocker.nvim",
+    lazy = true,
+    keys = {
+      { "<leader>kd", function() require("lazydocker").toggle() end, desc = "LazyDocker" },
+    },
+    opts = {
+      window = {
+        settings = {
+          width = 0.9,
+          height = 0.9,
+          border = "rounded",
+          relative = "editor",
+        },
+      },
+    },
+  },
+
   -- TreeSitter parsers for Docker
   {
     "nvim-treesitter/nvim-treesitter",
@@ -97,24 +116,27 @@ return {
 
           -- Build
           map("<leader>kb", function()
-            local tag = vim.fn.input("Image tag: ", vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ":latest")
+            local dir = vim.fn.expand("%:p:h")
+            local tag = vim.fn.input("Image tag: ", vim.fn.fnamemodify(dir, ":t") .. ":latest")
             if tag ~= "" then
-              vim.cmd("split | terminal docker build -t " .. tag .. " .")
+              vim.cmd("split | terminal docker build -t " .. tag .. " " .. dir)
             end
           end, "Build Image")
 
           map("<leader>kB", function()
-            local tag = vim.fn.input("Image tag: ", vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ":latest")
+            local dir = vim.fn.expand("%:p:h")
+            local tag = vim.fn.input("Image tag: ", vim.fn.fnamemodify(dir, ":t") .. ":latest")
             if tag ~= "" then
-              vim.cmd("split | terminal docker build --no-cache -t " .. tag .. " .")
+              vim.cmd("split | terminal docker build --no-cache -t " .. tag .. " " .. dir)
             end
           end, "Build (no cache)")
 
           map("<leader>kf", function()
-            local file = vim.fn.expand("%")
-            local tag = vim.fn.input("Image tag: ", vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ":latest")
+            local file = vim.fn.expand("%:p")
+            local dir = vim.fn.expand("%:p:h")
+            local tag = vim.fn.input("Image tag: ", vim.fn.fnamemodify(dir, ":t") .. ":latest")
             if tag ~= "" then
-              vim.cmd("split | terminal docker build -f " .. file .. " -t " .. tag .. " .")
+              vim.cmd("split | terminal docker build -f " .. file .. " -t " .. tag .. " " .. dir)
             end
           end, "Build (this file)")
 
@@ -212,30 +234,30 @@ return {
           end, "Remove Container")
 
           -- Cleanup
-          map("<leader>kp", function()
-            vim.cmd("split | terminal docker system prune")
+          map("<leader>kpr", function()
+            vim.cmd("split | terminal docker system prune -f")
           end, "Prune System")
 
           map("<leader>kP", function()
-            vim.cmd("split | terminal docker system prune -a --volumes")
+            vim.cmd("split | terminal docker system prune -af --volumes")
           end, "Prune All")
 
           -- Registry
-          map("<leader>kpp", function()
+          map("<leader>kpu", function()
             local image = vim.fn.input("Image to push: ")
             if image ~= "" then
               vim.cmd("split | terminal docker push " .. image)
             end
           end, "Push Image")
 
-          map("<leader>kpl", function()
+          map("<leader>kpd", function()
             local image = vim.fn.input("Image to pull: ")
             if image ~= "" then
               vim.cmd("split | terminal docker pull " .. image)
             end
           end, "Pull Image")
 
-          map("<leader>klo", function()
+          map("<leader>kli", function()
             vim.cmd("split | terminal docker login")
           end, "Docker Login")
 
@@ -327,45 +349,45 @@ CMD ["./app"]
           end
 
           map("<leader>Du", function()
-            vim.cmd("split | terminal docker-compose up -d")
+            vim.cmd("split | terminal docker compose up -d")
           end, "Up (detached)")
 
           map("<leader>DU", function()
-            vim.cmd("split | terminal docker-compose up")
+            vim.cmd("split | terminal docker compose up")
           end, "Up (attached)")
 
           map("<leader>Dd", function()
-            vim.cmd("split | terminal docker-compose down")
+            vim.cmd("split | terminal docker compose down")
           end, "Down")
 
           map("<leader>DD", function()
-            vim.cmd("split | terminal docker-compose down -v --rmi all")
+            vim.cmd("split | terminal docker compose down -v --rmi all")
           end, "Down (remove all)")
 
           map("<leader>Dr", function()
-            vim.cmd("split | terminal docker-compose restart")
+            vim.cmd("split | terminal docker compose restart")
           end, "Restart")
 
           map("<leader>Dl", function()
-            vim.cmd("split | terminal docker-compose logs -f")
+            vim.cmd("split | terminal docker compose logs -f")
           end, "Logs")
 
           map("<leader>Dp", function()
-            vim.cmd("split | terminal docker-compose ps")
+            vim.cmd("split | terminal docker compose ps")
           end, "PS")
 
           map("<leader>Db", function()
-            vim.cmd("split | terminal docker-compose build")
+            vim.cmd("split | terminal docker compose build")
           end, "Build")
 
           map("<leader>Dc", function()
-            vim.cmd("split | terminal docker-compose config")
+            vim.cmd("split | terminal docker compose config")
           end, "Validate Config")
 
           map("<leader>De", function()
             local service = vim.fn.input("Service: ")
             if service ~= "" then
-              vim.cmd("split | terminal docker-compose exec " .. service .. " /bin/sh")
+              vim.cmd("split | terminal docker compose exec " .. service .. " /bin/sh")
             end
           end, "Exec Shell")
 
@@ -373,7 +395,7 @@ CMD ["./app"]
             local service = vim.fn.input("Service to scale: ")
             local num = vim.fn.input("Replicas: ")
             if service ~= "" and num ~= "" then
-              vim.cmd("split | terminal docker-compose up -d --scale " .. service .. "=" .. num)
+              vim.cmd("split | terminal docker compose up -d --scale " .. service .. "=" .. num)
             end
           end, "Scale Service")
         end,
