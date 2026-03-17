@@ -1,44 +1,119 @@
 # Neovim Setup Guide
 
-A comprehensive guide to optimizing your Neovim environment beyond plugins.
+A comprehensive guide to setting up and optimizing your Neovim environment.
 
 ## Table of Contents
 
-1. [Health Checks](#health-checks)
-2. [Fonts & Terminal](#fonts--terminal)
-3. [System Integration](#system-integration)
-4. [Shell Configuration](#shell-configuration)
-5. [Tmux Integration](#tmux-integration)
-6. [Dotfiles Management](#dotfiles-management)
-7. [Performance Optimization](#performance-optimization)
-8. [Custom Configuration](#custom-configuration)
-9. [Workflow Tips](#workflow-tips)
-10. [Learning Resources](#learning-resources)
+1. [Installation](#installation)
+2. [Health Checks](#health-checks)
+3. [Fonts & Terminal](#fonts--terminal)
+4. [System Integration](#system-integration)
+5. [Shell Configuration](#shell-configuration)
+6. [Tmux Integration](#tmux-integration)
+7. [Dotfiles Management](#dotfiles-management)
+8. [Performance Optimization](#performance-optimization)
+9. [Custom Configuration](#custom-configuration)
+10. [Workflow Tips](#workflow-tips)
+11. [Learning Resources](#learning-resources)
+
+---
+
+## Installation
+
+### Quick Install (Recommended)
+
+Use the provided script to install all dependencies automatically:
+
+```bash
+# Clone the config
+git clone https://github.com/TheWylieStCoyote/wylies_nvim_confiig ~/.config/nvim
+
+# Install core dependencies (git, ripgrep, fd, node, python, Nerd Font, sqlite, yazi)
+~/.config/nvim/scripts/install-deps.sh
+
+# Also install all language toolchains (Go, Rust, Java, C#, Zig, etc.)
+~/.config/nvim/scripts/install-deps.sh --all
+```
+
+### What the script installs
+
+**Core (always):**
+| Dependency | Purpose |
+|-----------|---------|
+| Neovim 0.10+ | Editor (installed via AppImage on Ubuntu/Debian) |
+| `git` | Plugin manager and version control |
+| `ripgrep` (`rg`) | Telescope live grep |
+| `fd` | Telescope file finder |
+| `node` / `npm` | Copilot, many LSP servers |
+| `python3` + `pynvim` | Python LSP, DAP, neotest |
+| JetBrainsMono Nerd Font | Icons throughout the UI |
+| `sqlite3` | NeoComposer macro recording |
+| `yazi` | Terminal file manager |
+
+**With `--all` (language toolchains):**
+GCC/Clang, Go, Rust, Java, .NET, Zig, Haskell (GHCup), OCaml (opam), Ruby, Elixir, R, Terraform
+
+### Manual: Ubuntu/Debian note for `fd`
+
+On Ubuntu/Debian `fd` is packaged as `fdfind` — the script handles this automatically,
+but if installing manually:
+
+```bash
+sudo apt-get install fd-find
+sudo ln -sf $(which fdfind) /usr/local/bin/fd
+```
+
+### First Launch
+
+After installing dependencies, launch Neovim:
+
+```bash
+nvim
+```
+
+lazy.nvim will automatically install all plugins on first launch. Then:
+
+```vim
+:checkhealth config    " Check this config's dependencies
+:Mason                 " Install LSP servers for your languages
+```
 
 ---
 
 ## Health Checks
 
-### Run Neovim Health Check
+### Config Health Check
+
+Run the custom health check for this config specifically:
+
+```vim
+:checkhealth config
+```
+
+This checks all required and optional dependencies:
+- Core tools (git, ripgrep, fd, node, python)
+- Language toolchains (go, cargo, java, dotnet, etc.)
+- AI tools (ollama)
+- Neovim version (0.9 min, 0.10 recommended)
+- Mason installation status
+- TreeSitter parser count
+
+### Full Neovim Health Check
 
 ```vim
 :checkhealth
 ```
 
-This checks:
-- Neovim version and build
-- Clipboard support
-- Python/Node/Ruby providers
-- LSP servers
-- TreeSitter parsers
-- Plugin health
-
 ### Fix Common Issues
 
 ```bash
-# Clipboard support (Arch)
-sudo pacman -S xclip  # X11
-sudo pacman -S wl-clipboard  # Wayland
+# fd not found (Ubuntu/Debian — installed as fdfind)
+sudo apt-get install fd-find
+sudo ln -sf $(which fdfind) /usr/local/bin/fd
+
+# Clipboard support
+sudo apt-get install xclip   # X11
+sudo apt-get install wl-clipboard  # Wayland
 
 # Python provider
 pip install pynvim
@@ -694,8 +769,9 @@ ma          " Set mark a
 
 ### Essential Setup
 
-- [ ] Run `:checkhealth` and fix issues
-- [ ] Install a Nerd Font
+- [ ] Run `scripts/install-deps.sh` to install core dependencies
+- [ ] Run `:checkhealth config` and fix any errors
+- [ ] Install a Nerd Font and set it in your terminal
 - [ ] Configure terminal for true color
 - [ ] Set Neovim as default editor
 - [ ] Configure clipboard integration
