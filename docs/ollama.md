@@ -8,7 +8,8 @@ Local LLM integration for code generation, explanation, and review.
 |---------|------|
 | Plugin | ollama.nvim |
 | Backend | Ollama (local) |
-| Default Model | codellama:13b |
+| Default Model | codellama:13b (override with `OLLAMA_MODEL`) |
+| Default URL | http://127.0.0.1:11434 (override with `OLLAMA_URL`) |
 
 ## Requirements
 
@@ -43,21 +44,46 @@ ollama pull mistral          # Fast and capable
 ollama serve
 ```
 
+## Configuration
+
+### Environment Variables
+
+The server URL and model can be set via environment variables, avoiding the need to edit config files.
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `OLLAMA_URL` | `http://127.0.0.1:11434` | Ollama server URL |
+| `OLLAMA_MODEL` | `codellama:13b` | Model to use |
+
+```bash
+# Use a remote server
+OLLAMA_URL=http://my-server:11434 nvim
+
+# Use a different model
+OLLAMA_MODEL=deepseek-coder:33b nvim
+
+# Both at once
+OLLAMA_URL=http://my-server:11434 OLLAMA_MODEL=mistral nvim
+
+# Set permanently in your shell profile
+export OLLAMA_URL=http://my-server:11434
+export OLLAMA_MODEL=deepseek-coder:33b
+```
+
 ## Keybindings
 
 | Key | Mode | Action |
 |-----|------|--------|
-| `<leader>oo` | n | Open Ollama prompt |
-| `<leader>oO` | n | Select model |
-| `<leader>og` | n, v | Generate code |
-| `<leader>oe` | n, v | Explain code |
-| `<leader>or` | n, v | Review code |
-| `<leader>of` | n, v | Fix code |
-| `<leader>ot` | n, v | Add tests |
-| `<leader>od` | n, v | Add documentation |
-| `<leader>os` | n, v | Simplify code |
-| `<leader>ga` | n | Git add (stage) current file |
-| `<leader>om` | n | Generate commit message |
+| `<leader>Oo` | n | Open Ollama prompt |
+| `<leader>OO` | n | Select model |
+| `<leader>Og` | n, v | Generate code |
+| `<leader>Oe` | n, v | Explain code |
+| `<leader>Or` | n, v | Review code |
+| `<leader>Of` | n, v | Fix code |
+| `<leader>Ot` | n, v | Add tests |
+| `<leader>Od` | n, v | Add documentation |
+| `<leader>Os` | n, v | Simplify code |
+| `<leader>Om` | n | Generate commit message |
 
 ## Usage
 
@@ -69,7 +95,7 @@ ollama serve
 
 2. Select the comment (V to select line)
 
-3. Press <leader>og
+3. Press <leader>Og
 
 4. AI generates the code below
 ```
@@ -79,7 +105,7 @@ ollama serve
 ```
 1. Select code you don't understand
 
-2. Press <leader>oe
+2. Press <leader>Oe
 
 3. AI explains what it does
    - Line by line breakdown
@@ -92,7 +118,7 @@ ollama serve
 ```
 1. Select code to review
 
-2. Press <leader>or
+2. Press <leader>Or
 
 3. AI provides:
    - Bug identification
@@ -106,7 +132,7 @@ ollama serve
 ```
 1. Select buggy code
 
-2. Press <leader>of
+2. Press <leader>Of
 
 3. AI returns fixed version
    - Corrects bugs
@@ -119,7 +145,7 @@ ollama serve
 ```
 1. Select function to test
 
-2. Press <leader>ot
+2. Press <leader>Ot
 
 3. AI generates tests
    - Unit tests
@@ -132,7 +158,7 @@ ollama serve
 ```
 1. Select code to document
 
-2. Press <leader>od
+2. Press <leader>Od
 
 3. AI adds:
    - Function docstrings
@@ -146,7 +172,7 @@ ollama serve
 ```
 1. Select complex code
 
-2. Press <leader>os
+2. Press <leader>Os
 
 3. AI refactors for:
    - Readability
@@ -162,7 +188,7 @@ ollama serve
    - or -
    git add <files>
 
-2. Press <leader>om
+2. Press <leader>Om
 
 3. AI generates commit message in floating window:
    - Conventional commits format (feat:, fix:, etc.)
@@ -191,7 +217,7 @@ ollama serve
 # 1. Write description
 # Function to parse CSV file and return list of dictionaries
 
-# 2. Select comment, press <leader>og
+# 2. Select comment, press <leader>Og
 
 # 3. AI generates:
 def parse_csv(filepath):
@@ -208,7 +234,7 @@ def parse_csv(filepath):
 // 1. Select confusing code
 const r = a.reduce((p, c) => (p[c.t] = (p[c.t] || 0) + c.v, p), {});
 
-// 2. Press <leader>oe
+// 2. Press <leader>Oe
 
 // 3. AI explains:
 // This code groups items by type (t) and sums their values (v)
@@ -225,7 +251,7 @@ fn process(data: &str) -> String {
     data.to_string()
 }
 
-// 2. Press <leader>or
+// 2. Press <leader>Or
 
 // 3. AI suggests:
 // - Consider returning &str to avoid allocation
@@ -240,13 +266,13 @@ fn process(data: &str) -> String {
 <leader>ga
 
 # 2. Generate commit message
-<leader>om
+<leader>Om
 
 # 3. Floating window appears with AI-generated message:
 ┌─ Commit Message (Enter=commit, q/Esc=cancel) ─┐
 │ feat: Add commit message generation           │
 │                                               │
-│ - New keybinding <leader>om for staged changes│
+│ - New keybinding <leader>Om for staged changes│
 │ - Uses conventional commits format            │
 │ - Displays in floating window for review      │
 └───────────────────────────────────────────────┘
@@ -260,18 +286,24 @@ fn process(data: &str) -> String {
 
 ### Change Default Model
 
-Edit `lua/plugins/ollama.lua`:
+Set the `OLLAMA_MODEL` environment variable (preferred):
+
+```bash
+export OLLAMA_MODEL=deepseek-coder
+```
+
+Or edit `lua/plugins/ollama.lua` to change the hardcoded fallback:
 
 ```lua
 opts = {
-  model = "deepseek-coder",  -- Change from codellama
+  model = os.getenv("OLLAMA_MODEL") or "deepseek-coder",
 }
 ```
 
 ### Switch Models On-the-fly
 
 ```
-<leader>oO - Opens model selector
+<leader>OO - Opens model selector
 Select from installed models
 ```
 

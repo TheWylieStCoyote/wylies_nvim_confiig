@@ -5,6 +5,13 @@
 --   1. Install Ollama: curl -fsSL https://ollama.com/install.sh | sh
 --   2. Pull a model: ollama pull codellama
 --   3. Start server: ollama serve (or it auto-starts)
+--
+-- Environment variables (optional):
+--   OLLAMA_URL   - Ollama server URL (default: http://127.0.0.1:11434)
+--   OLLAMA_MODEL - Model to use      (default: codellama:13b)
+--
+-- Example:
+--   OLLAMA_URL=http://my-server:11434 OLLAMA_MODEL=deepseek-coder:33b nvim
 
 return {
   {
@@ -180,8 +187,8 @@ return {
       },
     },
     opts = {
-      model = "codellama:13b", -- Default model (change to "deepseek-coder" or others)
-      url = "http://127.0.0.1:11434",
+      model = os.getenv("OLLAMA_MODEL") or "codellama:13b",
+      url = os.getenv("OLLAMA_URL") or "http://127.0.0.1:11434",
       serve = {
         on_start = false,
         command = "ollama",
