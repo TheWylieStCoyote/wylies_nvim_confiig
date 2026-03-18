@@ -2,10 +2,8 @@ name: Regenerate Screenshots
 
 on:
   push:
-    branches: []
-    paths:
-      - "screenshots/tapes/**"
-      - "scripts/generate-screenshots.sh"
+    tags:
+      - "v*"
   workflow_dispatch:
 
 jobs:
