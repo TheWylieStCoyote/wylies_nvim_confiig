@@ -33,19 +33,32 @@
 | `<leader>ch` | Switch Source/Header |
 | `<leader>ci` | Symbol Info |
 | `<leader>ct` | Type Hierarchy |
-| `<leader>cm` | Memory Usage |
+| `<leader>cU` | Memory Usage |
 | `<leader>ca` | View AST |
+
+### Compile & Run
+
+| Key | Action |
+|-----|--------|
+| `<leader>cc` | Compile File |
+| `<leader>cx` | Run Compiled |
+| `<leader>cM` | Make |
+| `<leader>cmc` | Make Clean |
 
 ### CMake (cmake-tools.nvim)
 
 | Key | Action |
 |-----|--------|
-| `<leader>cg` | CMake Generate |
-| `<leader>cb` | CMake Build |
-| `<leader>cr` | CMake Run |
-| `<leader>cd` | CMake Debug |
-| `<leader>cs` | Select Build Type |
-| `<leader>cq` | CMake Close |
+| `<leader>cmg` | CMake Generate |
+| `<leader>cmb` | CMake Build |
+| `<leader>cmr` | CMake Run |
+| `<leader>cmd` | CMake Debug |
+| `<leader>cms` | Select Build Type |
+| `<leader>cmq` | CMake Close |
+| `<leader>cmC` | CMake Clean |
+| `<leader>cmt` | CMake Select Target |
+| `<leader>cmT` | CMake Select Launch Target |
+| `<leader>cmS` | CMake Settings |
 
 ### Debugging (DAP)
 
@@ -119,12 +132,12 @@ WarningsAsErrors: ''
 
 ### Quick Build & Run
 1. Open a C++ file
-2. `<leader>cg` - Generate CMake
-3. `<leader>cb` - Build
-4. `<leader>cr` - Run
+2. `<leader>cmg` - Generate CMake
+3. `<leader>cmb` - Build
+4. `<leader>cmr` - Run
 
 ### Debug Session
-1. `<leader>cd` - Start CMake Debug
+1. `<leader>cmd` - Start CMake Debug
 2. `<F9>` - Set breakpoints
 3. `<F5>` - Start debugging
 4. `<F10>` / `<F11>` - Step through code

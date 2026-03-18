@@ -270,15 +270,15 @@ ollama pull codellama
 
 | Key | Mode | Description |
 |-----|------|-------------|
-| `<leader>oo` | n | Open Ollama prompt |
-| `<leader>oO` | n | Select model |
-| `<leader>og` | n, v | Generate code from selection |
-| `<leader>oe` | n, v | Explain code |
-| `<leader>or` | n, v | Review code |
-| `<leader>of` | n, v | Fix code |
-| `<leader>ot` | n, v | Add tests |
-| `<leader>od` | n, v | Add documentation |
-| `<leader>os` | n, v | Simplify code |
+| `<leader>Oo` | n | Open Ollama prompt |
+| `<leader>OO` | n | Select model |
+| `<leader>Og` | n, v | Generate code from selection |
+| `<leader>Oe` | n, v | Explain code |
+| `<leader>Or` | n, v | Review code |
+| `<leader>Of` | n, v | Fix code |
+| `<leader>Ot` | n, v | Add tests |
+| `<leader>Od` | n, v | Add documentation |
+| `<leader>Os` | n, v | Simplify code |
 
 ### Usage
 

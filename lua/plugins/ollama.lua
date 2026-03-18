@@ -70,7 +70,8 @@ return {
       {
         "<leader>Om",
         function()
-          vim.fn.system("curl -s --max-time 1 http://localhost:11434 2>/dev/null")
+          local ollama_url = os.getenv("OLLAMA_URL") or "http://127.0.0.1:11434"
+          vim.fn.system("curl -s --max-time 1 " .. ollama_url .. " 2>/dev/null")
           if vim.v.shell_error ~= 0 then
             vim.notify("Ollama not running", vim.log.levels.WARN)
             return

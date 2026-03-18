@@ -104,12 +104,23 @@ return {
         ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
       },
       {
-        "<leader>cu",
+        "<leader>cU",
         "<cmd>ClangdMemoryUsage<cr>",
         desc = "Memory Usage",
         ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
       },
       { "<leader>ca", "<cmd>ClangdAST<cr>", desc = "View AST", ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" } },
+    },
+  },
+
+  -- Linting with clang-tidy via nvim-lint
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        c = { "clangtidy" },
+        cpp = { "clangtidy" },
+      },
     },
   },
 
@@ -234,7 +245,7 @@ return {
             vim.cmd("split | terminal " .. compiler .. " -g -o " .. out .. " " .. file)
           end, "Compile File")
 
-          map("<leader>cR", function()
+          map("<leader>cx", function()
             local out = vim.fn.expand("%:r")
             vim.cmd("split | terminal ./" .. out)
           end, "Run Compiled")

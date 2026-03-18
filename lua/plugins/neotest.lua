@@ -177,7 +177,7 @@ return {
         dap = { justMyCode = false },
         runner = "pytest",
         python = function()
-          local venv = os.getenv("VIRTUAL_ENV")
+          local venv = vim.env.VIRTUAL_ENV
           if venv then
             return venv .. "/bin/python"
           end

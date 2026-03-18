@@ -21,8 +21,19 @@ return {
       vim.list_extend(opts.ensure_installed or {}, {
         "lua-language-server",
         "stylua",
+        "selene",
       })
     end,
+  },
+
+  -- Linting with selene
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        lua = { "selene" },
+      },
+    },
   },
 
   -- lazydev.nvim: Neovim Lua development (replaces neodev.nvim)

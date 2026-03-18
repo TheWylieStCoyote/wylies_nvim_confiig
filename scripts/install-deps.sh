@@ -107,6 +107,8 @@ install_core() {
 for dep in git rg fd curl unzip; do
   if has "$dep"; then
     info "$dep already installed"
+  else
+    warn "$dep not found — will be installed below"
   fi
 done
 
@@ -120,7 +122,10 @@ if has node; then
   info "Node.js already installed: $(node --version)"
 else
   info "Installing Node.js via nvm..."
-  curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  # NOTE: Pin this to the latest nvm release. Check https://github.com/nvm-sh/nvm/releases
+  # and update the version below periodically.
+  NVM_VERSION="v0.39.7"
+  curl -fsSL "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh" | bash
   export NVM_DIR="$HOME/.nvm"
   # shellcheck source=/dev/null
   source "$NVM_DIR/nvm.sh"

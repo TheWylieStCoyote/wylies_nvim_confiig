@@ -9,7 +9,7 @@ return {
       "nvim-lua/plenary.nvim",
     },
     keys = {
-      { "<leader>rr", "<cmd>Rest run<cr>", desc = "Run HTTP Request", ft = "http" },
+      { "<leader>rH", "<cmd>Rest run<cr>", desc = "Run HTTP Request", ft = "http" },
       { "<leader>rl", "<cmd>Rest run last<cr>", desc = "Re-run Last Request" },
       { "<leader>re", "<cmd>Rest env show<cr>", desc = "Show Environment", ft = "http" },
       { "<leader>rE", "<cmd>Rest env select<cr>", desc = "Select Environment", ft = "http" },
