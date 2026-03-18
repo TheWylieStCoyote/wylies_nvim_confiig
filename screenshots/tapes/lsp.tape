@@ -2,6 +2,7 @@ Output screenshots/output/lsp.gif
 
 Set Shell "bash"
 Set FontSize 14
+Set FontFamily "JetBrainsMono Nerd Font Mono"
 Set Width 1200
 Set Height 800
 Set Theme "Catppuccin Mocha"
