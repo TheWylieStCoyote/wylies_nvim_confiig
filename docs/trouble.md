@@ -9,6 +9,9 @@ Pretty list for diagnostics, references, quickfix, and more.
 | Plugin | trouble.nvim |
 | Author | folke |
 
+![Trouble diagnostics list](img/trouble-diagnostics.png)
+![Trouble symbols](img/trouble-symbols.png)
+
 ## Keybindings
 
 | Key | Mode | Action |

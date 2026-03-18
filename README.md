@@ -15,6 +15,30 @@ A comprehensive Neovim configuration built on [LazyVim](https://github.com/LazyV
 - **AI Assistance** - GitHub Copilot integration
 - **Remote Development** - SSH and container support
 
+## Screenshots
+
+![Dashboard & startup](docs/img/startup.gif)
+![LSP & code intelligence](docs/img/lsp.gif)
+![File & text search](docs/img/telescope.gif)
+![Git workflow](docs/img/git.gif)
+![Test runner](docs/img/neotest.gif)
+![Debugger UI](docs/img/dap.gif)
+![Local AI (ollama.nvim)](docs/img/ollama.gif)
+![AI coding assistant](docs/img/avante.gif)
+![Theme switching](docs/img/themes.gif)
+![Editing workflow](docs/img/workflow.gif)
+
+<details>
+<summary>More screenshots</summary>
+
+![Copilot Chat](docs/img/copilot-chat.gif)
+![Harpoon navigation](docs/img/harpoon.gif)
+![Trouble diagnostics](docs/img/trouble.gif)
+![Navigation](docs/img/navigation.gif)
+![UI extras](docs/img/ui-extras.gif)
+
+</details>
+
 ## Quick Start
 
 1. Clone this config to `~/.config/nvim`

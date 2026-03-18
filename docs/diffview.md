@@ -2,6 +2,9 @@
 
 > Tabpage-based interface for viewing git diffs and file history
 
+![Neogit](img/neogit.png)
+![Diffview](img/diffview.png)
+
 ## Quick Reference
 
 | Component | Tool |

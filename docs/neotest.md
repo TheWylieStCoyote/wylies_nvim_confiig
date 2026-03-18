@@ -2,6 +2,10 @@
 
 > Unified test framework for Neovim with adapters for multiple languages
 
+![Neotest summary panel](img/neotest-summary.png)
+![Neotest results](img/neotest-results.png)
+![Neotest coverage](img/neotest-coverage.png)
+
 ## Quick Reference
 
 | Component | Tool |

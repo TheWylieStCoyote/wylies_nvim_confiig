@@ -10,6 +10,9 @@
 | Storage | Per-project file lists |
 | Integration | Telescope picker |
 
+![Harpoon menu](img/harpoon-menu.png)
+![Harpoon navigation](img/harpoon-nav.png)
+
 ## Concept
 
 Harpoon lets you "mark" files you're actively working on and jump to them instantly with a single keystroke. Instead of fuzzy-finding or navigating the file tree, you press `<leader>1` to go to your first marked file, `<leader>2` for the second, etc.

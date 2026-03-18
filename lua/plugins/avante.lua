@@ -64,8 +64,9 @@ return {
       { "<leader>Ah", "<cmd>AvanteHistory<cr>", desc = "Avante: Chat History" },
     },
     opts = {
-      -- Default provider (change to "openai", "ollama", "copilot", etc.)
-      provider = "claude",
+      -- Default provider — ollama works locally without an API key.
+      -- Switch to "claude" or "openai" when API keys are available.
+      provider = "ollama",
       -- Provider configurations (new format)
       providers = {
         claude = {
@@ -89,6 +90,8 @@ return {
         ollama = {
           endpoint = "http://127.0.0.1:11434",
           model = "codellama:13b",
+          -- Required: Avante disables Ollama by default; this enables it.
+          is_env_set = function() return true end,
           extra_request_body = {
             options = {
               temperature = 0.75,

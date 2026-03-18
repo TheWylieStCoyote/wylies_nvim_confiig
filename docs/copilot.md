@@ -2,6 +2,9 @@
 
 > AI-powered code completion and chat assistant
 
+![Copilot Chat open](img/copilot-chat-open.png)
+![Copilot Chat response](img/copilot-chat-response.png)
+
 ## Quick Reference
 
 | Component | Tool |
