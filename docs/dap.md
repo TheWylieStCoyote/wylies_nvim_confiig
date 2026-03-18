@@ -2,6 +2,9 @@
 
 Centralized debug adapter configuration with persistent breakpoints and inline variable display.
 
+![DAP UI](img/dap-ui.png)
+![DAP breakpoint](img/dap-breakpoint.png)
+
 ## Quick Reference
 
 | Component | Value |

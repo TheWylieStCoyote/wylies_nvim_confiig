@@ -2,6 +2,10 @@
 
 Local LLM integration for code generation, explanation, and review.
 
+![Ollama which-key menu](img/ollama-whichkey.png)
+![Ollama code explanation](img/ollama-explain.png)
+![Ollama code review](img/ollama-review.png)
+
 ## Quick Reference
 
 | Feature | Tool |

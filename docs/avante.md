@@ -2,6 +2,10 @@
 
 > Cursor-style AI coding assistant with multi-provider support
 
+![Avante panel open](img/avante-open.png)
+![Avante response](img/avante-response.png)
+![Avante edit diff](img/avante-edit-diff.png)
+
 ## Quick Reference
 
 | Component | Tool |
