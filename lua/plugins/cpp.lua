@@ -39,6 +39,19 @@ return {
     opts = {
       servers = {
         clangd = {
+          -- Supports compile_commands.json inside hidden build directories.
+          -- Also supports .clangd (already hidden) for per-project compiler flags/includes.
+          on_new_config = function(config, root_dir)
+            local hidden_build_dirs = { ".build", ".cmake-build", ".clangd-build" }
+            for _, dir in ipairs(hidden_build_dirs) do
+              local candidate = root_dir .. "/" .. dir .. "/compile_commands.json"
+              if vim.fn.filereadable(candidate) == 1 then
+                -- Prepend --compile-commands-dir before other flags
+                table.insert(config.cmd, 2, "--compile-commands-dir=" .. root_dir .. "/" .. dir)
+                break
+              end
+            end
+          end,
           cmd = {
             "clangd",
             "--background-index",

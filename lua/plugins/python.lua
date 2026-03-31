@@ -38,6 +38,28 @@ return {
     opts = {
       servers = {
         pyright = {
+          -- Supports both pyrightconfig.json and .pyrightconfig.json (hidden)
+          on_new_config = function(config, root_dir)
+            local hidden = root_dir .. "/.pyrightconfig.json"
+            if vim.fn.filereadable(hidden) == 1 then
+              local ok, data = pcall(function()
+                return vim.json.decode(table.concat(vim.fn.readfile(hidden), "\n"))
+              end)
+              if ok and type(data) == "table" then
+                local s = config.settings or {}
+                local py = s.python or {}
+                local analysis = py.analysis or {}
+                if data.extraPaths then analysis.extraPaths = data.extraPaths end
+                if data.pythonPath then py.pythonPath = data.pythonPath end
+                if data.venvPath then py.venvPath = data.venvPath end
+                if data.venv then py.venv = data.venv end
+                if data.pythonVersion then py.pythonVersion = data.pythonVersion end
+                py.analysis = analysis
+                s.python = py
+                config.settings = s
+              end
+            end
+          end,
           settings = {
             pyright = {
               disableOrganizeImports = true, -- Using ruff for this

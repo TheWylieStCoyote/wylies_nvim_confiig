@@ -41,6 +41,33 @@ return {
     opts = {
       servers = {
         vtsls = {
+          -- Supports .tsconfig.json (hidden) for extra paths/baseUrl.
+          -- Note: tsserver cannot load .tsconfig.json as a project file; instead
+          -- compilerOptions from it are injected into vtsls workspace settings.
+          on_new_config = function(config, root_dir)
+            local hidden = root_dir .. "/.tsconfig.json"
+            if vim.fn.filereadable(hidden) == 1 then
+              local ok, data = pcall(function()
+                return vim.json.decode(table.concat(vim.fn.readfile(hidden), "\n"))
+              end)
+              if ok and type(data) == "table" and type(data.compilerOptions) == "table" then
+                local co = data.compilerOptions
+                local s = config.settings or {}
+                local ts = s.typescript or {}
+                local js = s.javascript or {}
+                if co.paths or co.baseUrl then
+                  local patch = {}
+                  if co.paths then patch.paths = co.paths end
+                  if co.baseUrl then patch.baseUrl = co.baseUrl end
+                  ts.preferences = vim.tbl_deep_extend("force", ts.preferences or {}, patch)
+                  js.preferences = vim.tbl_deep_extend("force", js.preferences or {}, patch)
+                end
+                s.typescript = ts
+                s.javascript = js
+                config.settings = s
+              end
+            end
+          end,
           filetypes = {
             "javascript",
             "javascriptreact",
