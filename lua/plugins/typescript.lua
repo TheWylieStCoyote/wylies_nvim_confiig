@@ -57,8 +57,12 @@ return {
                 local js = s.javascript or {}
                 if co.paths or co.baseUrl then
                   local patch = {}
-                  if co.paths then patch.paths = co.paths end
-                  if co.baseUrl then patch.baseUrl = co.baseUrl end
+                  if co.paths then
+                    patch.paths = co.paths
+                  end
+                  if co.baseUrl then
+                    patch.baseUrl = co.baseUrl
+                  end
                   ts.preferences = vim.tbl_deep_extend("force", ts.preferences or {}, patch)
                   js.preferences = vim.tbl_deep_extend("force", js.preferences or {}, patch)
                 end

@@ -49,11 +49,21 @@ return {
                 local s = config.settings or {}
                 local py = s.python or {}
                 local analysis = py.analysis or {}
-                if data.extraPaths then analysis.extraPaths = data.extraPaths end
-                if data.pythonPath then py.pythonPath = data.pythonPath end
-                if data.venvPath then py.venvPath = data.venvPath end
-                if data.venv then py.venv = data.venv end
-                if data.pythonVersion then py.pythonVersion = data.pythonVersion end
+                if data.extraPaths then
+                  analysis.extraPaths = data.extraPaths
+                end
+                if data.pythonPath then
+                  py.pythonPath = data.pythonPath
+                end
+                if data.venvPath then
+                  py.venvPath = data.venvPath
+                end
+                if data.venv then
+                  py.venv = data.venv
+                end
+                if data.pythonVersion then
+                  py.pythonVersion = data.pythonVersion
+                end
                 py.analysis = analysis
                 s.python = py
                 config.settings = s

@@ -91,7 +91,9 @@ return {
           endpoint = "http://127.0.0.1:11434",
           model = "codellama:13b",
           -- Required: Avante disables Ollama by default; this enables it.
-          is_env_set = function() return true end,
+          is_env_set = function()
+            return true
+          end,
           extra_request_body = {
             options = {
               temperature = 0.75,
