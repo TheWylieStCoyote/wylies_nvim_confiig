@@ -60,6 +60,7 @@ return {
             "--completion-style=detailed",
             "--function-arg-placeholders",
             "--fallback-style=llvm",
+            "--query-driver=/usr/bin/g++*,/usr/bin/gcc*,/usr/bin/c++,/usr/bin/cc,/usr/bin/clang++-*,/usr/bin/clang-[0-9]*,/usr/bin/arm-none-eabi-g++,/usr/bin/arm-none-eabi-gcc",
           },
           init_options = {
             usePlaceholders = true,
