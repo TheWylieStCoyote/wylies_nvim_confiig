@@ -45,6 +45,7 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | GitHub Copilot | copilot.lua | - | - | - | `<leader>a/cp` | [copilot.md](copilot.md) |
 | Ollama (Local AI) | ollama.nvim | - | - | - | `<leader>O` | [ollama.md](ollama.md) |
 | Avante | avante.nvim | - | - | - | `<leader>A` | [avante.md](avante.md) |
+| 99 (Agentic) | ThePrimeagen/99 | - | - | - | `<leader>9` | [99.md](99.md) |
 | **Testing** |
 | Neotest | neotest + adapters | - | - | DAP | `<leader>t` | [neotest.md](neotest.md) |
 | **Navigation** |

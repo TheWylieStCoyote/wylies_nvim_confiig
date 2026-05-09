@@ -15,6 +15,7 @@
 - [Treesitter Context](#treesitter-context)
 - [Ollama - Local AI](#ollama---local-ai)
 - [Copilot - AI Code Assistance](#copilot---ai-code-assistance)
+- [99 - Agentic AI Workflow](#99---agentic-ai-workflow)
 - [Diffview - Git Diff Viewer](#diffview---git-diff-viewer)
 - [Neogit - Git Interface](#neogit---git-interface)
 - [Session Management](#session-management)
@@ -81,6 +82,7 @@
 | `<leader>x` | Diagnostics | Trouble/diagnostics, TODOs |
 | `<leader>y` | Yazi | File manager |
 | `<leader>z` | Zig | Zig development |
+| `<leader>9` | 99 (AI Agent) | ThePrimeagen's agentic AI workflow |
 | `<leader>C` | CUDA Profile | CUDA profiling commands |
 | `<leader>H` | Haskell | Haskell development |
 | `<leader>T` | Terraform | Terraform/HCL development |
@@ -340,6 +342,40 @@ ollama pull codellama
 | `<leader>cps` | n | Copilot Status |
 | `<leader>cpp` | n | Open Copilot Panel |
 | `<leader>cpt` | n | Toggle Suggestions |
+
+---
+
+## 99 - Agentic AI Workflow
+
+ThePrimeagen's agentic AI assistant. Wraps a CLI provider (Claude Code in this config; OpenCode / Cursor / Gemini also supported). BETA — upstream API may change.
+
+See [99.md](99.md) for full details, architecture, and troubleshooting.
+
+### Operations
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>9s` | n | Search — agentic project search; results in quickfix |
+| `<leader>9v` | v | Visual — replace selection with LLM output |
+| `<leader>9b` | n | Vibe — agentic multi-file edit (drops a line marker) |
+| `<leader>9o` | n | Open last result |
+| `<leader>9x` | n | Stop all in-flight requests |
+| `<leader>9l` | n | View logs |
+| `<leader>9c` | n | Clear previous request history |
+
+### Provider / Model Selection (Telescope)
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<leader>9m` | n | Select model (session-only) |
+| `<leader>9p` | n | Select provider (session-only) |
+
+### Prompt Window Completions
+
+| Trigger | Completes |
+|---------|-----------|
+| `@` | Project files (gitignore-aware) |
+| `#` | Skills/rules from `AGENT.md` and custom rule dirs |
 
 ---
 

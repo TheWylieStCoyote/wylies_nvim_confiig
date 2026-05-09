@@ -192,6 +192,12 @@ return {
         -- Avante AI
         { "<leader>A", group = "Avante (AI)" },
 
+        -- 99 (ThePrimeagen agentic AI)
+        { "<leader>9", group = "99 (AI Agent)" },
+        { "<leader>9b", desc = "Vibe (agentic edit)" },
+        { "<leader>9m", desc = "Select Model" },
+        { "<leader>9p", desc = "Select Provider" },
+
         -- Overseer tasks
         { "<leader>v", group = "Overseer (Tasks)" },
 
