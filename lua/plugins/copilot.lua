@@ -14,7 +14,7 @@ return {
         auto_trigger = true,
         debounce = 75,
         keymap = {
-          accept = "<M-l>", -- Alt+l to accept
+          accept = false, -- handled by blink.cmp
           accept_word = "<M-k>", -- Alt+k to accept word
           accept_line = "<M-j>", -- Alt+j to accept line
           next = "<M-]>", -- Alt+] for next suggestion
