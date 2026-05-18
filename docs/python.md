@@ -31,6 +31,7 @@
 |-----|--------|
 | `<leader>po` | Organize Imports (ruff) |
 | `<leader>pf` | Ruff Fix All |
+| `<leader>pF` | Ruff Format (conform) |
 | `<leader>pc` | Type Check (pyright) |
 | `<leader>pC` | Type Check (mypy) |
 
@@ -243,7 +244,8 @@ Then use "Attach to Remote" configuration.
 ### Import Organization
 1. `<leader>po` - Organize imports with ruff
 2. `<leader>pf` - Fix all ruff issues
-3. Or format on save handles it automatically
+3. `<leader>pF` - Format file with ruff (via conform)
+4. Or format on save handles it automatically
 
 ### Package Management
 1. `<leader>piu` - Install a package (prompted)

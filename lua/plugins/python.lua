@@ -123,6 +123,10 @@ return {
             })
           end, "Ruff Fix All")
 
+          map("<leader>pF", function()
+            require("conform").format({ async = true, lsp_fallback = true })
+          end, "Ruff Format")
+
           -- Type checking
           map("<leader>pc", "<cmd>split | terminal pyright .<cr>", "Type Check (pyright)")
           map("<leader>pC", "<cmd>split | terminal mypy .<cr>", "Type Check (mypy)")
