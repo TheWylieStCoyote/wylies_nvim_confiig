@@ -67,5 +67,12 @@ map("n", "<leader>ga", function()
   end
 end, { desc = "Git add (stage) current file" })
 
+-- Git: show history for line at cursor
+map("n", "<leader>gL", function()
+  local line = vim.fn.line(".")
+  local file = vim.fn.expand("%")
+  vim.cmd(string.format("!git log -L %d,%d:%s", line, line, file))
+end, { desc = "Git log for current line" })
+
 -- Terminal in new tab
 map("n", "<leader>tN", "<cmd>tabnew | terminal<cr>", { desc = "Terminal in new tab" })

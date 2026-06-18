@@ -55,6 +55,7 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | **Git** |
 | Diffview | diffview.nvim | - | - | - | `<leader>g` | [diffview.md](diffview.md) |
 | Neogit | neogit | - | - | - | `<leader>g` | [neogit.md](neogit.md) |
+| Gitsigns | gitsigns.nvim | - | - | - | `<leader>gb/gB/gh`, `]h/[h` | [gitsigns.md](gitsigns.md) |
 | Octo | octo.nvim | - | - | - | `<leader>go` | [octo.md](octo.md) |
 | **Remote Development** |
 | Remote Neovim | remote-nvim.nvim | - | - | - | `<leader>R` | [remote-nvim.md](remote-nvim.md) |
