@@ -1,6 +1,6 @@
 # Language Support Documentation
 
-This Neovim configuration includes comprehensive LSP, formatting, linting, and debugging support for 27 languages.
+This Neovim configuration includes comprehensive LSP, formatting, linting, and debugging support for 28 languages.
 
 ## Quick Reference
 
@@ -14,6 +14,7 @@ This Neovim configuration includes comprehensive LSP, formatting, linting, and d
 | CUDA | clangd | clang-format | - | cuda-gdb | `<leader>c` | [cuda.md](cuda.md) |
 | **Web & Backend** |
 | TypeScript/JS | vtsls | prettier | eslint_d | js-debug | `<leader>j` | [typescript.md](typescript.md) |
+| Vue | vue_ls + vtsls | prettier | eslint_d | js-debug | `<leader>j` | - |
 | Python | pyright | ruff | ruff | debugpy | `<leader>p` | [python.md](python.md) |
 | Ruby | ruby_lsp | rubocop | rubocop | rdbg | `<leader>R` | [ruby.md](ruby.md) |
 | Elixir | elixir-ls | mix format | - | elixir-ls | `<leader>x` | [elixir.md](elixir.md) |
