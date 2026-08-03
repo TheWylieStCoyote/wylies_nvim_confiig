@@ -134,6 +134,7 @@ return {
         -- Note: <leader>gd, <leader>gh are direct actions (DiffviewOpen, FileHistory); no group needed
         { "<leader>gn", group = "Neogit" }, -- <leader>gn opens Neogit, gnc/gnb are sub-commands
         { "<leader>go", group = "Octo (GitHub)" },
+        { "<leader>gr", group = "Review (tuicr)" },
 
         -- Debug subgroups
         { "<leader>da", group = "Adapters" },
