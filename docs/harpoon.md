@@ -7,8 +7,8 @@
 | Component | Tool |
 |-----------|------|
 | Plugin | ThePrimeagen/harpoon (v2) |
-| Storage | Per-project file lists |
-| Integration | Telescope picker |
+| Storage | Per-project lists, keyed by git root |
+| Persistence | `~/.local/share/nvim/harpoon.json` |
 
 ![Harpoon menu](img/harpoon-menu.png)
 ![Harpoon navigation](img/harpoon-nav.png)
@@ -31,7 +31,6 @@ Harpoon lets you "mark" files you're actively working on and jump to them instan
 | `<leader>ha` | Add current file to list |
 | `<leader>hr` | Remove current file from list |
 | `<leader>hh` | Toggle Harpoon menu |
-| `<leader>hf` | Open in Telescope |
 | `<leader>hc` | Clear all marks |
 
 ### Quick Navigation
@@ -130,19 +129,15 @@ If slot 1 has the wrong file:
 <leader>h1
 ```
 
-### Using Telescope
-
-```
-<leader>hf   -- Opens Telescope with harpooned files
-             -- Fuzzy search through your marks
-```
-
 ## Project-Specific Lists
 
-Harpoon automatically maintains separate lists per project:
-- Uses git root as project identifier
-- Falls back to current working directory
-- Lists persist between sessions
+Harpoon maintains separate lists per project. `opts.settings.key` in
+`lua/plugins/harpoon.lua` resolves the project identifier:
+- Runs `git rev-parse --show-toplevel` and uses the git root, so it does not
+  matter which subdirectory you started Neovim from
+- Falls back to the current working directory outside a repo
+- Lists persist between sessions in `~/.local/share/nvim/harpoon.json`
+- `save_on_toggle` and `sync_on_ui_close` write changes when the menu closes
 
 ## Tips
 
@@ -166,18 +161,18 @@ Harpoon automatically maintains separate lists per project:
 
 ### Custom Keybindings
 
-To use different keys, modify `lua/plugins/harpoon.lua`:
+To use different keys, edit the lazy.nvim `keys` spec in
+`lua/plugins/harpoon.lua` -- that spec is also what lazy-loads harpoon on first
+use, so every mapping must live there to keep that working:
 
 ```lua
--- Example: Use F1-F5 instead
-map("n", "<F1>", function() harpoon:list():select(1) end)
-map("n", "<F2>", function() harpoon:list():select(2) end)
--- etc.
+keys = {
+  -- Example: use F1-F5 instead of <leader>1-5
+  { "<F1>", function() require("harpoon"):list():select(1) end, desc = "Harpoon: File 1" },
+  { "<F2>", function() require("harpoon"):list():select(2) end, desc = "Harpoon: File 2" },
+  -- etc.
+}
 ```
-
-### Disable Telescope Integration
-
-Remove the `toggle_telescope` function and `<leader>hf` mapping if not using Telescope.
 
 ## See Also
 
