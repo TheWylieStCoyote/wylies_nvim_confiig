@@ -16,6 +16,9 @@ end
 return {
   {
     "rest-nvim/rest.nvim",
+    -- Disabled: its luarocks build requires Lua 5.1 and fails where hererocks
+    -- can't provide it. Set to true (or remove) to re-enable.
+    enabled = false,
     ft = "http",
     dependencies = {
       "nvim-lua/plenary.nvim",
