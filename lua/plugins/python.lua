@@ -38,15 +38,21 @@ return {
     opts = {
       servers = {
         pyright = {
-          -- Supports both pyrightconfig.json and .pyrightconfig.json (hidden)
-          on_new_config = function(config, root_dir)
-            local hidden = root_dir .. "/.pyrightconfig.json"
+          -- Supports both pyrightconfig.json and .pyrightconfig.json (hidden).
+          -- vim.lsp.config has no on_new_config hook; before_init runs once the
+          -- root is resolved, before `initialize`. The client already holds a
+          -- reference to `config.settings`, so mutate it in place, never replace it.
+          before_init = function(_, config)
+            if not config.root_dir then
+              return
+            end
+            local hidden = config.root_dir .. "/.pyrightconfig.json"
             if vim.fn.filereadable(hidden) == 1 then
               local ok, data = pcall(function()
                 return vim.json.decode(table.concat(vim.fn.readfile(hidden), "\n"))
               end)
               if ok and type(data) == "table" then
-                local s = config.settings or {}
+                local s = config.settings
                 local py = s.python or {}
                 local analysis = py.analysis or {}
                 if data.extraPaths then
@@ -66,7 +72,6 @@ return {
                 end
                 py.analysis = analysis
                 s.python = py
-                config.settings = s
               end
             end
           end,
