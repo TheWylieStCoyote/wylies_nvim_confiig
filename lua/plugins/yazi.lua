@@ -9,6 +9,10 @@ end
 return {
   {
     "mikavilpas/yazi.nvim",
+    -- Upstream carries a git submodule (yazi-plugin/yazi-plugins) used only by its
+    -- test suite. lazy's `checkout --recurse-submodules` fails on clones that
+    -- predate it and leaves the working tree half updated, so skip submodules.
+    submodules = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
     },

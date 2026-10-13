@@ -1,6 +1,18 @@
 -- HTTP Client Configuration
 -- Execute HTTP requests from .http files using rest.nvim
 
+-- rest.nvim is a luarocks package: lazy.nvim needs `luarocks`, or python3 plus a
+-- C compiler and make to bootstrap one through hererocks. Requests run via curl.
+local has_rocks = vim.fn.executable("luarocks") == 1
+  or (
+    (vim.fn.executable("python3") == 1 or vim.fn.executable("python") == 1)
+    and vim.fn.executable("cc") == 1
+    and vim.fn.executable("make") == 1
+  )
+if vim.fn.executable("curl") ~= 1 or not has_rocks then
+  return {}
+end
+
 return {
   {
     "rest-nvim/rest.nvim",

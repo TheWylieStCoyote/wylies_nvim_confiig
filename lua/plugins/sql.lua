@@ -75,12 +75,16 @@ return {
       formatters = {
         sql_formatter = {
           command = "sql-formatter",
-          args = {
-            "--language",
-            "postgresql",
-            "--config",
-            vim.fn.expand("~/.config/sql-formatter.json"),
-          },
+          args = function()
+            local args = { "--language", "postgresql" }
+            -- sql-formatter exits non-zero on a missing config file, which would
+            -- turn every format-on-save into an error on machines without one
+            local config = vim.fn.expand("~/.config/sql-formatter.json")
+            if vim.fn.filereadable(config) == 1 then
+              vim.list_extend(args, { "--config", config })
+            end
+            return args
+          end,
           stdin = true,
         },
       },

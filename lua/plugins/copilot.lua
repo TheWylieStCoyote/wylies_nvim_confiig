@@ -1,6 +1,11 @@
 -- GitHub Copilot Configuration
 -- AI-powered code completion and chat
 
+-- Skip Copilot config if Node.js is not installed (copilot.lua runs the agent on node)
+if vim.fn.executable("node") ~= 1 then
+  return {}
+end
+
 return {
   -- Copilot core plugin (Lua implementation)
   {

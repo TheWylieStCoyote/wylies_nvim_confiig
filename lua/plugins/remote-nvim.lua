@@ -1,6 +1,11 @@
 -- Remote Neovim Configuration
 -- Remote development via SSH, Docker, and devcontainers
 
+-- Skip remote-nvim config if ssh is not installed
+if vim.fn.executable("ssh") ~= 1 then
+  return {}
+end
+
 return {
   {
     "amitds1997/remote-nvim.nvim",

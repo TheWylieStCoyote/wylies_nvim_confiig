@@ -128,6 +128,38 @@ return {
     end,
   },
 
+  -- RustOwl: visualize ownership, borrows, and lifetimes under the cursor
+  -- Needs the `rustowl` binary on PATH; install it yourself with one of:
+  --   cargo binstall rustowl                          (prebuilt, fastest)
+  --   cargo install rustowl                           (builds from source)
+  --   curl -L https://raw.githubusercontent.com/cordx56/rustowl/refs/heads/main/scripts/installer | sh
+  {
+    "cordx56/rustowl",
+    version = "*",
+    ft = { "rust" }, -- the plugin attaches from its own ftplugin/rust.lua
+    -- Don't load the plugin at all unless the binary made it onto PATH
+    cond = function()
+      return vim.fn.executable("rustowl") == 1
+    end,
+    opts = {
+      auto_attach = true,
+      -- Opt in per buffer with <leader>ro instead of highlighting everywhere
+      auto_enable = false,
+      idle_time = 500,
+    },
+    keys = {
+      {
+        "<leader>ro",
+        function()
+          require("rustowl").toggle()
+        end,
+        desc = "RustOwl: Toggle Ownership Hints",
+        ft = "rust",
+      },
+      { "<leader>rO", "<cmd>Rustowl restart_client<cr>", desc = "RustOwl: Restart Client", ft = "rust" },
+    },
+  },
+
   -- crates.nvim: Cargo.toml dependency management
   {
     "saecki/crates.nvim",

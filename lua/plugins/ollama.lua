@@ -13,6 +13,11 @@
 -- Example:
 --   OLLAMA_URL=http://my-server:11434 OLLAMA_MODEL=deepseek-coder:33b nvim
 
+-- Skip Ollama config if the binary is not installed (a remote OLLAMA_URL still opts in)
+if vim.fn.executable("ollama") ~= 1 and not vim.env.OLLAMA_URL then
+  return {}
+end
+
 return {
   {
     "nomnivore/ollama.nvim",

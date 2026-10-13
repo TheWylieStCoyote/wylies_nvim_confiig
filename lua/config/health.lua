@@ -123,6 +123,17 @@ M.check = function()
     vim.health.warn("Mason not yet initialized (run :Mason)")
   end
 
+  -- Dependency gating (config/deps.lua)
+  vim.health.start("Dependency Gating")
+  local skipped = require("config.deps").skipped
+  if #skipped == 0 then
+    vim.health.ok("Nothing skipped: every auto-installed tool has its toolchain")
+  else
+    for _, item in ipairs(skipped) do
+      vim.health.warn("Skipped " .. item)
+    end
+  end
+
   -- TreeSitter
   vim.health.start("TreeSitter")
   if check_module("nvim-treesitter") then

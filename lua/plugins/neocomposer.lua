@@ -1,11 +1,23 @@
 -- NeoComposer Configuration
 -- Macro management with browse, edit, and replay via telescope
 
--- sqlite.lua requires a compatible libsqlite3; skip if unavailable (e.g. snap glibc mismatch)
-local ok = pcall(require, "sqlite")
-if not ok then
+-- sqlite.lua loads libsqlite3 through LuaJIT's FFI. Under the snap build of
+-- Neovim the system `libsqlite3.so` needs a newer glibc than the snap ships,
+-- while the versioned `libsqlite3.so.0` resolves to a compatible copy. Probe
+-- for a loadable library and point sqlite.lua at it; skip NeoComposer if none.
+-- (This can't be `pcall(require, "sqlite")`: that runs before lazy has
+-- installed the plugin, so it never passes and the plugin never gets installed.)
+local sqlite_lib
+for _, lib in ipairs({ vim.g.sqlite_clib_path or "libsqlite3", "libsqlite3.so.0" }) do
+  if pcall(require("ffi").load, lib) then
+    sqlite_lib = lib
+    break
+  end
+end
+if not sqlite_lib then
   return {}
 end
+vim.g.sqlite_clib_path = sqlite_lib
 
 return {
   {

@@ -1,15 +1,15 @@
 -- codemmet: Emmet-style abbreviation expansion for code.
--- Loaded from a local clone (no remote repo). TESTING feat/nvim-dot-repeat
--- (master + wrap-as-operator + dot-repeat for wrap/expand; the existing
--- expand/wrap keymaps below gain the new behavior automatically — no new
--- bindings needed). `cmd` points at the branch-built release binary because
--- the snippet browser/context viewer need server commands the PATH-installed
--- binary predates. Rebuild after switching branches:
---   cargo build --release -p codemmet
--- To return to the installed binary, delete `cmd` (default: codemmet on PATH).
+-- Requires the `codemmet` binary on PATH (cargo install codemmet). The plugin
+-- tracks tagged releases so its Lua side stays in step with the installed binary.
+
+-- Skip codemmet config if the binary is not installed
+if vim.fn.executable("codemmet") ~= 1 then
+  return {}
+end
+
 return {
-  dir = "/home/wylie/Documents/projects/codetools/codemmet",
-  name = "codemmet",
+  "TheWylieStCoyote/codemmet",
+  version = "*",
   ft = {
     "rust",
     "python",
@@ -20,7 +20,6 @@ return {
     "go",
   },
   opts = {
-    cmd = { "/home/wylie/Documents/projects/codetools/codemmet/target/release/codemmet", "lsp" },
     keymaps = {
       expand = "<A-e>", -- insert & normal: expand the abbreviation before the cursor
       wrap = "<leader>cw", -- visual: wrap the selection in an abbreviation

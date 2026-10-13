@@ -1,6 +1,11 @@
 -- Devcontainer Configuration
 -- VSCode-like devcontainer support for Neovim
 
+-- Skip devcontainer config if no container runtime is installed
+if vim.fn.executable("docker") ~= 1 and vim.fn.executable("podman") ~= 1 then
+  return {}
+end
+
 return {
   {
     "esensar/nvim-dev-container",

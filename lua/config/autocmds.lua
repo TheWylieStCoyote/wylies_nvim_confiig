@@ -49,10 +49,19 @@ autocmd("BufWritePre", {
 -- Disable line numbers in terminal
 autocmd("TermOpen", {
   group = augroup("terminal_settings", { clear = true }),
-  callback = function()
+  callback = function(args)
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     vim.opt_local.signcolumn = "no"
+
+    -- Snacks terminals already map <esc> to a 200ms double-tap, and floats that
+    -- opt out (tuicr) want <esc> passed straight through to the TUI.
+    if vim.bo[args.buf].filetype ~= "snacks_terminal" then
+      vim.keymap.set("t", "<esc><esc>", "<C-\\><C-n>", {
+        buffer = args.buf,
+        desc = "Enter normal mode",
+      })
+    end
   end,
-  desc = "Disable line numbers in terminal",
+  desc = "Terminal buffer settings",
 })

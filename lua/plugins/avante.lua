@@ -7,6 +7,11 @@
 --   - OPENAI_API_KEY for OpenAI
 --   - Or use Ollama for local models (no key needed)
 
+-- Skip Avante if its build step can't run (`make` downloads or builds the native library via curl)
+if vim.fn.executable("make") ~= 1 or vim.fn.executable("curl") ~= 1 then
+  return {}
+end
+
 return {
   {
     "yetone/avante.nvim",

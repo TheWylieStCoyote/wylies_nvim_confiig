@@ -1,6 +1,11 @@
 -- Octo.nvim Configuration
 -- GitHub issues, pull requests, and reviews inside Neovim
 
+-- Skip Octo config if the GitHub CLI is not installed
+if vim.fn.executable("gh") ~= 1 then
+  return {}
+end
+
 return {
   {
     "pwntester/octo.nvim",

@@ -1,6 +1,8 @@
 return {
   {
-    "gthelding/monokai-pro.nvim",
+    -- upstream repo; the gthelding fork this used to point at was deleted
+    -- after its commits were merged here
+    "loctvl842/monokai-pro.nvim",
     config = function()
       require("monokai-pro").setup({
         filter = "ristretto",
