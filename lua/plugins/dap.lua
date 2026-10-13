@@ -7,6 +7,24 @@ return {
   {
     "mfussenegger/nvim-dap",
     lazy = true,
+    -- Session control. Function keys mirror the VS Code layout that java.lua
+    -- already uses buffer-locally; the <leader>d variants are for keyboards
+    -- without easy F-keys. Breakpoint keys live on persistent-breakpoints below.
+    keys = {
+      -- stylua: ignore start
+      { "<F5>", function() require("dap").continue() end, desc = "Debug: Continue/Start" },
+      { "<F10>", function() require("dap").step_over() end, desc = "Debug: Step Over" },
+      { "<F11>", function() require("dap").step_into() end, desc = "Debug: Step Into" },
+      { "<S-F11>", function() require("dap").step_out() end, desc = "Debug: Step Out" },
+      { "<leader>dC", function() require("dap").continue() end, desc = "Continue/Start" },
+      { "<leader>do", function() require("dap").step_over() end, desc = "Step Over" },
+      { "<leader>di", function() require("dap").step_into() end, desc = "Step Into" },
+      { "<leader>dO", function() require("dap").step_out() end, desc = "Step Out" },
+      { "<leader>dR", function() require("dap").run_to_cursor() end, desc = "Run to Cursor" },
+      { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
+      { "<leader>dr", function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
+      -- stylua: ignore end
+    },
     config = function()
       -- Set up icons
       local icons = {
@@ -33,6 +51,12 @@ return {
     "rcarriga/nvim-dap-ui",
     lazy = true,
     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    keys = {
+      -- stylua: ignore start
+      { "<leader>du", function() require("dapui").toggle({}) end, desc = "Toggle Debug UI" },
+      { "<leader>de", function() require("dapui").eval() end, mode = { "n", "v" }, desc = "Eval Expression" },
+      -- stylua: ignore end
+    },
     opts = {},
     config = function(_, opts)
       local dap = require("dap")
