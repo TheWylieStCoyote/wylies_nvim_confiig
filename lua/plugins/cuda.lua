@@ -46,16 +46,6 @@ return {
       opts.servers.clangd = vim.tbl_deep_extend("force", clangd, {
         cmd = cmd,
         filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-        root_dir = function(fname)
-          local lspconfig = require("lspconfig")
-          return lspconfig.util.root_pattern(
-            "compile_commands.json",
-            "compile_flags.txt",
-            "Makefile",
-            "CMakeLists.txt",
-            ".git"
-          )(fname) or vim.fn.getcwd()
-        end,
       })
       return opts
     end,

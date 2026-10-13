@@ -35,13 +35,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        bufls = {
-          cmd = { "bufls", "serve" },
+        -- nvim-lspconfig's name for `buf lsp`; it supplies cmd and root markers
+        buf_ls = {
           filetypes = { "proto" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern("buf.yaml", "buf.gen.yaml", ".git")(fname) or vim.fn.getcwd()
-          end,
         },
         -- Alternative: pbls (Protocol Buffers Language Server)
         -- pbls = {

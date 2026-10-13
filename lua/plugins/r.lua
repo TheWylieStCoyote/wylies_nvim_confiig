@@ -40,10 +40,10 @@ return {
         r_language_server = {
           cmd = { "R", "--slave", "-e", "languageserver::run()" },
           filetypes = { "r", "rmd" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(".Rproj.user", "*.Rproj", "DESCRIPTION", ".git")(fname)
-              or vim.fn.getcwd()
+          root_dir = function(bufnr, on_dir)
+            on_dir(vim.fs.root(bufnr, { ".Rproj.user", "DESCRIPTION" }) or vim.fs.root(bufnr, function(name)
+              return name:match("%.Rproj$") ~= nil
+            end) or vim.fs.root(bufnr, ".git") or vim.fn.getcwd())
           end,
           settings = {
             r = {

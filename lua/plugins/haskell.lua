@@ -39,17 +39,6 @@ return {
       servers = {
         hls = {
           filetypes = { "haskell", "lhaskell", "cabal" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              "hie.yaml",
-              "stack.yaml",
-              "cabal.project",
-              "*.cabal",
-              "package.yaml",
-              ".git"
-            )(fname)
-          end,
           settings = {
             haskell = {
               cabalFormattingProvider = "cabalfmt",

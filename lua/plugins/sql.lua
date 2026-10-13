@@ -36,10 +36,7 @@ return {
         sqls = {
           cmd = { "sqls" },
           filetypes = { "sql", "mysql", "plsql" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(".sqls.yaml", ".git")(fname) or vim.fn.getcwd()
-          end,
+          root_markers = { ".sqls.yaml", "config.yml", ".git" },
           on_attach = function(client, bufnr)
             local ok, sqls = pcall(require, "sqls")
             if ok then

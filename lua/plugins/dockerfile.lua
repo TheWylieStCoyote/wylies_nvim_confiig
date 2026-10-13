@@ -62,10 +62,7 @@ return {
         dockerls = {
           cmd = { "docker-langserver", "--stdio" },
           filetypes = { "dockerfile" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern("Dockerfile", "dockerfile", ".git")(fname) or vim.fn.getcwd()
-          end,
+          root_markers = { "Dockerfile", "dockerfile", ".git" },
           settings = {
             docker = {
               languageserver = {
@@ -80,16 +77,7 @@ return {
         docker_compose_language_service = {
           cmd = { "docker-compose-langserver", "--stdio" },
           filetypes = { "yaml.docker-compose" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              "docker-compose.yml",
-              "docker-compose.yaml",
-              "compose.yml",
-              "compose.yaml",
-              ".git"
-            )(fname) or vim.fn.getcwd()
-          end,
+          root_markers = { "docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml", ".git" },
         },
       },
     },

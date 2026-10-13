@@ -49,10 +49,6 @@ return {
             ]],
           },
           filetypes = { "julia" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern("Project.toml", "JuliaProject.toml", ".git")(fname) or vim.fn.getcwd()
-          end,
           settings = {
             julia = {
               lint = {

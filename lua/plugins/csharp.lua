@@ -47,12 +47,6 @@ return {
           organize_imports_on_format = true,
           enable_decompilation_support = true,
           filetypes = { "cs", "vb" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            local primary = lspconfig.util.root_pattern("*.sln")(fname)
-            local fallback = lspconfig.util.root_pattern("*.csproj", ".git")(fname)
-            return primary or fallback
-          end,
           settings = {
             FormattingOptions = {
               EnableEditorConfigSupport = true,

@@ -38,10 +38,6 @@ return {
         elixirls = {
           cmd = { "elixir-ls" },
           filetypes = { "elixir", "eelixir", "heex", "surface" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern("mix.exs", ".git")(fname) or vim.fn.getcwd()
-          end,
           settings = {
             elixirLS = {
               dialyzerEnabled = true,
