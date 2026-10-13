@@ -37,21 +37,32 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      servers = {
-        clangd = {
-          -- Supports compile_commands.json inside hidden build directories.
-          -- Also supports .clangd (already hidden) for per-project compiler flags/includes.
-          on_new_config = function(config, root_dir)
-            local hidden_build_dirs = { ".build", ".cmake-build", ".clangd-build" }
-            for _, dir in ipairs(hidden_build_dirs) do
-              local candidate = root_dir .. "/" .. dir .. "/compile_commands.json"
-              if vim.fn.filereadable(candidate) == 1 then
-                -- Prepend --compile-commands-dir before other flags
-                table.insert(config.cmd, 2, "--compile-commands-dir=" .. root_dir .. "/" .. dir)
+      setup = {
+        -- Point clangd at a compile_commands.json inside a hidden build directory.
+        -- vim.lsp.config has no on_new_config hook, so wrap the final `cmd` list
+        -- (after other files, e.g. cuda.lua, have extended it) in a cmd function
+        -- that sees the resolved root_dir. Per-project flags can still go in .clangd.
+        clangd = function(_, sopts)
+          local args = sopts.cmd
+          sopts.cmd = function(dispatchers, config)
+            local cmd = vim.deepcopy(args)
+            for _, dir in ipairs({ ".build", ".cmake-build", ".clangd-build" }) do
+              local build = config.root_dir and (config.root_dir .. "/" .. dir) or nil
+              if build and vim.fn.filereadable(build .. "/compile_commands.json") == 1 then
+                table.insert(cmd, 2, "--compile-commands-dir=" .. build)
                 break
               end
             end
-          end,
+            return vim.lsp.rpc.start(cmd, dispatchers, {
+              cwd = config.cmd_cwd,
+              env = config.cmd_env,
+              detached = config.detached,
+            })
+          end
+        end,
+      },
+      servers = {
+        clangd = {
           cmd = {
             "clangd",
             "--background-index",
