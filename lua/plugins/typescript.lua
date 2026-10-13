@@ -44,15 +44,21 @@ return {
           -- Supports .tsconfig.json (hidden) for extra paths/baseUrl.
           -- Note: tsserver cannot load .tsconfig.json as a project file; instead
           -- compilerOptions from it are injected into vtsls workspace settings.
-          on_new_config = function(config, root_dir)
-            local hidden = root_dir .. "/.tsconfig.json"
+          -- vim.lsp.config has no on_new_config hook; before_init runs once the
+          -- root is resolved. The client already holds a reference to
+          -- `config.settings`, so mutate it in place, never replace it.
+          before_init = function(_, config)
+            if not config.root_dir then
+              return
+            end
+            local hidden = config.root_dir .. "/.tsconfig.json"
             if vim.fn.filereadable(hidden) == 1 then
               local ok, data = pcall(function()
                 return vim.json.decode(table.concat(vim.fn.readfile(hidden), "\n"))
               end)
               if ok and type(data) == "table" and type(data.compilerOptions) == "table" then
                 local co = data.compilerOptions
-                local s = config.settings or {}
+                local s = config.settings
                 local ts = s.typescript or {}
                 local js = s.javascript or {}
                 if co.paths or co.baseUrl then
@@ -68,7 +74,6 @@ return {
                 end
                 s.typescript = ts
                 s.javascript = js
-                config.settings = s
               end
             end
           end,
