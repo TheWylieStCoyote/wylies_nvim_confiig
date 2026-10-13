@@ -36,10 +36,7 @@ return {
         ruby_lsp = {
           cmd = { "ruby-lsp" },
           filetypes = { "ruby", "eruby" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern("Gemfile", ".git", ".ruby-version", "Rakefile")(fname)
-          end,
+          root_markers = { "Gemfile", ".git", ".ruby-version", "Rakefile" },
           init_options = {
             formatter = "auto",
             linters = { "rubocop" },

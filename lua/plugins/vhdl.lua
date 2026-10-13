@@ -29,10 +29,10 @@ return {
         vhdl_ls = {
           cmd = { "vhdl_ls" },
           filetypes = { "vhdl" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern("vhdl_ls.toml", ".vhdl_ls.toml", "hdl-prj.json", ".git")(fname)
-              or vim.fn.getcwd()
+          -- keep the cwd fallback: the default config sets workspace_required,
+          -- which would otherwise refuse to start outside a project
+          root_dir = function(bufnr, on_dir)
+            on_dir(vim.fs.root(bufnr, { "vhdl_ls.toml", ".vhdl_ls.toml", "hdl-prj.json", ".git" }) or vim.fn.getcwd())
           end,
           settings = {},
           -- Note: vhdl_ls requires a vhdl_ls.toml config file

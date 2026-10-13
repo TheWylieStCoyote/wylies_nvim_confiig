@@ -37,20 +37,13 @@ return {
         verible = {
           cmd = { "verible-verilog-ls" },
           filetypes = { "verilog", "systemverilog" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern("verible.filelist", ".git", "*.sv", "*.v")(fname) or vim.fn.getcwd()
-          end,
           settings = {},
         },
         -- Alternative: svls (SystemVerilog Language Server)
         svls = {
           cmd = { "svls" },
           filetypes = { "verilog", "systemverilog" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(".svls.toml", ".git")(fname) or vim.fn.getcwd()
-          end,
+          root_markers = { ".svls.toml", ".git" },
           settings = {},
         },
       },

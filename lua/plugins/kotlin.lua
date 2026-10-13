@@ -36,17 +36,6 @@ return {
       servers = {
         kotlin_language_server = {
           filetypes = { "kotlin" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(
-              "settings.gradle",
-              "settings.gradle.kts",
-              "build.gradle",
-              "build.gradle.kts",
-              "pom.xml",
-              ".git"
-            )(fname)
-          end,
           settings = {
             kotlin = {
               compiler = {

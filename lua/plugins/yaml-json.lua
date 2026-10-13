@@ -41,10 +41,6 @@ return {
         yamlls = {
           cmd = { "yaml-language-server", "--stdio" },
           filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(".git")(fname) or vim.fn.getcwd()
-          end,
           settings = {
             yaml = {
               schemaStore = {
@@ -91,10 +87,6 @@ return {
         jsonls = {
           cmd = { "vscode-json-language-server", "--stdio" },
           filetypes = { "json", "jsonc" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern(".git")(fname) or vim.fn.getcwd()
-          end,
           init_options = {
             provideFormatter = true,
           },
@@ -124,10 +116,6 @@ return {
         taplo = {
           cmd = { "taplo", "lsp", "stdio" },
           filetypes = { "toml" },
-          root_dir = function(fname)
-            local lspconfig = require("lspconfig")
-            return lspconfig.util.root_pattern("*.toml", ".git")(fname) or vim.fn.getcwd()
-          end,
           settings = {
             taplo = {
               formatter = {
