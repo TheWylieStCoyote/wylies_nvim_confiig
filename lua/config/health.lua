@@ -136,6 +136,32 @@ M.check = function()
 
   -- TreeSitter
   vim.health.start("TreeSitter")
+  -- nvim-treesitter `main` builds parsers with the tree-sitter CLI (0.25+). Mason's
+  -- copy wins once mason has prepended its bin dir to PATH, and it is a prebuilt
+  -- binary that fails to even start on distros with an older glibc (e.g. RHEL 9).
+  -- Run it here so the loader error is shown plainly instead of as a vague
+  -- parser-build failure.
+  local ts_cli = vim.fn.stdpath("data") .. "/mason/bin/tree-sitter"
+  if vim.fn.executable(ts_cli) ~= 1 then
+    ts_cli = vim.fn.exepath("tree-sitter")
+  end
+  if ts_cli == "" then
+    vim.health.warn("tree-sitter CLI not found (LazyVim will install it via Mason)")
+  else
+    local out = vim.trim(vim.fn.system({ ts_cli, "--version" }))
+    local version = out:match("(%d+%.%d+%.%d+)")
+    if vim.v.shell_error ~= 0 then
+      vim.health.error("tree-sitter CLI at " .. ts_cli .. " does not run: " .. out, {
+        "Install one built for this system (`cargo install tree-sitter-cli`) and run :MasonUninstall tree-sitter-cli",
+      })
+    elseif version and vim.version.lt(version, "0.25.0") then
+      vim.health.warn(
+        "tree-sitter CLI " .. version .. " at " .. ts_cli .. " is older than the 0.25 nvim-treesitter needs"
+      )
+    else
+      vim.health.ok("tree-sitter CLI " .. (version or out) .. " (" .. ts_cli .. ")")
+    end
+  end
   if check_module("nvim-treesitter") then
     local ok, _parsers = pcall(vim.treesitter.language.get_filetypes, nil)
     if not ok then
