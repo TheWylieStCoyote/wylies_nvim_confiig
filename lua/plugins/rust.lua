@@ -36,6 +36,25 @@ return {
     ft = { "rust" },
     opts = {
       server = {
+        -- Prefer the toolchain's own rust-analyzer (installed via
+        -- `rustup component add rust-analyzer`): its version and proc-macro
+        -- server ABI match rustc exactly, and the rustup proxy follows each
+        -- project's rust-toolchain.toml. Fall back to Mason's standalone build
+        -- when the active toolchain has no rust-analyzer component.
+        cmd = function()
+          local proxy = vim.fn.expand("~/.cargo/bin/rust-analyzer")
+          if vim.fn.executable("rustup") == 1 and vim.fn.executable(proxy) == 1 then
+            vim.fn.system({ "rustup", "which", "rust-analyzer" })
+            if vim.v.shell_error == 0 then
+              return { proxy }
+            end
+          end
+          local mason = vim.fn.stdpath("data") .. "/mason/bin/rust-analyzer"
+          if vim.fn.executable(mason) == 1 then
+            return { mason }
+          end
+          return { "rust-analyzer" }
+        end,
         on_attach = function(_, bufnr)
           -- Rust-specific keymaps
           local map = function(keys, func, desc)
@@ -79,15 +98,24 @@ return {
         default_settings = {
           ["rust-analyzer"] = {
             cargo = {
-              allFeatures = true,
-              loadOutDirsFromCheck = true,
+              -- Default features only. "all" breaks crates with mutually exclusive
+              -- features (embedded HALs, defmt vs log, ...) and multiplies indexing work.
+              features = {},
               buildScripts = {
                 enable = true,
               },
+              -- Use target/rust-analyzer so editor checks never contend for the
+              -- build-directory lock with cargo running in a terminal.
+              targetDir = true,
             },
-            checkOnSave = {
+            -- checkOnSave is a boolean; the command lives under `check`.
+            checkOnSave = true,
+            check = {
               command = "clippy",
               extraArgs = { "--no-deps" },
+              -- Don't check test/bench/example targets on every save; they can't
+              -- even build for no_std cross targets.
+              allTargets = false,
             },
             procMacro = {
               enable = true,
