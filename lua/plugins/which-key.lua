@@ -165,8 +165,8 @@ return {
         { "<leader>5", desc = "Harpoon File 5" },
 
         -- Test subgroups
-        { "<leader>tn", group = "Neotest" },
-        { "<leader>td", group = "Debug Test" },
+        -- Note: <leader>td is a direct action (Debug Nearest Test); no group needed
+        { "<leader>tc", group = "Coverage" },
 
         -- Session management
         { "<leader>qS", desc = "Save Session" },
