@@ -12,10 +12,16 @@ return {
     -- without easy F-keys. Breakpoint keys live on persistent-breakpoints below.
     keys = {
       -- stylua: ignore start
-      { "<F5>", function() require("dap").continue() end, desc = "Debug: Continue/Start" },
-      { "<F10>", function() require("dap").step_over() end, desc = "Debug: Step Over" },
-      { "<F11>", function() require("dap").step_into() end, desc = "Debug: Step Into" },
-      { "<S-F11>", function() require("dap").step_out() end, desc = "Debug: Step Out" },
+      { "<F5>", function() require("dap").continue() end, desc = "Continue/Start (F5 / <leader>F5)" },
+      { "<F10>", function() require("dap").step_over() end, desc = "Step Over (F10 / <leader>F10)" },
+      { "<F11>", function() require("dap").step_into() end, desc = "Step Into (F11 / <leader>F11)" },
+      { "<S-F11>", function() require("dap").step_out() end, desc = "Step Out (Shift-F11 / <leader>F12)" },
+      -- <leader>F<n> mirrors F<n> for keyboards without a function row
+      -- (step out lives on F12 since Shift-F11 has no number).
+      { "<leader>F5", function() require("dap").continue() end, desc = "Continue/Start (F5 / <leader>F5)" },
+      { "<leader>F10", function() require("dap").step_over() end, desc = "Step Over (F10 / <leader>F10)" },
+      { "<leader>F11", function() require("dap").step_into() end, desc = "Step Into (F11 / <leader>F11)" },
+      { "<leader>F12", function() require("dap").step_out() end, desc = "Step Out (Shift-F11 / <leader>F12)" },
       { "<leader>dC", function() require("dap").continue() end, desc = "Continue/Start" },
       { "<leader>do", function() require("dap").step_over() end, desc = "Step Over" },
       { "<leader>di", function() require("dap").step_into() end, desc = "Step Into" },
@@ -145,7 +151,14 @@ return {
         function()
           require("persistent-breakpoints.api").toggle_breakpoint()
         end,
-        desc = "Toggle Breakpoint",
+        desc = "Toggle Breakpoint (F9 / <leader>F9)",
+      },
+      {
+        "<leader>F9",
+        function()
+          require("persistent-breakpoints.api").toggle_breakpoint()
+        end,
+        desc = "Toggle Breakpoint (F9 / <leader>F9)",
       },
     },
   },

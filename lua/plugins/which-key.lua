@@ -110,6 +110,7 @@ return {
         { "<leader>b", group = "Buffer" },
         { "<leader>c", group = "Code" },
         { "<leader>d", group = "Debug" },
+        { "<leader>F", group = "Debug (F-keys)" },
         { "<leader>e", group = "Extract/Refactor" },
         { "<leader>f", group = "Find/Files" },
         { "<leader>g", group = "Git" },
